@@ -1,0 +1,971 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Hesabix Accounting\n"
+"POT-Creation-Date: 2021-01-08 14:20+0330\n"
+"PO-Revision-Date: 2021-01-08 14:20+0330\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fa_IR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.4.2\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-WPHeader: ssbhesabix.php\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: admin/class-ssbhesabix-admin.php:137
+#, php-format
+msgid "Hesabix Plugin requires the %s to work!"
+msgstr "افزونه حسابیکس نیازمند %s است!"
+
+#: admin/class-ssbhesabix-admin.php:137
+msgid "WooCommerce"
+msgstr "ووکامرس"
+
+#: admin/class-ssbhesabix-admin.php:146
+msgid ""
+"Hesabix Plugin need to connect to Hesabix Accounting, Please check the API "
+"credential!"
+msgstr ""
+"افزونه حسابیکس نیازمند\t اتصال به نرم‌افزار حسابداری حسابیکس است، لطفا اطلاعات "
+"دسترسی به API حسابیکس را بررسی کنید!"
+
+#: admin/class-ssbhesabix-admin.php:155
+msgid ""
+"Hesabix Plugin cannot works! because WooCommerce currency in not match with "
+"Hesabix."
+msgstr ""
+"افزونه حسابیکس نمی‌تواند به درستی عمل کند! واحد پول پیش‌فرض ووکامرس با واحد پول "
+"پیش‌فرض حسابیکس همخوانی ندارد."
+
+#: admin/class-ssbhesabix-admin.php:410 admin/class-ssbhesabix-admin.php:502
+msgid "The new Item code already used for another Item"
+msgstr "این کد قبلا برای کالایی دیگر استفاده شده است."
+
+#: admin/class-ssbhesabix-admin.php:483
+msgid "Hesabix base item code"
+msgstr "کد کالای پایه در حسابیکس"
+
+#: admin/class-ssbhesabix-admin.php:485
+msgid ""
+"The base Item code of this product in Hesabix, if you want to map this product "
+"to another item in Hesabix, enter the new Item code."
+msgstr ""
+"این فیلد کد کالای پایه در حسابیکس است، اگر می‌خواهید این کالا را به کالای دیگری "
+"در حسابیکس ارتباط دهید، کد کالای جدید را وارد نمایید."
+
+#: admin/class-ssbhesabix-admin.php:521
+msgid "Hesabix variable item code"
+msgstr "کد کالای متغیر در حسابیکس"
+
+#: admin/class-ssbhesabix-admin.php:523
+msgid ""
+"The variable Item code of this product variable in Hesabix, if you want to map "
+"this product to another item in Hesabix, enter the new Item code."
+msgstr ""
+"این فیلد کد کالای متغییر در حسابیکس است، اگر می‌خواهید این کالا را به کالای "
+"دیگری در حسابیکس ارتباط دهید، کد کالای جدید را وارد نمایید."
+
+#: admin/partials/ssbhesabix-admin-display.php:305
+msgid "Extra Settings"
+msgstr "تنظیمات پیشرفته"
+
+#: admin/partials/ssbhesabix-admin-display.php:28
+msgid "Hesabix Options"
+msgstr "تنظیمات افزونه حسابیکس"
+
+#: admin/partials/ssbhesabix-admin-display.php:28
+msgid "Hesabix"
+msgstr "حسابیکس"
+
+#: admin/partials/ssbhesabix-admin-display.php:38
+msgid "Home"
+msgstr "خانه"
+
+#: admin/partials/ssbhesabix-admin-display.php:39
+msgid "API"
+msgstr "‏API"
+
+#: admin/partials/ssbhesabix-admin-display.php:40
+msgid "Catalog"
+msgstr "محصولات"
+
+#: admin/partials/ssbhesabix-admin-display.php:41
+msgid "Customers"
+msgstr "مشتریان"
+
+#: admin/partials/ssbhesabix-admin-display.php:42
+msgid "Invoice"
+msgstr "فاکتور"
+
+#: admin/partials/ssbhesabix-admin-display.php:43
+msgid "Payment Methods"
+msgstr "روش‌های پرداخت"
+
+#: admin/partials/ssbhesabix-admin-display.php:44
+msgid "Export"
+msgstr "خروجی"
+
+msgid "Import and export data"
+msgstr "ورود و خروج اطلاعات"
+
+#: admin/partials/ssbhesabix-admin-display.php:45
+msgid "Sync"
+msgstr "همسان‌سازی"
+
+#: admin/partials/ssbhesabix-admin-display.php:65
+msgid ""
+"Hesabix Plugin requires the WooCommerce to work!, Please install/activate "
+"woocommerce and try again"
+msgstr ""
+"افزونه حسابیکس جهت راه‌اندازی نیاز به ووکامرس دارد! لطفا ووکامرس را نصب/فعال "
+"کنید و مجدد سعی کنید."
+
+#: admin/partials/ssbhesabix-admin-functions.php:269
+#: admin/partials/ssbhesabix-admin-functions.php:964
+msgid "Not Defined"
+msgstr "وارد نشده"
+
+#: admin/partials/ssbhesabix-admin-functions.php:290
+#: admin/partials/ssbhesabix-admin-functions.php:311
+#: admin/partials/ssbhesabix-admin-functions.php:332
+#: admin/partials/ssbhesabix-admin-functions.php:981
+msgid "Customer ID in OnlineStore: "
+msgstr "شناسه مشتری در فروشگاه آن‌لاین:"
+
+#: admin/partials/ssbhesabix-admin-functions.php:383
+msgid "Guest Customer"
+msgstr "مشتری مهمان"
+
+#: admin/partials/ssbhesabix-admin-functions.php:402
+msgid "Customer registered as a GuestCustomer."
+msgstr "مشتری به عنوان مهمان ثبت‌نام کرده است."
+
+#. Plugin Name of the plugin/theme
+#: admin/partials/ssbhesabix-admin-setting.php:44
+msgid "Hesabix Accounting"
+msgstr "نرم‌افزار حسابداری آنلاین حسابیکس"
+
+#: admin/partials/ssbhesabix-admin-setting.php:186
+msgid "Enable or Disable Advanced Log"
+msgstr "تب لاگ پیشرفته"
+
+#: admin/partials/ssbhesabix-admin-setting.php:1455
+msgid "Start ID"
+msgstr "از شناسه (کد کالای ووکامرس)"
+#: admin/partials/ssbhesabix-admin-setting.php:1456
+msgid "End ID"
+msgstr "تا شناسه (کد کالای ووکامرس)"
+#: admin/partials/ssbhesabix-admin-setting.php:1456
+msgid "Update Products in Hesabix based on store with filter"
+msgstr "بروزرسانی محصولات در حسابیکس بر اساس فروشگاه در بازه ID مشخص شده"
+
+#: admin/partials/ssbhesabix-admin-setting.php:189
+msgid "Performance Optimization Settings"
+msgstr "تنظیمات بهینه سازی عملکرد"
+
+#: admin/partials/ssbhesabix-admin-setting.php:189
+msgid "Disable The Advanced Log"
+msgstr "غیرفعال کردن تب لاگ پیشرفته"
+
+#: admin/partials/ssbhesabix-admin-setting.php:190
+msgid "Enable The Advanced Log"
+msgstr "فعال کردن تب لاگ پیشرفته"
+
+#: admin/partials/ssbhesabix-admin-setting.php:45
+msgid ""
+"This module helps connect your (online) store to Hesabix online accounting "
+"software. By using this module, saving products, contacts, and orders in your "
+"store will also save them automatically in your Hesabix account. Besides that, "
+"just after a client pays a bill, the receipt document will be stored in "
+"Hesabix as well. Of course, you have to register your account in Hesabix "
+"first. To do so, visit Hesabix at the link here www.hesabix.com and sign up "
+"for free. After you signed up and entered your account, choose your business, "
+"then in the settings menu/API, you can find the API keys for the business and "
+"import them to the plugin’s settings. Now your module is ready to use."
+msgstr ""
+"این ماژول فروشگاه شما را به نرم افزار حسابداری آنلاین حسابیکس متصل می کند. به "
+"وسیله ی این ماژول کالاها، مشتریان و سفارشات شما به محض ثبت در سیستم فروشگاه، "
+"در حسابیکس نیز بصورت خودکار ثبت و ذخیره می شوند. همچنین با پرداخت مشتری، سند "
+"دریافت وجه از مشتری نیز در حسابیکس ثبت می شود. بدیهی است برای استفاده از این "
+"افزونه باید ابتدا یک حساب کاربری در حسابیکس داشته باشید. برای این کار می توانید "
+"به وب سایت حسابیکس به آدرس www.hesabix.com سر بزنید و به رایگان ثبت نام کنید. "
+"پس از ثبت نام در حسابیکس و ورود به حساب خود، و سپس ورود به یک کسب و کار، در "
+"قسمت تنظیمات / API می توانید کلید API مربوط به کسب و کار خود را دریافت و در "
+"قسمت تنظیمات این ماژول وارد نمایید. پس از آن ماژول شما آماده استفاده است."
+
+#: admin/partials/ssbhesabix-admin-setting.php:46
+msgid ""
+"For more information and a full guide to how to use Hesabix and WooCommerce "
+"Plugin, visit Hesabix’s website and go to the “Guides and Tutorials” menu."
+msgstr ""
+"برای کسب اطلاعات بیشتر و راهنمای استفاده از حسابیکس و افزونه ووکامرس به وب سایت "
+"حسابیکس، قسمت راهنما ها و خودآموز ها مراجعه کنید."
+
+#: admin/partials/ssbhesabix-admin-setting.php:53
+msgid "Catalog Settings"
+msgstr "تنظیمات محصولات"
+
+#: admin/partials/ssbhesabix-admin-setting.php:56
+msgid "Update Price"
+msgstr "به‌روزرسانی قیمت"
+
+#: admin/partials/ssbhesabix-admin-setting.php:57
+msgid "Update Price after change in Hesabix"
+msgstr "به‌روزرسانی قیمت بعد از تغییر در حسابیکس"
+
+#: admin/partials/ssbhesabix-admin-setting.php:64
+msgid "Update Quantity"
+msgstr "به‌روزرسانی موجودی"
+
+#: admin/partials/ssbhesabix-admin-setting.php:65
+msgid "Update Quantity after change in Hesabix"
+msgstr "به‌روزرسانی موجودی بعد از تغییر در حسابیکس"
+
+#: admin/partials/ssbhesabix-admin-setting.php:240
+msgid "Show Hesabix ID in Products Page"
+msgstr "نمایش کد حسابیکس در صفحه همه محصولات"
+
+#: admin/partials/ssbhesabix-admin-setting.php:679
+msgid "Default Payment Gateway By Using this Option, all Invoices Will Have this Payment Gateway as Their Payment Gateway"
+msgstr "درگاه پرداخت پیش فرض"
+
+#: admin/partials/ssbhesabix-admin-setting.php:695
+msgid "Default Bank Code"
+msgstr "کد بانک پیش فرض"
+
+#: admin/partials/ssbhesabix-admin-setting.php:689
+msgid "Default Bank Name"
+msgstr "نام بانک پیش فرض"
+
+#: admin/partials/ssbhesabix-admin-setting.php:683
+msgid "Save Default Bank as the Payment Gateway"
+msgstr "بانک پیش فرض به عنوان درگاه پرداخت ذخیره شود"
+
+#: admin/partials/ssbhesabix-admin-setting.php:684
+msgid "Save Other Payment Methods as the Payment Gateway"
+msgstr "روش های دیگر پرداخت به عنوان درگاه پرداخت ذخیره شود"
+
+#: admin/partials/ssbhesabix-admin-setting.php:246
+msgid "Set Special Sale as Discount in invoice"
+msgstr "ثبت فروش ویژه به عنوان تخفیف در فاکتور"
+
+#: admin/partials/ssbhesabix-admin-setting.php:693
+msgid "Enter Bank Code"
+msgstr "کد بانک را وارد نمایید"
+
+#: admin/partials/ssbhesabix-admin-setting.php:700
+msgid "Enter Bank Name"
+msgstr "نام بانک را وارد نمایید"
+
+#: admin/partials/ssbhesabix-admin-setting.php:700
+msgid "Enter Freight Code"
+msgstr "کد هزینه حمل و نقل را وارد نمایید"
+
+#: admin/partials/ssbhesabix-admin-setting.php:1642
+msgid "Delete Logs Between These Tow Dates"
+msgstr "حذف لاگ ها در بازه مشخص شده"
+
+#: admin/partials/ssbhesabix-admin-setting.php:1633
+msgid "Log History"
+msgstr "تاریخچه لاگ ها"
+#: admin/partials/ssbhesabix-admin-setting.php:1648
+#: admin/partials/ssbhesabix-admin-setting.php:1680
+msgid "Delete All Log Files"
+msgstr "پاک کردن کل لاگ ها"
+#: admin/partials/ssbhesabix-admin-setting.php:1613
+msgid "Find Log File"
+msgstr "جستجوی فایل لاگ براساس تاریخ"
+
+#: admin/partials/ssbhesabix-admin-setting.php:84
+#: admin/partials/ssbhesabix-admin-setting.php:130
+#: admin/partials/ssbhesabix-admin-setting.php:191
+#: admin/partials/ssbhesabix-admin-setting.php:250
+#: admin/partials/ssbhesabix-admin-setting.php:301
+msgid "Save changes"
+msgstr "ذخیره  تغییرات"
+
+#: admin/partials/ssbhesabix-admin-setting.php:99
+msgid "Customers Settings"
+msgstr "تنظیمات مشتری"
+
+#: admin/partials/ssbhesabix-admin-setting.php:102
+msgid "Update Customer Address"
+msgstr "به روزرسانی آدرس مشتریان"
+
+#: admin/partials/ssbhesabix-admin-setting.php:103
+msgid "Choose when update Customer address in Hesabix."
+msgstr "انتخاب کنید که در چه حالتی آدرس مشتری در حسابیکس به‌روزرسانی شود"
+
+#: admin/partials/ssbhesabix-admin-setting.php:106
+msgid "Use first customer address"
+msgstr "اولین آدرس مشتری"
+
+#: admin/partials/ssbhesabix-admin-setting.php:106
+msgid "update address with Invoice address"
+msgstr "به روزرسانی با آدرس فاکتور سفارش"
+
+#: admin/partials/ssbhesabix-admin-setting.php:106
+msgid "update address with Delivery address"
+msgstr "به‌روزرسانی با آدرس ارسال سفارش"
+
+#: admin/partials/ssbhesabix-admin-setting.php:110
+msgid "Customer's Group"
+msgstr "دسته‌بندی مشتریان"
+
+#: admin/partials/ssbhesabix-admin-setting.php:111
+msgid "Enter a Customer's Group in Hesabix"
+msgstr "نام دسته‌بندی مشتریان در حسابیکس را وارد کنید"
+
+
+
+#: admin/partials/ssbhesabix-admin-setting.php:110
+msgid "Save Customer's group"
+msgstr "ذخیره دسته بندی مشتریان"
+
+
+#: admin/partials/ssbhesabix-admin-setting.php:110
+msgid "Automatically save Customer's group in hesabix"
+msgstr "به صورت خودکار دسته بندی مشتریان را در حسابیکس ذخیره کن"
+
+
+#: admin/partials/ssbhesabix-admin-setting.php:111
+msgid "Customer's detail auto save and update"
+msgstr "ذخیره خودکار مشتریان"
+
+
+#: admin/partials/ssbhesabix-admin-setting.php:111
+msgid "Save and update Customer's detail automatically in hesabix"
+msgstr "ثبت و ذخیره خودکار اطلاعات مشتریان در حسابیکس"
+
+msgid "Add additional fields to checkout page"
+msgstr "افزودن فیلد های دلخواه به صفحه پرداخت"
+
+
+msgid "Customer add field to checkout by hesabix"
+msgstr "افزودن فیلد ها توسط افزونه حسابیکس"
+
+
+msgid "Customer add field to checkout by postmeta"
+msgstr "استفاده از فیلد های موجود در جدول متا (که توسط افزونه های دیگر اضافه شده است)"
+
+
+msgid "Show"
+msgstr "نمایش"
+
+msgid "Title"
+msgstr "عنوان"
+
+msgid "Meta code in Postmeta"
+msgstr "کد متا در جدول پست متا"
+
+msgid "National code"
+msgstr "کد ملی"
+
+msgid "Economic code"
+msgstr "کد اقتصادی"
+
+msgid "Registration number"
+msgstr "شماره ثبت"
+
+msgid "Website"
+msgstr "وب سایت"
+
+msgid "Required"
+msgstr "اجباری"
+
+msgid "please enter your National code"
+msgstr "لطفا کد ملی خود را وارد کتید"
+
+msgid "please enter a valid national code"
+msgstr "لطفا کد ملی معتبر وارد نمایید"
+
+msgid "please enter your Economic code"
+msgstr "لطفا کد اقتصادی خود را وارد کتید"
+
+msgid "please enter your Registration number"
+msgstr "لطفا شماره ثبت خود را وارد کتید"
+
+msgid "please enter your Website address"
+msgstr "لطفا آدرس سایت خود را وارد کنید"
+
+msgid "please enter a valid Website URL"
+msgstr "لطفا آدرس سایت معتبر وارد نمایید"
+
+#: admin/partials/ssbhesabix-admin-setting.php:144
+msgid "Invoice Settings"
+msgstr "تنظیمات فاکتور"
+
+#: admin/partials/ssbhesabix-admin-setting.php:147
+msgid "Add invoice in which status"
+msgstr "افزودن فاکتور در وضعیت:"
+
+#: admin/partials/ssbhesabix-admin-setting.php:380
+msgid "Save invoice in draft mode in Hesabix"
+msgstr "ثبت فاکتور بصورت پیش نویس در حسابیکس"
+
+#: admin/partials/ssbhesabix-admin-setting.php:557
+msgid "Save Freight"
+msgstr "ذخیره هزینه حمل و نقل"
+
+#: admin/partials/ssbhesabix-admin-setting.php:561
+msgid "Save as Freight"
+msgstr "ذخیره به عنوان هزینه"
+
+#: admin/partials/ssbhesabix-admin-setting.php:562
+msgid "Save as a Service"
+msgstr "ذخیره به عنوان یک خدمت"
+
+#: admin/partials/ssbhesabix-admin-setting.php:562
+msgid "Service Code For Freight"
+msgstr "کد خدمت حمل و نقل ذخیره شده در حسابیکس"
+
+#: admin/partials/ssbhesabix-admin-setting.php:151
+#: admin/partials/ssbhesabix-admin-setting.php:167
+#: admin/partials/ssbhesabix-admin-setting.php:217
+msgid "Pending payment"
+msgstr "در انتظار پرداخت"
+
+#: admin/partials/ssbhesabix-admin-setting.php:152
+#: admin/partials/ssbhesabix-admin-setting.php:168
+#: admin/partials/ssbhesabix-admin-setting.php:218
+msgid "Processing"
+msgstr "در حال انجام"
+
+#: admin/partials/ssbhesabix-admin-setting.php:153
+#: admin/partials/ssbhesabix-admin-setting.php:169
+#: admin/partials/ssbhesabix-admin-setting.php:219
+msgid "On hold"
+msgstr "در انتظار بررسی"
+
+#: admin/partials/ssbhesabix-admin-setting.php:154
+#: admin/partials/ssbhesabix-admin-setting.php:170
+#: admin/partials/ssbhesabix-admin-setting.php:220
+msgid "Completed"
+msgstr "تکمیل شده"
+
+#: admin/partials/ssbhesabix-admin-setting.php:155
+#: admin/partials/ssbhesabix-admin-setting.php:171
+#: admin/partials/ssbhesabix-admin-setting.php:221
+msgid "Cancelled"
+msgstr "لغو شده"
+
+#: admin/partials/ssbhesabix-admin-setting.php:156
+#: admin/partials/ssbhesabix-admin-setting.php:172
+#: admin/partials/ssbhesabix-admin-setting.php:222
+msgid "Refunded"
+msgstr "مسترد شده"
+
+#: admin/partials/ssbhesabix-admin-setting.php:157
+#: admin/partials/ssbhesabix-admin-setting.php:173
+#: admin/partials/ssbhesabix-admin-setting.php:223
+msgid "Failed"
+msgstr "ناموفق"
+
+#: admin/partials/ssbhesabix-admin-setting.php:158
+#: admin/partials/ssbhesabix-admin-setting.php:174
+#: admin/partials/ssbhesabix-admin-setting.php:224
+msgid "Draft"
+msgstr "پیش‌نویس"
+
+#: admin/partials/ssbhesabix-admin-setting.php:163
+msgid "Return sale invoice status"
+msgstr "ثبت فاکتور برگشت از فروش در وضعیت"
+
+#: admin/partials/ssbhesabix-admin-setting.php:210
+msgid "Payment methods Settings"
+msgstr "تنظیمات روش پرداخت"
+
+#: admin/partials/ssbhesabix-admin-setting.php:213
+msgid "Add payment in which status"
+msgstr "افزودن پرداخت در وضعیت:"
+
+#: admin/partials/ssbhesabix-admin-setting.php:265
+msgid "API Settings"
+msgstr "تنظیمات API"
+
+#: admin/partials/ssbhesabix-admin-setting.php:268
+msgid "Email"
+msgstr "آدرس ایمیل"
+
+#: admin/partials/ssbhesabix-admin-setting.php:269
+msgid "Enter a Hesabix email account"
+msgstr "آدرس ایمیل اکانت حسابیکس را وارد کنید"
+
+#: admin/partials/ssbhesabix-admin-setting.php:275
+msgid "Password"
+msgstr "رمزعبور"
+
+#: admin/partials/ssbhesabix-admin-setting.php:276
+msgid "Enter a Hesabix password"
+msgstr "رمزعبور حسابیکس را وارد کنید"
+
+#: admin/partials/ssbhesabix-admin-setting.php:282
+msgid "API Key"
+msgstr "کلید API"
+
+msgid "Login token"
+msgstr "توکن ورود"
+
+#: admin/partials/ssbhesabix-admin-setting.php:283
+msgid "Find API key in Setting->Financial Settings->API Menu"
+msgstr "کلید API را در حسابیکس از منوی تنظیمات->تنظیمات مالی->API پیدا کنید"
+
+msgid "Find Login token in Setting->Financial Settings->API Menu"
+msgstr "توکن ورود را در حسابیکس از منوی تنظیمات->تنظیمات مالی->API پیدا کنید"
+
+#: admin/partials/ssbhesabix-admin-setting.php:323
+msgid ""
+"No products were exported, All products were exported or there are no product"
+msgstr ""
+"هیچ محصولی استخراج نشد، تمامی محصولات قبلا استخراج شده‌اند یا محصولی وجود ندارد."
+
+msgid ""
+"No products were imported, All products were imported or there are no product"
+msgstr ""
+"هیچ محصولی وارد نشد، تمامی محصولات قبلا وارد شده‌اند یا محصولی وجود ندارد."
+
+
+#: admin/partials/ssbhesabix-admin-setting.php:327
+#, php-format
+msgid "Export products completed. %s products added/updated."
+msgstr "استخراج محصولات به اتمام رسید. ‪‬%s محصول استخراج شد."
+
+msgid "Import products completed. %s products added/updated."
+msgstr "ورود محصولات به اتمام رسید. ‪‬%s محصول وارد شد."
+
+#: admin/partials/ssbhesabix-admin-setting.php:335
+msgid "Export products fail. Hesabix has already contained products."
+msgstr "خروجی محصولات با خطا مواجه شد. حسابیکس از قبل حاوی محصولاتی است."
+
+#: admin/partials/ssbhesabix-admin-setting.php:339
+msgid "Export products fail. Please check the log file."
+msgstr "خروجی محصولات با خطا مواجه شد. لطفا لاگ را بررسی کنید."
+
+msgid "Import products fail. Please check the log file."
+msgstr "ورود محصولات با خطا مواجه شد. لطفا لاگ را بررسی کنید."
+
+#: admin/partials/ssbhesabix-admin-setting.php:340
+msgid "Export product opening quantity completed."
+msgstr "استخراج موجودی اول دوره با موفقیت به پایان رسید."
+
+#: admin/partials/ssbhesabix-admin-setting.php:347
+msgid ""
+"Export product opening quantity fail. No Shareholder exists, Please define "
+"Shareholder in Hesabix"
+msgstr ""
+"استخراج موجودی اول دوره با خطا مواجه شد. سهامدار تعریف نشده است، لطفا ابتدا "
+"سهامداران را در حسابیکس تعریف کنید."
+
+#: admin/partials/ssbhesabix-admin-setting.php:351
+msgid "No product available for Export product opening quantity."
+msgstr "محصولی جهت استخراج موجودی اول دوره در دسترس نمی‌باشد."
+
+#: admin/partials/ssbhesabix-admin-setting.php:355
+msgid "Export product opening quantity fail. Please check the log file."
+msgstr "استخراج موجودی اول دوره با خطا مواجه شد. لطفا لاگ را بررسی کنید."
+
+#: admin/partials/ssbhesabix-admin-setting.php:366
+msgid ""
+"No customers were exported, All customers were exported or there are no "
+"customer"
+msgstr ""
+"هیچ مشتری استخراج نشد، تمامی مشتریان قبلا استخراج شده‌اند یا مشتری وجود ندارد."
+
+#: admin/partials/ssbhesabix-admin-setting.php:370
+#, php-format
+msgid "Export customers completed. %s customers added."
+msgstr "استخراج مشتریان به اتمام رسید. %s مشتری استخراج شد."
+
+#: admin/partials/ssbhesabix-admin-setting.php:375
+msgid "Export customers fail. Please check the log file."
+msgstr "استخراج مشتریان با خطا مواجه شد. لطفا لاگ را بررسی کنید."
+
+#: admin/partials/ssbhesabix-admin-setting.php:381
+msgid "Export can take several minutes."
+msgstr "استخراج ممکن است چند دقیقه زمان ببرد."
+
+msgid "Export customers fail. Hesabix has already contained customers."
+msgstr "خروجی مشتریان با خطا مواجه شد. حسابیکس از قبل حاوی مشتریان است."
+
+#: admin/partials/ssbhesabix-admin-setting.php:392
+msgid "Export Products"
+msgstr "خروجی محصولات"
+
+msgid "Import Products"
+msgstr "ورود محصولات"
+
+#: admin/partials/ssbhesabix-admin-setting.php:395
+msgid "Export and add all online store products to Hesabix"
+msgstr "افزودن تمامی محصولات فروشگاه آنلاین در حسابیکس"
+
+msgid "Import and add all products from Hesabix to online store"
+msgstr "افزودن تمامی محصولات حسابیکس به فروشگاه آنلاین"
+
+#: admin/partials/ssbhesabix-admin-setting.php:407
+msgid "Export Products opening quantity"
+msgstr "استخراج موجودی اول دوره"
+
+#: admin/partials/ssbhesabix-admin-setting.php:410
+msgid ""
+"Export the products quantity and record the 'products opening quantity' in the "
+"Hesabix"
+msgstr "استخراج موجودی محصولات و ثبت موجودی اول دوره در حسابیکس"
+
+#: admin/partials/ssbhesabix-admin-setting.php:422
+msgid "Export Customers"
+msgstr "خروجی مشتریان"
+
+#: admin/partials/ssbhesabix-admin-setting.php:425
+msgid "Export and add all online store customers to Hesabix."
+msgstr "افزودن تمامی مشتریان فروشگاه آنلاین در حسابیکس"
+
+#: admin/partials/ssbhesabix-admin-setting.php:437
+msgid "Sync completed, All hesabix changes synced successfully."
+msgstr "همسان‌سازی پایان یافت. تمامی تغییرات با حسابیکس همسان شد."
+
+#: admin/partials/ssbhesabix-admin-setting.php:445
+msgid "Sync completed, All products price/quantity synced successfully."
+msgstr "همسان سازی پایان یافت. قیمت/موجودی تمامی محصولات به روز شدند."
+
+#: admin/partials/ssbhesabix-admin-setting.php:449
+msgid "Sync products fail. Please check the log file."
+msgstr "همسان‌سازی محصولات با خطا مواجه شد. لطفا لاگ را بررسی کنید."
+
+#: admin/partials/ssbhesabix-admin-setting.php:459
+#, php-format
+msgid "Order sync completed. %s order added."
+msgstr "همسان‌سازی پایان یافت. %s فاکتور به‌روزرسانی/افزوده شد."
+
+#: admin/partials/ssbhesabix-admin-setting.php:467
+msgid "The date entered is not within the fiscal year."
+msgstr "تاریخ وارد شده در محدوده سال مالی نمی‌باشد."
+
+#: admin/partials/ssbhesabix-admin-setting.php:471
+msgid "Invoices are not synced before installing the plugin."
+msgstr ""
+"فاکتورهایی که قبل از زمان نصب این پلاگین صادر شده‌اند، امکان همسان‌سازی ندارند."
+
+#: admin/partials/ssbhesabix-admin-setting.php:475
+msgid "Cannot sync orders. Please enter valid Date format."
+msgstr "امکان همسان سازی سفارشات نیست. لطفا تاریخ معتبری وارد نمایید."
+
+#: admin/partials/ssbhesabix-admin-setting.php:482
+msgid "Sync can take several minutes."
+msgstr "همسان‌سازی ممکن است چند دقیقه زمان ببرد."
+
+#: admin/partials/ssbhesabix-admin-setting.php:183
+msgid "Enable or Disable Debug Mode"
+msgstr "فعال کردن دیباگ مود"
+
+#: admin/partials/ssbhesabix-admin-setting.php:246
+msgid "Set request amount per batch for sync products based on woocommerce in Hesabix"
+msgstr "تعداد درخواست ها در هر پارت برای همسان سازی محصولات در حسابیکس بر اساس فروشگاه آنلاین"
+
+#: admin/partials/ssbhesabix-admin-setting.php:263
+msgid "Set request amount per batch for sync products based on Hesabix in Woocommerce"
+msgstr "تعداد درخواست ها در هر پارت برای همسان سازی محصولات در فروشگاه آنلاین بر اساس حسابیکس"
+
+#: admin/partials/ssbhesabix-admin-setting.php:280
+msgid "Set request amount per batch for import products"
+msgstr "تعداد درخواست ها در هر پارت برای ورود محصولات"
+
+#: admin/partials/ssbhesabix-admin-setting.php:297
+msgid "Set request amount per batch for export products"
+msgstr "تعداد درخواست ها در هر پارت برای استخراج محصولات"
+
+#: admin/partials/ssbhesabix-admin-setting.php:308
+msgid "select"
+msgstr "انتخاب کنید"
+
+#: admin/partials/ssbhesabix-admin-setting.php:317
+msgid "Plugin Default"
+msgstr "مقدار پیش فرض افزونه"
+
+#: admin/partials/ssbhesabix-admin-setting.php:314
+msgid "Set request amount per batch for export opening quantity of products"
+msgstr "تعداد درخواست ها در هر پارت برای استخراج موجودی اول دوره کالا ها"
+
+#: admin/partials/ssbhesabix-admin-setting.php:494
+msgid "Sync Changes"
+msgstr "همسان‌سازی تغییرات"
+
+#: admin/partials/ssbhesabix-admin-setting.php:497
+msgid "Sync all Hesabix changes with Online Store."
+msgstr "همسان‌سازی تمامی تعییرات حسابیکس با فروشگاه آن‌لاین"
+
+#: admin/partials/ssbhesabix-admin-setting.php:509
+msgid "Sync Products Quantity and Price"
+msgstr "همسان‌سازی قیمت و موجودی محصولات"
+
+#: admin/partials/ssbhesabix-admin-setting.php:512
+msgid "Sync quantity and price of products in hesabix with online store."
+msgstr "همسان‌سازی قیمت و موجودی محصولات حسابیکس با فروشگاه آن‌لاین"
+
+#: admin/partials/ssbhesabix-admin-setting.php:525
+msgid "Sync Orders"
+msgstr "همسان‌سازی سفارشات"
+
+#: admin/partials/ssbhesabix-admin-setting.php:528
+msgid "Sync/Add orders in online store with hesabix from above date."
+msgstr "همسان‌سازی سفارشات فروشگاه آن‌لاین با حسابیکس از تاریخ فوق"
+
+#: admin/partials/ssbhesabix-admin-setting.php:557
+msgid "Cannot check the last change ID. Error Message: "
+msgstr "امکان بررسی آخرین تغییرات وجود ندارد. شرح خطا:"
+
+#: admin/partials/ssbhesabix-admin-setting.php:567
+msgid ""
+"The fiscal year has passed or not arrived. Please check the fiscal year "
+"settings in Hesabix."
+msgstr ""
+"سال مالی گذشته است یا هنوز فرا نرسیده است، لطفا تنظیمات سال مالی در حسابیکس را "
+"بررسی کنید."
+
+#: admin/partials/ssbhesabix-admin-setting.php:585
+msgid "Hesabix and WooCommerce default currency must be same."
+msgstr "واحد پول پیش‌فرض حسابیکس و ووکامرس باید یکی باشد."
+
+#: admin/partials/ssbhesabix-admin-setting.php:590
+msgid "Cannot check the Hesabix default currency. Error Message: "
+msgstr "امکان دریافت واحد پول پیش‌فرض حسابیکس وجود ندارد. شرح خطا:"
+
+#: admin/partials/ssbhesabix-admin-setting.php:598
+msgid "API Setting updated. Test Successfully"
+msgstr "تنظیمات API به روزرسانی شد، اتصال موفقیت آمیز بود."
+
+#: admin/partials/ssbhesabix-admin-setting.php:605
+msgid "Cannot set Hesabix webHook. Error Message:"
+msgstr "امکان تنظیم وب‌هوک در حسابیکس وجود ندارد. شرح خطا:"
+
+msgid "Cannot connect to Hesabix. Business expired."
+msgstr "امکان اتصال به حسابیکس وجود ندارد، کسب و کار منقضی شده است."
+
+#: admin/partials/ssbhesabix-admin-setting.php:614
+msgid "Cannot connect to Hesabix servers. Please check your Internet connection"
+msgstr "اتصال به حسابیکس برقرار نیست، لطفا اتصال اینترنت را بررسی نمایید."
+
+#: admin/partials/ssbhesabix-admin-setting.php:630
+msgid "No need to set!"
+msgstr "عدم نیاز به تعریف!"
+
+#: admin/partials/ssbhesabix-admin-setting.php:630
+msgid "Choose"
+msgstr "انتخاب کنید"
+
+#: admin/partials/ssbhesabix-admin-setting.php:638
+msgid "Define at least one bank in Hesabix"
+msgstr "حداقل یک حساب بانکی در حسابیکس تعریف کنید."
+
+#: admin/partials/ssbhesabix-admin-setting.php:646
+#: admin/partials/ssbhesabix-admin-setting.php:650
+msgid "Cannot get Banks detail."
+msgstr "امکان دریافت اطلاعات بانک‌ها نیست."
+
+#: admin/partials/ssbhesabix-html-output.php:288
+msgid "Select a page&hellip;"
+msgstr "انتخاب ‫دسته‌بندی"
+
+#: admin/partials/ssbhesabix-html-output.php:379
+msgid "Settings were saved successfully."
+msgstr "تنظیمات به‌روزرسانی شد."
+
+#. Plugin URI of the plugin/theme
+msgid "https://www.hesabix.com/"
+msgstr "‏https://www.hesabix.com/"
+
+#. Description of the plugin/theme
+msgid "Connect Hesabix Online Accounting to WooCommerce."
+msgstr "\tاتصال نرم‌افزار حسابداری ابری حسابیکس به ووکامرس"
+
+#. Author of the plugin/theme
+msgid "Saeed Sattar Beglou"
+msgstr "سعید ستاربگلو"
+
+msgid "Log"
+msgstr "لاگ"
+
+msgid "Events and bugs log"
+msgstr "لاگ رویدادها و خطاها"
+
+msgid "Clean current log"
+msgstr "پاک کردن لاگ جاری"
+
+msgid "Download log file"
+msgstr "دانلود فایل لاگ"
+
+msgid "The log file was cleared."
+msgstr "فایل لاگ پاک شد."
+
+msgid "Log file not found."
+msgstr "فایل لاگ پیدا نشد."
+
+msgid "Update Products in Hesabix based on store"
+msgstr "به روزرسانی محصولات در حسابیکس بر اساس فروشگاه"
+
+msgid "Update products in hesabix based on products definition in store."
+msgstr "به روزرسانی محصولات در حسابیکس بر اساس مشخصات آنها در فروشگاه. محصولات جدید به حسابیکس اضافه می شوند و محصولات قبلی ویرایش می شوند."
+
+msgid "Update completed successfully."
+msgstr "به روزرسانی با موفقیت انجام شد."
+
+msgid "Update completed successfully."
+msgstr "به روزرسانی با موفقیت انجام شد."
+
+msgid "Update failed. Please check the log file."
+msgstr "به روزرسانی ناموفق بود. لطفاً لاگ را بررسی کنید."
+
+msgid "Number of products in store:"
+msgstr "تعداد محصولات در فروشگاه:"
+
+msgid "Number of products in hesabix:"
+msgstr "تعداد محصولات در حسابیکس:"
+
+msgid "Number of linked products:"
+msgstr "تعداد محصولات لینک شده:"
+
+msgid "Save and next page"
+msgstr "ذخیره و صفحه بعد"
+
+msgid "Invoice in Hesabix"
+msgstr "فاکتور حسابیکس"
+
+msgid "Submit Invoice"
+msgstr "ثبت فاکتور"
+
+msgid "Submit Invoice in Hesabix"
+msgstr "ثبت فاکتور در حسابیکس"
+
+msgid "Submit Product in Hesabix"
+msgstr "ثبت محصول در حسابیکس"
+
+msgid "Do not submit product in Hesabix automatically by saving product in woocommerce"
+msgstr "با ذخیره محصول در ووکامرس، محصول را بصورت اتوماتیک در حسابیکس ثبت نکن"
+
+msgid "Submit Price in Hesabix"
+msgstr "ثبت قیمت در حسابیکس"
+
+msgid "Do not update product price in Hesabix by editing product in woocommerce"
+msgstr "با ویرایش محصول در ووکامرس، قیمت محصول را در حسابیکس بروز نکن"
+
+msgid "Barcode in Hesabix"
+msgstr "بارکد در حسابیکس"
+
+msgid "Do not update product barcode in Hesabix by saving product in woocommerce"
+msgstr "با ذخیره محصول در ووکامرس، بارکد محصول را در حسابیکس بروز نکن"
+
+msgid "Do not update product category in Hesabix by saving product in woocommerce"
+msgstr "با ذخیره محصول در ووکامرس، دسته بندی محصول را در حسابیکس بروز نکن"
+
+msgid "Do not update product code in Hesabix by saving product in woocommerce"
+msgstr "با ذخیره محصول در ووکامرس، کد محصول را در حسابیکس بروز نکن"
+
+msgid "Shipping method"
+msgstr "روش حمل و نقل"
+
+msgid "Invoice's Salesman"
+msgstr "فروشنده فاکتور"
+
+msgid "Invoice Salesman Percentage"
+msgstr "درصد پورسانت فروشنده فاکتور"
+
+msgid "Invoice's Project"
+msgstr "پروژه فاکتور"
+
+msgid "Submit Cash in Transit"
+msgstr "ثبت در وجوه در راه"
+
+msgid "Submit Invoice Receipt Cash in Transit"
+msgstr "ثبت رسید دریافت فاکتور در وجوه در راه"
+
+msgid "Invoice Transaction Fee Percentage"
+msgstr "درصد کارمزد تراکنش"
+
+msgid "Plugin Tutorial Video"
+msgstr "ویدیوی خودآموز افزونه"
+
+msgid "Titles"
+msgstr "عناوین"
+
+msgid "Accounting quantity (Total inventory)"
+msgstr "موجودی حسابداری (موجودی کل)"
+
+msgid "Cannot get warehouses."
+msgstr "امکان دریافت اطلاعات انبارها نیست."
+
+msgid "Update product's quantity based on"
+msgstr "بروزرسانی موجودی کالا بر اساس"
+
+msgid "Warehouse system is not active in Hesabix."
+msgstr "سیستم انبارداری در حسابیکس فعال نیست."
+
+msgid "API Address"
+msgstr "آدرس API"
+
+msgid "Contact Code in Hesabix"
+msgstr "کد شخص در حسابیکس"
+
+msgid ""
+"The contact code of this user in Hesabix, if you want to map this user "
+"to a contact in Hesabix, enter the Contact code."
+msgstr ""
+"این فیلد کد شخص در حسابیکس است، اگر می‌خواهید این کاربر را به شخصی "
+"در حسابیکس ارتباط دهید، کد شخص را وارد نمایید."
+
+msgid "Error: Select maximum 10 orders. Due to some limitations in Hesabix API, sending too many requests in one minute is not possible."
+msgstr "خطا: حداکثر ۱۰ سفارش را انتخاب کنید. بدلیل محدودیت رابط برنامه نویسی حسابیکس، ارسال درخواست های زیاد در یک دقیقه امکان پذیر نیست."
+
+msgid "Selected orders invoices have been saved. Number of saved invoices: "
+msgstr "فاکتور سفارش های انتخاب شده ثبت شد. تعداد فاکتور های ثبت شده: "
+
+msgid "Update sale price"
+msgstr "بروزرسانی قیمت فروش ویژه"
+
+msgid "The Sale price does not change"
+msgstr "قیمت فروش ویژه تغییر نکند"
+
+msgid "The Sale price gets removed"
+msgstr "قیمت فروش ویژه حذف گردد"
+
+msgid "The sale price get changes in proportion to the regular price"
+msgstr "قیمت فروش ویژه به تناسب قیمت اصلی تغییر یابد"
+
+msgid "Submit invoice base on Dokan orders"
+msgstr "ثبت فاکتور بر اساس سفارشات افزونه دکان"
+
+msgid "Submit parent order"
+msgstr "ثبت سفارش مادر"
+
+msgid "Submit children orders"
+msgstr "ثبت زیر سفارش ها"
+
+msgid "Inactive"
+msgstr "غیر فعال"
+
+#~ msgid "Sync completed, All products added/updated."
+#~ msgstr "همسان‌سازی پایان یافت. تمامی محصولات به‌روزرسانی/افزوده شدند."
+
+#~ msgid "Sync completed, No product added/updated."
+#~ msgstr "همسان‌سازی پایان یافت. هیچ محصولی به‌روزرسانی/افزوده شدند."
+
+#~ msgid "Sync completed; All hesabix changes synced successfully."
+#~ msgstr "همسان‌سازی پایان یافت. تمامی تغییرات با حسابیکس همسان شد."
+
+#~ msgid "Sync completed; All products added/updated."
+#~ msgstr "همسان‌سازی پایان یافت. تمامی محصولات به‌روزرسانی/افزوده شدند."
+
+#~ msgid "Sync completed; No product added/updated."
+#~ msgstr "همسان‌سازی پایان یافت. هیچ محصولی به‌روزرسانی/افزوده شدند."
+
+#~ msgid "Export product completed. %s product added/updated."
+#~ msgstr "استخراج پایان یافت. %s محصول به‌روزرسانی/افزوده شد."
+
+#~ msgid "Export customers completed. %s product added/updated."
+#~ msgstr "استخراج مشتریان پایان یافت. %s مشتری به‌روزرسانی/افزوده شد."
