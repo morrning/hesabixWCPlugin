@@ -8,6 +8,7 @@
  * @subpackage ssbhesabix/admin/display
  * @author     Saeed Sattar Beglou <saeed.sb@gmail.com>
  * @author     HamidReza Gharahzadeh <hamidprime@gmail.com>
+ * @author     Babak Alizadeh <alizadeh.babak@gmail.com>
  * @author     Sepehr Najafi <sepehrn249@gmail.com>
  */
 
@@ -89,7 +90,7 @@ class Ssbhesabix_Admin_Display
                 <strong>توجه!</strong>
                 <ul style="list-style-type:square">
                     <li>تغییرات هر صفحه را ذخیره کنید و سپس به صفحه بعد بروید.</li>
-                    <li>کد حسابیکس همان کد 6 رقمی (کد حسابداری کالا) است.</li>
+                    <li>کد حسابیکس همان کد 4 رقمی (کد حسابداری کالا) است.</li>
                     <li>از وجود تعریف کالا در حسابیکس اطمینان حاصل کنید.</li>
                     <li>این صفحه برای زمانی است که شما از قبل یک کالا را هم در فروشگاه و هم در حسابیکس
                         تعریف کرده اید اما اتصالی بین آنها وجود ندارد.
@@ -328,10 +329,10 @@ class Ssbhesabix_Admin_Display
                 </div>
                 <div class="col"></div>
                 <div class="col-auto">
-                    <a class="btn btn-sm btn-success" href="https://app.hesabix.com/u/login" target="_blank">ورود به
+                    <a class="btn btn-sm btn-success" href="https://my.hesabix.ir" target="_blank">ورود به
                         حسابیکس</a>
                     <a class="btn btn-sm btn-warning"
-                       href="https://www.hesabix.com/help/topics/%D8%A7%D9%81%D8%B2%D9%88%D9%86%D9%87/%D9%88%D9%88%DA%A9%D8%A7%D9%85%D8%B1%D8%B3"
+                       href="https://hesabix.ir/help/topics/%D8%A7%D9%81%D8%B2%D9%88%D9%86%D9%87/%D9%88%D9%88%DA%A9%D8%A7%D9%85%D8%B1%D8%B3"
                        target="_blank">راهنمای افزونه</a>
                 </div>
             </div>

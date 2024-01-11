@@ -67,7 +67,7 @@ class Ssbhesabix_Setting {
 		?>
         <h3 class="h3 hesabix-tab-page-title mt-4"><?php esc_attr_e( 'Hesabix Accounting', 'ssbhesabix' ); ?></h3>
         <p class="p mt-4 hesabix-p hesabix-f-12 ms-3"
-           style="text-align: justify"><?php esc_attr_e( 'This module helps connect your (online) store to Hesabix online accounting software. By using this module, saving products, contacts, and orders in your store will also save them automatically in your Hesabix account. Besides that, just after a client pays a bill, the receipt document will be stored in Hesabix as well. Of course, you have to register your account in Hesabix first. To do so, visit Hesabix at the link here www.hesabix.com and sign up for free. After you signed up and entered your account, choose your business, then in the settings menu/API, you can find the API keys for the business and import them to the plugin’s settings. Now your module is ready to use.', 'ssbhesabix' ); ?></p>
+           style="text-align: justify"><?php esc_attr_e( 'This module helps connect your (online) store to Hesabix online accounting software. By using this module, saving products, contacts, and orders in your store will also save them automatically in your Hesabix account. Besides that, just after a client pays a bill, the receipt document will be stored in Hesabix as well. Of course, you have to register your account in Hesabix first. To do so, visit Hesabix at the link here hesabix.ir and sign up for free. After you signed up and entered your account, choose your business, then in the settings menu/API, you can find the API keys for the business and import them to the plugin’s settings. Now your module is ready to use.', 'ssbhesabix' ); ?></p>
         <p class="p hesabix-p hesabix-f-12"><?php esc_attr_e( 'For more information and a full guide to how to use Hesabix and WooCommerce Plugin, visit Hesabix’s website and go to the “Guides and Tutorials” menu.', 'ssbhesabix' ); ?></p>
 
         <div class="alert alert-danger hesabix-f mt-4">
@@ -100,9 +100,9 @@ class Ssbhesabix_Setting {
             <div class="col">
                 <h4 class="h4 hesabix-tab-page-title mt-4"><?php esc_attr_e( 'Plugin Tutorial Video', 'ssbhesabix' ); ?></h4>
 
-                <video controls poster="https://www.hesabix.com/img/woocommerc-plugin-help-cover.jpg"
+                <video controls poster="https://hesabix.ir/img/woocommerc-plugin-help-cover.jpg"
                        id="hesabix-tutorial-video" style="border: 1px solid gray" class="mt-3">
-                    <source src="https://www.hesabix.com/file/woocommerce/woocommerce-plugin-tutorial.mp4"
+                    <source src="https://hesabix.ir/file/woocommerce/woocommerce-plugin-tutorial.mp4"
                             type="video/mp4"></source>
                 </video>
             </div>
