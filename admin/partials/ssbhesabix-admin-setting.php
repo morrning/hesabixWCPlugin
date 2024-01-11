@@ -990,34 +990,13 @@ class Ssbhesabix_Setting {
 			'type'  => 'text',
 		);
 
-		$fields[] = array(
-			'title' => __( 'Email', 'ssbhesabix' ),
-			'desc'  => __( 'Enter a Hesabix email account', 'ssbhesabix' ),
-			'id'    => 'ssbhesabix_account_username',
-			'type'  => 'email',
-		);
-
-		$fields[] = array(
-			'title' => __( 'Password', 'ssbhesabix' ),
-			'desc'  => __( 'Enter a Hesabix password', 'ssbhesabix' ),
-			'id'    => 'ssbhesabix_account_password',
-			'type'  => 'password',
-		);
-
-		$fields[] = array(
-			'title' => __( 'Login token', 'ssbhesabix' ),
-			'desc'  => __( 'Find Login token in Setting->Financial Settings->API Menu', 'ssbhesabix' ),
-			'id'    => 'ssbhesabix_account_login_token',
-			'type'  => 'text',
-		);
-
         $fields[] = array(
             'title' => __( 'API Address', 'ssbhesabix' ),
             'id'    => 'ssbhesabix_api_address',
             'type'  => 'select',
             'options' => array(
                 "0" => "hesabix.ir",
-                "1" => "api.hesabix.ir"
+                "1" => "next.hesabix.ir"
             )
         );
 
@@ -1044,10 +1023,6 @@ class Ssbhesabix_Setting {
                 <li>
                     برای اتصال به API حسابیکس و فعال شدن این افزونه باید در اینجا
                     کلید API و توکن ورود به کسب و کار خود را وارد کنید.
-                </li>
-                <li>
-                    اگر برای اتصال به API حسابیکس از توکن ورود استفاده کنید
-                    نیازی به وارد کردن ایمیل و رمز عبور نیست.
                 </li>
                 <li>
                     برای پیدا کردن توکن ورود و کلید API، در حسابیکس به قسمت تنظیمات، تنظیمات API مراجعه کنید.

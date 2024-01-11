@@ -20,11 +20,11 @@ class Ssbhesabix_Api
     {
         if ($method == null) return false;
 
-        $endpoint = 'https://hesabix.ir/v1/' . $method;
+        $endpoint = 'https://hesabix.ir/' . $method;
 
         $apiAddress = get_option('ssbhesabix_api_address', 0);
 
-        if($apiAddress == 1) $endpoint = 'http://api.hesabix.ir/v1/' . $method;
+        if($apiAddress == 1) $endpoint = 'http://next.hesabix.ir/' . $method;
 
         $body = array_merge(array(
             'apiKey' => get_option('ssbhesabix_account_api'),
@@ -68,7 +68,7 @@ class Ssbhesabix_Api
             return 'No response from Hesabix';
         } else {
             if (!isset($result->Success)) {
-                switch ($result->ErrorCode) {
+                switch ($result->errorCode) {
                     case '100':
                         return 'InternalServerError';
                     case '101':
@@ -398,7 +398,8 @@ class Ssbhesabix_Api
     //Settings functions
     public function settingSetChangeHook($url, $hookPassword)
     {
-        $method = 'setting/SetChangeHook';
+        $method = 'api/settings/chack-api';
+        echo 11;
         $data = array(
             'url' => $url,
             'hookPassword' => $hookPassword,
