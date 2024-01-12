@@ -61,8 +61,8 @@ class Ssbhesabix
      */
     public function __construct()
     {
-        if (defined('SSBHESABFA_VERSION')) {
-            $this->version = SSBHESABFA_VERSION;
+        if (defined('SSBHESABIX_VERSION')) {
+            $this->version = SSBHESABIX_VERSION;
         } else {
             $this->version = '2.0.93';
         }

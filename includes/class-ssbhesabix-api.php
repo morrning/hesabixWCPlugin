@@ -24,13 +24,10 @@ class Ssbhesabix_Api
 
         $apiAddress = get_option('ssbhesabix_api_address', 0);
 
-        if($apiAddress == 1) $endpoint = 'http://next.hesabix.ir/' . $method;
+        if($apiAddress == 1) $endpoint = 'https://next.hesabix.ir/' . $method;
 
         $body = array_merge(array(
-            'apiKey' => get_option('ssbhesabix_account_api'),
-            'userId' => get_option('ssbhesabix_account_username'),
-            'password' => get_option('ssbhesabix_account_password'),
-            'loginToken' => get_option('ssbhesabix_account_login_token') ? get_option('ssbhesabix_account_login_token') : '',
+            'API-KEY' => get_option('ssbhesabix_account_api'),
         ), $data);
 
         //Debug mode
@@ -42,6 +39,9 @@ class Ssbhesabix_Api
             'body' => wp_json_encode($body),
             'headers' => array(
                 'Content-Type' => 'application/json',
+                'API-KEY' => get_option('ssbhesabix_account_api'),
+                'activeBid' => get_option('ssbhesabix_account_bid'),
+                'activeYear' => get_option('ssbhesabix_account_year'),
             ),
             'timeout' => 60,
             'redirection' => 5,
@@ -52,10 +52,8 @@ class Ssbhesabix_Api
         );
 
         //HesabixLogService::writeLogObj($options);
-
         $wp_remote_post = wp_remote_post($endpoint, $options);
         $result = json_decode(wp_remote_retrieve_body($wp_remote_post));
-
         //Debug mode
         if (get_option('ssbhesabix_debug_mode')) {
             HesabixLogService::log(array("Debug Mode - Result: " . print_r($result, true)));
@@ -67,40 +65,7 @@ class Ssbhesabix_Api
         if ($result == null) {
             return 'No response from Hesabix';
         } else {
-            if (!isset($result->Success)) {
-                switch ($result->errorCode) {
-                    case '100':
-                        return 'InternalServerError';
-                    case '101':
-                        return 'TooManyRequests';
-                    case '103':
-                        return 'MissingData';
-                    case '104':
-                        return 'MissingParameter' . '. ErrorMessage: ' . $result->ErrorMessage;
-                    case '105':
-                        return 'ApiDisabled';
-                    case '106':
-                        return 'UserIsNotOwner';
-                    case '107':
-                        return 'BusinessNotFound';
-                    case '108':
-                        return 'BusinessExpired';
-                    case '110':
-                        return 'IdMustBeZero';
-                    case '111':
-                        return 'IdMustNotBeZero';
-                    case '112':
-                        return 'ObjectNotFound' . '. ErrorMessage: ' . $result->ErrorMessage;
-                    case '113':
-                        return 'MissingApiKey';
-                    case '114':
-                        return 'ParameterIsOutOfRange' . '. ErrorMessage: ' . $result->ErrorMessage;
-                    case '190':
-                        return 'ApplicationError' . '. ErrorMessage: ' . $result->ErrorMessage;
-                }
-            } else {
-                return $result;
-            }
+            return $result;
         }
         return false;
     }
@@ -398,8 +363,7 @@ class Ssbhesabix_Api
     //Settings functions
     public function settingSetChangeHook($url, $hookPassword)
     {
-        $method = 'api/settings/chack-api';
-        echo 11;
+        $method = 'hooks/setting/SetChangeHook';
         $data = array(
             'url' => $url,
             'hookPassword' => $hookPassword,

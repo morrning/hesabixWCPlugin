@@ -208,8 +208,8 @@ class Ssbhesabix_Setting {
         <form id="ssbhesabix_form" enctype="multipart/form-data" action="" method="post">
             <?php
                 global $plugin_version;
-                if (defined('SSBHESABFA_VERSION')) {
-                    $plugin_version = constant('SSBHESABFA_VERSION');
+                if (defined('SSBHESABIX_VERSION')) {
+                    $plugin_version = constant('SSBHESABIX_VERSION');
                 }
                 $server_php_version  = phpversion();
                 $plugin_php_version = '8.1';
@@ -1628,12 +1628,12 @@ class Ssbhesabix_Setting {
 
 		$ssbhesabix_api = new Ssbhesabix_Api();
 		$response       = $ssbhesabix_api->settingSetChangeHook( $url, $hookPassword );
-
+    
 		if ( is_object( $response ) ) {
 			if ( $response->Success ) {
 				update_option( 'ssbhesabix_live_mode', 1 );
-				update_option( 'ssbhesabix_business_expired', 0 );
-
+				update_option( 'ssbhesabix_account_bid', $response->bid );
+                update_option( 'ssbhesabix_account_year', $response->year );
 				//set the last log ID if is not set
 				$lastChanges = get_option( 'ssbhesabix_last_log_check_id' );
 				if ( ! $lastChanges ) {
