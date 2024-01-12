@@ -29,8 +29,6 @@ class Ssbhesabix_Activator {
         add_option('ssbhesabix_webhook_password', bin2hex(openssl_random_pseudo_bytes(16)));
         add_option('ssbhesabix_last_log_check_id', 0);
         add_option('ssbhesabix_live_mode', 0);
-        add_option('ssbhesabix_live_mode', 0);
-        add_option('ssbhesabix_live_mode', 0);
         add_option('ssbhesabix_debug_mode', 0);
         add_option('ssbhesabix_contact_address_status', 1);
         add_option('ssbhesabix_contact_node_family', 'مشتریان فروشگاه آن‌لاین');
