@@ -374,7 +374,7 @@ class Ssbhesabix_Api
 //================================================================================================
     public function settingGetChanges($start = 0)
     {
-        $method = 'setting/GetChanges';
+        $method = 'hooks/setting/GetChanges';
         $data = array(
             'start' => $start,
         );
@@ -413,7 +413,7 @@ class Ssbhesabix_Api
 //================================================================================================
 	public function settingGetCurrency()
     {
-        $method = 'setting/getCurrency';
+        $method = 'hooks/setting/getCurrency';
 
         return $this->apiRequest($method);
     }

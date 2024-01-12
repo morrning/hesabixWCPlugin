@@ -1667,7 +1667,7 @@ class Ssbhesabix_Setting {
 				$default_currency = $ssbhesabix_api->settingGetCurrency();
 				if ( $default_currency->Success ) {
 					$woocommerce_currency = get_woocommerce_currency();
-					$hesabix_currency     = $default_currency->Result->Currency;
+					$hesabix_currency     = $default_currency->Result->moneyName;
 					if ( $hesabix_currency == $woocommerce_currency || ( $hesabix_currency == 'IRR' && $woocommerce_currency == 'IRT' ) || ( $hesabix_currency == 'IRT' && $woocommerce_currency == 'IRR' ) ) {
 						update_option( 'ssbhesabix_hesabix_default_currency', $hesabix_currency );
 					} else {
@@ -1693,24 +1693,13 @@ class Ssbhesabix_Setting {
 				}
 			} else {
 				update_option( 'ssbhesabix_live_mode', 0 );
-
-				if ( $response->ErrorCode === 108 ) {
-					echo '<div class="error">';
-					echo '<p class="hesabix-p">' . __( 'Cannot connect to Hesabix. Business expired.', 'ssbhesabix' ) . $response->ErrorMessage . '</p>';
-					echo '</div>';
-					update_option( 'ssbhesabix_business_expired', 1 );
-				} else {
-					echo '<div class="error">';
-					echo '<p class="hesabix-p">' . __( 'Cannot set Hesabix webHook. Error Message:', 'ssbhesabix' ) . $response->ErrorMessage . '</p>';
-					echo '</div>';
-					update_option( 'ssbhesabix_business_expired', 0 );
-				}
-
+				echo '<div class="error">';
+				echo '<p class="hesabix-p">' . __( 'Cannot set Hesabix webHook. Error Message:', 'ssbhesabix' ) . $response->ErrorMessage . '</p>';
+				echo '</div>';
 				HesabixLogService::log( array("Cannot set Hesabix webHook. Error Message: $response->ErrorMessage. Error Code: $response->ErrorCode") );
 			}
 		} else {
 			update_option( 'ssbhesabix_live_mode', 0 );
-
 			echo '<div class="error">';
 			echo '<p class="hesabix-p">' . __( 'Cannot connect to Hesabix servers. Please check your Internet connection', 'ssbhesabix' ) . '</p>';
 			echo '</div>';
