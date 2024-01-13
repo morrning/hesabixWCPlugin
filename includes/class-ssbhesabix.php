@@ -64,7 +64,7 @@ class Ssbhesabix
         if (defined('SSBHESABIX_VERSION')) {
             $this->version = SSBHESABIX_VERSION;
         } else {
-            $this->version = '2.0.93';
+            $this->version = '0.1.1';
         }
         $this->plugin_name = 'ssbhesabix';
 

@@ -662,89 +662,20 @@ class Ssbhesabix_Admin_Functions
         }
     }
 //========================================================================================================================
-    public function exportProducts($batch, $totalBatch, $total, $updateCount)
+    public function exportProducts()
     {
         HesabixLogService::writeLogStr("Exporting Products");
         try {
-            $wpFaService = new HesabixWpFaService();
-            $extraSettingRPP = get_option("ssbhesabix_set_rpp_for_export_products");
-            $rpp=500;
-            if($extraSettingRPP) {
-                if($extraSettingRPP != '-1' && $extraSettingRPP != '0') {
-                    $rpp=$extraSettingRPP;
-                }
-            }
             $result = array();
             $result["error"] = false;
             global $wpdb;
 
-            if ($batch == 1) {
-                $total = $wpdb->get_var("SELECT COUNT(*) FROM `" . $wpdb->prefix . "posts`                                                                
-                                    WHERE post_type = 'product' AND post_status IN('publish','private')");
-                $totalBatch = ceil($total / $rpp);
-            }
+            $total = $wpdb->get_var("SELECT COUNT(*) FROM `" . $wpdb->prefix . "posts` WHERE post_type = 'product' AND post_status IN('publish','private')");
+            $products = $wpdb->get_results("SELECT * FROM `" . $wpdb->prefix . "posts` WHERE post_type = 'product' AND post_status IN('publish','private')");
 
-            $offset = ($batch - 1) * $rpp;
-            $products = $wpdb->get_results("SELECT ID FROM `" . $wpdb->prefix . "posts`                                                                
-                                    WHERE post_type = 'product' AND post_status IN('publish','private') ORDER BY 'ID' ASC LIMIT $offset,$rpp");
-
-            $items = array();
-
-            foreach ($products as $item) {
-                $id_product = $item->ID;
-                $product = new WC_Product($id_product);
-
-                $id_obj = $wpFaService->getWpFaId('product', $id_product, 0);
-
-                if (!$id_obj) {
-                    $hesabixItem = ssbhesabixItemService::mapProduct($product, $id_product);
-                    array_push($items, $hesabixItem);
-                    $updateCount++;
-                }
-
-                $variations = $this->getProductVariations($id_product);
-                if ($variations) {
-                    foreach ($variations as $variation) {
-                        $id_attribute = $variation->get_id();
-                        $id_obj = $wpFaService->getWpFaId('product', $id_product, $id_attribute);
-
-                        if (!$id_obj) {
-                            $hesabixItem = ssbhesabixItemService::mapProductVariation($product, $variation, $id_product);
-                            array_push($items, $hesabixItem);
-                            $updateCount++;
-                        }
-                    }
-                }
-            }
-
-            if (!empty($items)) {
-                $count = 0;
-                $hesabix = new Ssbhesabix_Api();
-                $response = $hesabix->itemBatchSave($items);
-                if ($response->Success) {
-                    foreach ($response->Result as $item) {
-                        $json = json_decode($item->Tag);
-
-                        global $wpdb;
-                        $wpdb->insert($wpdb->prefix . 'ssbhesabix', array(
-                            'id_hesabix' => (int)$item->Code,
-                            'obj_type' => 'product',
-                            'id_ps' => (int)$json->id_product,
-                            'id_ps_attribute' => (int)$json->id_attribute,
-                        ));
-                        HesabixLogService::log(array("Item successfully added. Item Code: " . (string)$item->Code . ". Product ID: $json->id_product - $json->id_attribute"));
-                    }
-                    $count += count($response->Result);
-                } else {
-                    HesabixLogService::log(array("Cannot add bulk item. Error Message: " . (string)$response->ErrorMessage . ". Error Code: " . (string)$response->ErrorCode . "."));
-                }
-                sleep(2);
-            }
-
-            $result["batch"] = $batch;
-            $result["totalBatch"] = $totalBatch;
-            $result["total"] = $total;
-            $result["updateCount"] = $updateCount;
+            $hesabix = new Ssbhesabix_Api();
+            $response = $hesabix->settingExportProdects(array('data'=>$products));
+            $result["updateCount"] = $total;
             return $result;
         } catch(Error $error) {
             HesabixLogService::writeLogStr("Error in export products: " . $error->getMessage());

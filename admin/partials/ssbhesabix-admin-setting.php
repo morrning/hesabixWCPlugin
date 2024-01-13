@@ -86,94 +86,6 @@ class Ssbhesabix_Setting {
                 </li>
             </ul>
         </div>
-        <div class="alert alert-warning hesabix-f mt-4">
-            <strong style="font-size: 1rem;">نکات</strong>
-            <br>
-            <ul class="mt-2">
-                <li> *
-                    پیشنهاد می شود قبل از شروع کار با افزونه، حتما ویدیو خودآموز افزونه را مشاهده نمایید.
-                </li>
-            </ul>
-        </div>
-<!--////////////////////////video timing in the first page of the plugin////////////////////////////////////////////-->
-        <div class="row" style="margin-left: 10px;">
-            <div class="col">
-                <h4 class="h4 hesabix-tab-page-title mt-4"><?php esc_attr_e( 'Plugin Tutorial Video', 'ssbhesabix' ); ?></h4>
-
-                <video controls poster="https://hesabix.ir/img/woocommerc-plugin-help-cover.jpg"
-                       id="hesabix-tutorial-video" style="border: 1px solid gray" class="mt-3">
-                    <source src="https://hesabix.ir/file/woocommerce/woocommerce-plugin-tutorial.mp4"
-                            type="video/mp4"></source>
-                </video>
-            </div>
-            <div class="col-3">
-                <h4 class="h4 hesabix-tab-page-title mt-4 mb-3"><?php esc_attr_e( 'Titles', 'ssbhesabix' ); ?></h4>
-                <div class="hesabix-plugin-tutorial-chapter" onclick="hesabixTutorialJumpTo(0)">
-                    نصب افزونه
-                    <br><strong class="text-info">00:00</strong>
-                </div>
-                <div class="hesabix-plugin-tutorial-chapter" onclick="hesabixTutorialJumpTo(75)">
-                    اتصال افزونه به حسابیکس
-                    <br><strong class="text-info">01:15</strong>
-                </div>
-                <div class="hesabix-plugin-tutorial-chapter" onclick="hesabixTutorialJumpTo(246)">
-                    تنظیمات افزونه
-                    <br><strong class="text-info">04:06</strong>
-                </div>
-                <div class="hesabix-plugin-tutorial-chapter" onclick="hesabixTutorialJumpTo(520)">
-                    تعریف محصول و لینک کردن محصول به حسابیکس
-                    <br><strong class="text-info">08:40</strong>
-                </div>
-                <div class="hesabix-plugin-tutorial-chapter" onclick="hesabixTutorialJumpTo(1378)">
-                    خروجی محصولات به حسابیکس
-                    <br><strong class="text-info">22:58</strong>
-                </div>
-                <div class="hesabix-plugin-tutorial-chapter" onclick="hesabixTutorialJumpTo(1462)">
-                    خروجی موجودی اول دوره محصولات به حسابیکس
-                    <br><strong class="text-info">24:22</strong>
-                </div>
-                <div class="hesabix-plugin-tutorial-chapter" onclick="hesabixTutorialJumpTo(1495)">
-                    خروجی مشتریان
-                    <br><strong class="text-info">24:55</strong>
-                </div>
-                <div class="hesabix-plugin-tutorial-chapter" onclick="hesabixTutorialJumpTo(1525)">
-                    ورود محصولات از حسابیکس به فروشگاه
-                    <br><strong class="text-info">25:25</strong>
-                </div>
-                <div class="hesabix-plugin-tutorial-chapter" onclick="hesabixTutorialJumpTo(1592)">
-                    همسان سازی قیمت و موجودی محصولات
-                    <br><strong class="text-info">26:32</strong>
-                </div>
-                <div class="hesabix-plugin-tutorial-chapter" onclick="hesabixTutorialJumpTo(1645)">
-                    همسان سازی سفارشات
-                    <br><strong class="text-info">27:25</strong>
-                </div>
-                <div class="hesabix-plugin-tutorial-chapter" onclick="hesabixTutorialJumpTo(1758)">
-                    بروزرسانی محصولات در حسابیکس بر اساس فروشگاه
-                    <br><strong class="text-info">29:18</strong>
-                </div>
-                <div class="hesabix-plugin-tutorial-chapter" onclick="hesabixTutorialJumpTo(1805)">
-                    سفارشات و ثبت فاکتور در حسابیکس
-                    <br><strong class="text-info">30:05</strong>
-                </div>
-                <div class="hesabix-plugin-tutorial-chapter" onclick="hesabixTutorialJumpTo(2120)">
-                    پشتیبان گیری از جدول افزونه در دیتابیس
-                    <br><strong class="text-info">35:20</strong>
-                </div>
-                <div class="hesabix-plugin-tutorial-chapter" onclick="hesabixTutorialJumpTo(2502)">
-                    لاگ رویدادها و خطاها
-                    <br><strong class="text-info">41:42</strong>
-                </div>
-                <div class="hesabix-plugin-tutorial-chapter" onclick="hesabixTutorialJumpTo(3046)">
-                    حذف محصولات
-                    <br><strong class="text-info">50:46</strong>
-                </div>
-                <div class="hesabix-plugin-tutorial-chapter" onclick="hesabixTutorialJumpTo(3143)">
-                    محصول پیش نویس
-                    <br><strong class="text-info">52:23</strong>
-                </div>
-            </div>
-        </div>
 
 		<?php
 	}
@@ -1107,10 +1019,6 @@ class Ssbhesabix_Setting {
                     <label class="fw-bold mb-2">نکات مهم:</label>
                     <ul>
                         <li>با انجام این عملیات محصولات لینک نشده از فروشگاه وارد حسابیکس می شوند.</li>
-                        <li>اگر محصولات از قبل هم در فروشگاه تعریف شده اند و هم در حسابیکس و به هم لینک نشده اند باید از
-                            گزینه
-                            همسان سازی دستی محصولات استفاده کنید.
-                        </li>
                         <li>با انجام این عملیات موجودی محصولات وارد حسابیکس نمی شود و برای وارد کردن موجودی محصولات
                             فروشگاه
                             در حسابیکس، باید از گزینه استخراج موجودی اول دوره استفاده کنید.
@@ -1475,24 +1383,13 @@ class Ssbhesabix_Setting {
 //=============================================================================================
 	public static function getSubscriptionInfo() {
 		$businessName = '';
-		$credit       = '';
-		$expireDate   = '';
-		$plan         = '';
-
 		$hesabix  = new Ssbhesabix_Api();
 		$response = $hesabix->settingGetSubscriptionInfo();
 		if ( $response->Success ) {
-			$businessName = $response->Result->Name;
-			$credit       = $response->Result->Credit;
-			$expireDate   = $response->Result->ExpireDate;
-			$plan         = $response->Result->Subscription;
+			$businessName = $response->Result->name;
 		}
-
 		return array(
 			"businessName" => $businessName,
-			"credit"       => $credit,
-			"expireDate"   => $expireDate,
-			"plan"         => $plan
 		);
 	}
 //=============================================================================================

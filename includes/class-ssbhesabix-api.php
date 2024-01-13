@@ -434,8 +434,14 @@ class Ssbhesabix_Api
 //================================================================================================
     public function settingGetSubscriptionInfo()
     {
-        $method = 'setting/getBusinessInfo';
+        $method = 'hooks/setting/getBusinessInfo';
         return $this->apiRequest($method);
     }
 //================================================================================================
+//================================================================================================
+public function settingExportProdects($data)
+{
+    $method = 'hooks/commodity/import';
+    return $this->apiRequest($method,$data);
+}
 }
