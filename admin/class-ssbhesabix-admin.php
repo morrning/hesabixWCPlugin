@@ -168,11 +168,7 @@ class Ssbhesabix_Admin
         echo '<div class="error"><p>' . __('Hesabix Plugin need to connect to Hesabix Accounting, Please check the API credential!', 'ssbhesabix') . '</p></div>';
     }
 //=========================================================================================================================
-    public function ssbhesabix_business_expired_notice()
-    {
-        echo '<div class="error"><p>' . __('Cannot connect to Hesabix. Business expired.', 'ssbhesabix') . '</p></div>';
-    }
-
+    
     /**
      * Missing hesabix default currency notice for the admin area.
      *

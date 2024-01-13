@@ -175,7 +175,7 @@ class Ssbhesabix_Api
 //================================================================================================
     public function itemGetItems($queryInfo = null)
     {
-        $method = 'item/getitems';
+        $method = 'hooks/item/getitems';
         $data = array(
             'queryInfo' => $queryInfo,
         );
@@ -383,13 +383,13 @@ class Ssbhesabix_Api
 //================================================================================================
     public function settingGetAccounts()
     {
-        $method = 'setting/GetAccounts';
+        $method = 'hooks/setting/GetAccounts';
         return $this->apiRequest($method);
     }
 //================================================================================================
     public function settingGetBanks()
     {
-        $method = 'setting/getBanks';
+        $method = 'hooks/setting/getBanks';
         return $this->apiRequest($method);
     }
 //================================================================================================
@@ -398,12 +398,7 @@ class Ssbhesabix_Api
         $method = 'setting/GetCashes';
         return $this->apiRequest($method);
     }
-//================================================================================================
-	public function settingGetProjects()
-	{
-		$method = 'setting/getProjects';
-		return $this->apiRequest($method);
-	}
+
 //================================================================================================
 	public function settingGetSalesmen()
 	{

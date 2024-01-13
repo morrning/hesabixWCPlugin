@@ -756,15 +756,7 @@ class Ssbhesabix_Admin_Functions
         HesabixLogService::writeLogStr("Import Products");
         try {
             $wpFaService = new HesabixWpFaService();
-            $extraSettingRPP = get_option("ssbhesabix_set_rpp_for_import_products");
-
-            $rpp=100;
-            if($extraSettingRPP) {
-                if($extraSettingRPP != '-1' && $extraSettingRPP != '0') {
-                    $rpp=$extraSettingRPP;
-                }
-            }
-
+            $rpp=500;
             $result = array();
             $result["error"] = false;
             global $wpdb;
@@ -868,106 +860,7 @@ class Ssbhesabix_Admin_Functions
             HesabixLogService::writeLogStr("Error in importing products" . $error->getMessage());
         }
     }
-//========================================================================================================================
-    public function exportOpeningQuantity($batch, $totalBatch, $total)
-    {
-        try {
-            $wpFaService = new HesabixWpFaService();
 
-            $result = array();
-            $result["error"] = false;
-            $extraSettingRPP = get_option("ssbhesabix_set_rpp_for_export_opening_products");
-
-            $rpp=500;
-            if($extraSettingRPP) {
-                if($extraSettingRPP != '-1' && $extraSettingRPP != '0') {
-                    $rpp=$extraSettingRPP;
-                }
-            }
-
-            global $wpdb;
-
-            if ($batch == 1) {
-                $total = $wpdb->get_var("SELECT COUNT(*) FROM `" . $wpdb->prefix . "posts`                                                                
-                                    WHERE post_type = 'product' AND post_status IN('publish','private')");
-                $totalBatch = ceil($total / $rpp);
-            }
-
-            $offset = ($batch - 1) * $rpp;
-
-            $products = $wpdb->get_results("SELECT ID FROM `" . $wpdb->prefix . "posts`                                                                
-                                    WHERE post_type = 'product' AND post_status IN('publish','private') ORDER BY 'ID' ASC
-                                    LIMIT $offset,$rpp");
-
-            $items = array();
-
-            foreach ($products as $item) {
-                $variations = $this->getProductVariations($item->ID);
-                if (!$variations) {
-                    $id_obj = $wpFaService->getWpFaId('product', $item->ID, 0);
-
-                    if ($id_obj != false) {
-                        $product = new WC_Product($item->ID);
-                        $quantity = $product->get_stock_quantity();
-                        $price = $product->get_regular_price() ? $product->get_regular_price() : $product->get_price();
-
-                        $row = $wpdb->get_row("SELECT `id_hesabix` FROM `" . $wpdb->prefix . "ssbhesabix` WHERE `id` = " . $id_obj . " AND `obj_type` = 'product'");
-
-                        if (is_object($product) && is_object($row) && $quantity > 0 && $price > 0) {
-                            array_push($items, array(
-                                'Code' => $row->id_hesabix,
-                                'Quantity' => $quantity,
-                                'UnitPrice' => $this->getPriceInHesabixDefaultCurrency($price),
-                            ));
-                        }
-                    }
-                } else {
-                    foreach ($variations as $variation) {
-                        $id_attribute = $variation->get_id();
-                        $id_obj = $wpFaService->getWpFaId('product', $item->ID, $id_attribute);
-                        if ($id_obj != false) {
-                            $quantity = $variation->get_stock_quantity();
-                            $price = $variation->get_regular_price() ? $variation->get_regular_price() : $variation->get_price();
-
-                            $row = $wpdb->get_row("SELECT `id_hesabix` FROM `" . $wpdb->prefix . "ssbhesabix` WHERE `id` = " . $id_obj . " AND `obj_type` = 'product'");
-
-                            if (is_object($variation) && is_object($row) && $quantity > 0 && $price > 0) {
-                                array_push($items, array(
-                                    'Code' => $row->id_hesabix,
-                                    'Quantity' => $quantity,
-                                    'UnitPrice' => $this->getPriceInHesabixDefaultCurrency($price),
-                                ));
-                            }
-                        }
-                    }
-                }
-            }
-
-            if (!empty($items)) {
-                $hesabix = new Ssbhesabix_Api();
-                $response = $hesabix->itemUpdateOpeningQuantity($items);
-                if ($response->Success) {
-                    // continue batch loop
-                } else {
-                    HesabixLogService::log(array("ssbhesabix - Cannot set Opening quantity. Error Code: ' . $response->ErrorCode . '. Error Message: ' . $response->ErrorMessage"));
-                    $result['error'] = true;
-                    if ($response->ErrorCode = 199 && $response->ErrorMessage == 'No-Shareholders-Exist') {
-                        $result['errorType'] = 'shareholderError';
-                        return $result;
-                    }
-                    return $result;
-                }
-            }
-            sleep(2);
-            $result["batch"] = $batch;
-            $result["totalBatch"] = $totalBatch;
-            $result["total"] = $total;
-            $result["done"] = $batch == $totalBatch;
-            return $result;
-        } catch(Error $error) {
-            HesabixLogService::writeLogStr("Error in Exporting Opening Quantity" . $error->getMessage());
-        }
-    }
 //========================================================================================================================
     public function exportCustomers($batch, $totalBatch, $total, $updateCount)
     {

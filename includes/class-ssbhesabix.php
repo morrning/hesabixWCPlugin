@@ -241,10 +241,7 @@ class Ssbhesabix
                 $this->loader->add_action('woocommerce_product_data_panels', $plugin_admin, 'add_hesabix_product_data_fields');
 
             } elseif (!get_option('ssbhesabix_live_mode')) {
-                if (get_option('ssbhesabix_business_expired'))
-                    $this->loader->add_action('admin_notices', $plugin_admin, 'ssbhesabix_business_expired_notice');
-                else
-                    $this->loader->add_action('admin_notices', $plugin_admin, 'ssbhesabix_live_mode_notice');
+                $this->loader->add_action('admin_notices', $plugin_admin, 'ssbhesabix_live_mode_notice');
             }
 
             /*

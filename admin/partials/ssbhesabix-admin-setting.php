@@ -236,95 +236,6 @@ class Ssbhesabix_Setting {
             ?>
             <div class="d-flex flex-column">
                 <?php $Html_output->init( $ssbhesabf_setting_fields ); ?>
-                <div class="ssbhesabix_set_rpp_container mt-2 d-flex align-items-center gap-2">
-                    <label class="form-label" for="ssbhesabix_set_rpp">
-                        <?php echo __('Set request amount per batch for sync products based on woocommerce in Hesabix', 'ssbhesabix');
-                            if(!(get_option('ssbhesabix_set_rpp_for_sync_products_into_hesabix'))) add_option('ssbhesabix_set_rpp_for_sync_products_into_hesabix-rpp', '-1');
-                        ?>
-                    </label>
-                    <select style="max-width: 100px;" class="form-select" name="ssbhesabix_set_rpp_for_sync_products_into_hesabix" id="ssbhesabix_set_rpp_for_sync_products_into_hesabix">
-                        <option value="-1"  <?php if(!get_option('ssbhesabix_set_rpp_for_sync_products_into_hesabix')) echo 'selected'; ?>><?php echo __('select', 'ssbhesabix');?></option>
-                        <option value="50"  <?php if(get_option('ssbhesabix_set_rpp_for_sync_products_into_hesabix') == '50') echo 'selected'; ?>>50</option>
-                        <option value="100" <?php if(get_option('ssbhesabix_set_rpp_for_sync_products_into_hesabix') == '100') echo 'selected'; ?>>100</option>
-                        <option value="150" <?php if(get_option('ssbhesabix_set_rpp_for_sync_products_into_hesabix') == '150') echo 'selected'; ?>>150</option>
-                        <option value="200" <?php if(get_option('ssbhesabix_set_rpp_for_sync_products_into_hesabix') == '200') echo 'selected'; ?>>200</option>
-                        <option value="300" <?php if(get_option('ssbhesabix_set_rpp_for_sync_products_into_hesabix') == '300') echo 'selected'; ?>>300</option>
-                        <option value="400" <?php if(get_option('ssbhesabix_set_rpp_for_sync_products_into_hesabix') == '400') echo 'selected'; ?>>400</option>
-                        <option value="500" <?php if(get_option('ssbhesabix_set_rpp_for_sync_products_into_hesabix') == '500') echo 'selected'; ?>>500</option>
-                    </select>
-                    <span><?php echo __("Plugin Default", "ssbhesabix"); ?>: 500</span>
-                </div>
-                <br>
-                <div class="ssbhesabix_set_rpp_container mt-2 d-flex align-items-center gap-2">
-                    <label class="form-label" for="ssbhesabix_set_rpp">
-                        <?php echo __('Set request amount per batch for sync products based on Hesabix in Woocommerce', 'ssbhesabix');
-                        if(!(get_option('ssbhesabix_set_rpp_for_sync_products_into_woocommerce'))) add_option('ssbhesabix_set_rpp_for_sync_products_into_woocommerce', '-1');
-                        ?>
-                    </label>
-                    <select style="max-width: 100px;" class="form-select" name="ssbhesabix_set_rpp_for_sync_products_into_woocommerce" id="ssbhesabix_set_rpp_for_sync_products_into_woocommerce">
-                        <option value="-1"  <?php if(!get_option('ssbhesabix_set_rpp_for_sync_products_into_woocommerce')) echo 'selected'; ?>><?php echo __('select', 'ssbhesabix');?></option>
-                        <option value="50"  <?php if(get_option('ssbhesabix_set_rpp_for_sync_products_into_woocommerce') == '50') echo 'selected'; ?>>50</option>
-                        <option value="100" <?php if(get_option('ssbhesabix_set_rpp_for_sync_products_into_woocommerce') == '100') echo 'selected'; ?>>100</option>
-                        <option value="150" <?php if(get_option('ssbhesabix_set_rpp_for_sync_products_into_woocommerce') == '150') echo 'selected'; ?>>150</option>
-                        <option value="200" <?php if(get_option('ssbhesabix_set_rpp_for_sync_products_into_woocommerce') == '200') echo 'selected'; ?>>200</option>
-                        <option value="300" <?php if(get_option('ssbhesabix_set_rpp_for_sync_products_into_woocommerce') == '300') echo 'selected'; ?>>300</option>
-                        <option value="400" <?php if(get_option('ssbhesabix_set_rpp_for_sync_products_into_woocommerce') == '400') echo 'selected'; ?>>400</option>
-                        <option value="500" <?php if(get_option('ssbhesabix_set_rpp_for_sync_products_into_woocommerce') == '500') echo 'selected'; ?>>500</option>
-                    </select>
-                    <span><?php echo __("Plugin Default", "ssbhesabix"); ?>: 200</span>
-                </div>
-                <br>
-                <div class="ssbhesabix_set_rpp_container mt-2 d-flex align-items-center gap-2">
-                    <label class="form-label" for="ssbhesabix_set_rpp">
-                        <?php echo __('Set request amount per batch for import products', 'ssbhesabix');
-                        if(!(get_option('ssbhesabix_set_rpp_for_import_products'))) add_option('ssbhesabix_set_rpp_for_import_products', '-1');
-                        ?>
-                    </label>
-                    <select style="max-width: 100px;" class="form-select" name="ssbhesabix_set_rpp_for_import_products" id="ssbhesabix_set_rpp_for_import_products">
-                        <option value="-1"  <?php if(!get_option('ssbhesabix_set_rpp_for_import_products')) echo 'selected'; ?>><?php echo __('select', 'ssbhesabix');?></option>
-                        <option value="50"  <?php if(get_option('ssbhesabix_set_rpp_for_import_products') == '50') echo 'selected'; ?>>50</option>
-                        <option value="100" <?php if(get_option('ssbhesabix_set_rpp_for_import_products') == '100') echo 'selected'; ?>>100</option>
-                    </select>
-                    <span><?php echo __("Plugin Default", "ssbhesabix"); ?>: 100</span>
-                </div>
-                <br>
-                <div class="ssbhesabix_set_rpp_container mt-2 d-flex align-items-center gap-2">
-                    <label class="form-label" for="ssbhesabix_set_rpp">
-                        <?php echo __('Set request amount per batch for export products', 'ssbhesabix');
-                        if(!(get_option('ssbhesabix_set_rpp_for_export_products'))) add_option('ssbhesabix_set_rpp_for_export_products', '-1');
-                        ?>
-                    </label>
-                    <select style="max-width: 100px;" class="form-select" name="ssbhesabix_set_rpp_for_export_products" id="ssbhesabix_set_rpp_for_export_products">
-                        <option value="-1"  <?php if(!get_option('ssbhesabix_set_rpp_for_export_products')) echo 'selected'; ?>><?php echo __('select', 'ssbhesabix');?></option>
-                        <option value="50"  <?php if(get_option('ssbhesabix_set_rpp_for_export_products') == '50') echo 'selected'; ?>>50</option>
-                        <option value="100" <?php if(get_option('ssbhesabix_set_rpp_for_export_products') == '100') echo 'selected'; ?>>100</option>
-                        <option value="150" <?php if(get_option('ssbhesabix_set_rpp_for_export_products') == '150') echo 'selected'; ?>>150</option>
-                        <option value="200" <?php if(get_option('ssbhesabix_set_rpp_for_export_products') == '200') echo 'selected'; ?>>200</option>
-                        <option value="300" <?php if(get_option('ssbhesabix_set_rpp_for_export_products') == '300') echo 'selected'; ?>>300</option>
-                        <option value="400" <?php if(get_option('ssbhesabix_set_rpp_for_export_products') == '400') echo 'selected'; ?>>400</option>
-                        <option value="500" <?php if(get_option('ssbhesabix_set_rpp_for_export_products') == '500') echo 'selected'; ?>>500</option>
-                    </select>
-                    <span><?php echo __("Plugin Default", "ssbhesabix"); ?>: 500</span>
-                </div>
-                <br>
-                <div class="ssbhesabix_set_rpp_container mt-2 d-flex align-items-center gap-2">
-                    <label class="form-label" for="ssbhesabix_set_rpp">
-                        <?php echo __('Set request amount per batch for export opening quantity of products', 'ssbhesabix');
-                        if(!(get_option('ssbhesabix_set_rpp_for_export_opening_products'))) add_option('ssbhesabix_set_rpp_for_export_opening_products', '-1');
-                        ?>
-                    </label>
-                    <select style="max-width: 100px;" class="form-select" name="ssbhesabix_set_rpp_for_export_opening_products" id="ssbhesabix_set_rpp_for_export_opening_products">
-                        <option value="-1"  <?php if(!get_option('ssbhesabix_set_rpp_for_export_opening_products')) echo 'selected'; ?>><?php echo __('select', 'ssbhesabix');?></option>
-                        <option value="50"  <?php if(get_option('ssbhesabix_set_rpp_for_export_opening_products') == '50') echo 'selected'; ?>>50</option>
-                        <option value="100" <?php if(get_option('ssbhesabix_set_rpp_for_export_opening_products') == '100') echo 'selected'; ?>>100</option>
-                        <option value="150" <?php if(get_option('ssbhesabix_set_rpp_for_export_opening_products') == '150') echo 'selected'; ?>>150</option>
-                        <option value="200" <?php if(get_option('ssbhesabix_set_rpp_for_export_opening_products') == '200') echo 'selected'; ?>>200</option>
-                        <option value="300" <?php if(get_option('ssbhesabix_set_rpp_for_export_opening_products') == '300') echo 'selected'; ?>>300</option>
-                        <option value="400" <?php if(get_option('ssbhesabix_set_rpp_for_export_opening_products') == '400') echo 'selected'; ?>>400</option>
-                        <option value="500" <?php if(get_option('ssbhesabix_set_rpp_for_export_opening_products') == '500') echo 'selected'; ?>>500</option>
-                    </select>
-                    <span><?php echo __("Plugin Default", "ssbhesabix"); ?>: 500</span>
-                </div>
             </div>
             <p class="submit hesabix-p">
                 <input type="submit" name="ssbhesabix_integration" class="button-primary"
@@ -1203,42 +1114,6 @@ class Ssbhesabix_Setting {
                         <li>با انجام این عملیات موجودی محصولات وارد حسابیکس نمی شود و برای وارد کردن موجودی محصولات
                             فروشگاه
                             در حسابیکس، باید از گزینه استخراج موجودی اول دوره استفاده کنید.
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </form>
-
-        <form class="card hesabix-card hesabix-f" id="ssbhesabix_export_products_opening_quantity" autocomplete="off"
-              action="<?php echo admin_url( 'admin.php?page=ssbhesabix-option&tab=export' ); ?>"
-              method="post">
-            <div>
-                <div>
-                    <label for="ssbhesabix-export-product-opening-quantity-submit"></label>
-                    <div>
-                        <button class="button button-primary hesabix-f"
-                                id="ssbhesabix-export-product-opening-quantity-submit"
-                                name="ssbhesabix-export-product-opening-quantity-submit"<?php if ( get_option( 'ssbhesabix_use_export_product_opening_quantity' ) == true ) {
-							echo 'disabled';
-						} ?>><?php echo __( 'Export Products opening quantity', 'ssbhesabix' ); ?></button>
-                    </div>
-                </div>
-                <p class="hesabix-p mt-2"><?php echo __( 'Export the products quantity and record the \'products opening quantity\' in the Hesabix', 'ssbhesabix' ); ?></p>
-                <div class="progress mt-1 mb-2" style="height: 5px; max-width: 400px; border: 1px solid silver"
-                     id="exportProductsOpeningQuantityProgress">
-                    <div class="progress-bar progress-bar-striped bg-success"
-                         id="exportProductsOpeningQuantityProgressBar" role="progressbar" style="width: 0%;"
-                         aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-                <div class="p-2 hesabix-f">
-                    <label class="fw-bold mb-2">نکات مهم:</label>
-                    <ul>
-                        <li>با انجام این عملیات موجودی کنونی محصولات در فروشگاه بعنوان موجودی اول دوره محصولات در حسابیکس
-                            ثبت می شوند.
-                        </li>
-                        <li>بطور کلی فقط یک بار باید از این گزینه استفاده کنید،
-                            که این کار باید پس از خروج محصولات به حسابیکس و یا پس از همسان سازی دستی تمام محصولات
-                            انجام شود.
                         </li>
                     </ul>
                 </div>

@@ -94,19 +94,10 @@ class Ssbhesabix_Webhook
 
         } else {
             HesabixLogService::log(array("ssbhesabix - Cannot check last changes. Error Message: " . (string)$changes->ErrorMessage . ". Error Code: " . (string)$changes->ErrorCode));
-            if ($changes->ErrorCode == 108) {
-                update_option('ssbhesabix_business_expired', 1);
-                add_action('admin_notices', array(__CLASS__, 'ssbhesabix_business_expired_notice'));
-            }
             return false;
         }
 
         return true;
-    }
-//=================================================================================================================================
-    public function ssbhesabix_business_expired_notice()
-    {
-        echo '<div class="error"><p>' . __('Cannot connect to Hesabix. Business expired.', 'ssbhesabix') . '</p></div>';
     }
 //=================================================================================================================================
     public function setChanges()
