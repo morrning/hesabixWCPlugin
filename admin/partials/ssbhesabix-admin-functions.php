@@ -796,56 +796,37 @@ class Ssbhesabix_Admin_Functions
     public function exportCustomers($batch, $totalBatch, $total, $updateCount)
     {
         HesabixLogService::writeLogStr("Export Customers");
-        $wpFaService = new HesabixWpFaService();
-
         $result = array();
         $result["error"] = false;
-        $rpp = 500;
         global $wpdb;
-
-        if ($batch == 1) {
-            $total = $wpdb->get_var("SELECT COUNT(*) FROM `" . $wpdb->prefix . "users`");
-            $totalBatch = ceil($total / $rpp);
-        }
-
-        $offset = ($batch - 1) * $rpp;
-        $customers = $wpdb->get_results("SELECT ID FROM `" . $wpdb->prefix . "users` ORDER BY ID ASC LIMIT $offset,$rpp");
-
-        $items = array();
-        foreach ($customers as $item) {
-            $id_customer = $item->ID;
-            $id_obj = $wpFaService->getWpFaId('customer', $id_customer);
-            if (!$id_obj) {
-                $hesabixCustomer = ssbhesabixCustomerService::mapCustomer(null, $id_customer);
-                array_push($items, $hesabixCustomer);
-                $updateCount++;
-            }
-        }
-
-        if (!empty($items)) {
-            $hesabix = new Ssbhesabix_Api();
-            $response = $hesabix->contactBatchSave($items);
-            if ($response->Success) {
-                foreach ($response->Result as $item) {
-                    $json = json_decode($item->Tag);
-
-                    $wpdb->insert($wpdb->prefix . 'ssbhesabix', array(
-                        'id_hesabix' => (int)$item->Code,
-                        'obj_type' => 'customer',
-                        'id_ps' => (int)$json->id_customer,
-                    ));
-
-                    HesabixLogService::log(array("Contact successfully added. Contact Code: " . $item->Code . ". Customer ID: " . (int)$json->id_customer));
+        $total = $wpdb->get_var("SELECT COUNT(*) FROM `" . $wpdb->prefix . "users`");
+        $customers = $wpdb->get_results("SELECT id,user_nicename,user_email FROM " . $wpdb->prefix . "users");
+        $data = array();
+        foreach($customers as $customer){
+            $temp = array();
+            $tempresult = $wpdb->get_results("SELECT meta_key,meta_value FROM `" . $wpdb->prefix . "usermeta` WHERE user_id='". $customer->id . "'");
+            foreach($tempresult as $tmr){
+                if($tmr->meta_key == 'nickname'){
+                    $temp['nickname'] = $tmr->meta_value;
                 }
-            } else {
-                HesabixLogService::log(array("Cannot add bulk contacts. Error Message: $response->ErrorMessage. Error Code: $response->ErrorCode."));
+                if($tmr->meta_key == 'first_name'){
+                    $temp['name'] = $tmr->meta_value;
+                }
+                if($tmr->meta_key == 'last_name'){
+                    $temp['name'] .= $tmr->meta_value;
+                }
             }
+            $temp['email'] .= $customer->user_email;
+            array_push($data,$temp);
         }
-
-        $result["batch"] = $batch;
-        $result["totalBatch"] = $totalBatch;
+        $hesabix = new Ssbhesabix_Api();
+        $response = $hesabix->personsImport(['data'=>$data]);
+        if ($response->Success) {
+            HesabixLogService::log(array("Contact successfully added."));
+        } else {
+            HesabixLogService::log(array("Cannot add bulk contacts. Error Message: $response->ErrorMessage. Error Code: $response->ErrorCode."));
+        }
         $result["total"] = $total;
-        $result["updateCount"] = $updateCount;
 
         return $result;
     }

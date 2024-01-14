@@ -1527,31 +1527,7 @@ class Ssbhesabix_Setting {
 			return $available_cashes;
 		}
 	}
-//=============================================================================================
-	public static function ssbhesabix_get_projects() {
-		$ssbhesabix_api = new Ssbhesabix_Api();
-		$projects       = $ssbhesabix_api->settingGetProjects();
 
-		if ( is_object( $projects ) && $projects->Success ) {
-			$available_projects        = array();
-			$available_projects[ - 1 ] = __( 'Choose', 'ssbhesabix' );
-			foreach ( $projects->Result as $project ) {
-				if ( $project->Active ) {
-					$available_projects[ $project->Title ] = $project->Title;
-				}
-			}
-
-			return $available_projects;
-		} else {
-			update_option( 'ssbhesabix_live_mode', 0 );
-			echo '<div class="error">';
-			echo '<p class="hesabix-p">' . __( 'Cannot get Projects detail.', 'ssbhesabix' ) . '</p>';
-			echo '</div>';
-			HesabixLogService::log( array("Cannot get projects information. Error Code:$projects->ErrorCode. Error Message: $projects->ErrorMessage.") );
-
-			return array( '0' => __( 'Cannot get projects detail.', 'ssbhesabix' ) );
-		}
-	}
 //=============================================================================================
 	public static function ssbhesabix_get_salesmen() {
 		$ssbhesabix_api = new Ssbhesabix_Api();

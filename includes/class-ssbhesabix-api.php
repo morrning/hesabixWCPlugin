@@ -111,16 +111,6 @@ class Ssbhesabix_Api
         return $this->apiRequest($method, $data);
     }
 //================================================================================================
-    public function contactBatchSave($contacts)
-    {
-        $method = 'contact/batchsave';
-        $data = array(
-            'contacts' => $contacts,
-        );
-
-        return $this->apiRequest($method, $data);
-    }
-//================================================================================================
     public function contactDelete($code)
     {
         $method = 'contact/delete';
@@ -438,10 +428,16 @@ class Ssbhesabix_Api
         return $this->apiRequest($method);
     }
 //================================================================================================
+    public function settingExportProdects($data)
+    {
+        $method = 'hooks/commodity/import';
+        return $this->apiRequest($method,$data);
+    }
+
 //================================================================================================
-public function settingExportProdects($data)
-{
-    $method = 'hooks/commodity/import';
-    return $this->apiRequest($method,$data);
-}
+    public function personsImport($data)
+    {
+        $method = 'hooks/person/import';
+        return $this->apiRequest($method,$data);
+    }
 }
