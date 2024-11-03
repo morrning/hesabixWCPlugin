@@ -67,7 +67,7 @@ class Ssbhesabix_Setting {
 		?>
         <h3 class="h3 hesabix-tab-page-title mt-4"><?php esc_attr_e( 'Hesabix Accounting', 'ssbhesabix' ); ?></h3>
         <p class="p mt-4 hesabix-p hesabix-f-12 ms-3"
-           style="text-align: justify"><?php esc_attr_e( 'This module helps connect your (online) store to Hesabix online accounting software. By using this module, saving products, contacts, and orders in your store will also save them automatically in your Hesabix account. Besides that, just after a client pays a bill, the receipt document will be stored in Hesabix as well. Of course, you have to register your account in Hesabix first. To do so, visit Hesabix at the link here www.hesabix.com and sign up for free. After you signed up and entered your account, choose your business, then in the settings menu/API, you can find the API keys for the business and import them to the plugin’s settings. Now your module is ready to use.', 'ssbhesabix' ); ?></p>
+           style="text-align: justify"><?php esc_attr_e( 'This module helps connect your (online) store to Hesabix online accounting software. By using this module, saving products, contacts, and orders in your store will also save them automatically in your Hesabix account. Besides that, just after a client pays a bill, the receipt document will be stored in Hesabix as well. Of course, you have to register your account in Hesabix first. To do so, visit Hesabix at the link here www.hesabix.ir and sign up for free. After you signed up and entered your account, choose your business, then in the settings menu/API, you can find the API keys for the business and import them to the plugin’s settings. Now your module is ready to use.', 'ssbhesabix' ); ?></p>
         <p class="p hesabix-p hesabix-f-12"><?php esc_attr_e( 'For more information and a full guide to how to use Hesabix and WooCommerce Plugin, visit Hesabix’s website and go to the “Guides and Tutorials” menu.', 'ssbhesabix' ); ?></p>
 
         <div class="alert alert-danger hesabix-f mt-4">
@@ -100,9 +100,9 @@ class Ssbhesabix_Setting {
             <div class="col">
                 <h4 class="h4 hesabix-tab-page-title mt-4"><?php esc_attr_e( 'Plugin Tutorial Video', 'ssbhesabix' ); ?></h4>
 
-                <video controls poster="https://www.hesabix.com/img/woocommerc-plugin-help-cover.jpg"
+                <video controls poster="https://www.hesabix.ir/img/woocommerc-plugin-help-cover.jpg"
                        id="hesabix-tutorial-video" style="border: 1px solid gray" class="mt-3">
-                    <source src="https://www.hesabix.com/file/woocommerce/woocommerce-plugin-tutorial.mp4"
+                    <source src="https://www.hesabix.ir/file/woocommerce/woocommerce-plugin-tutorial.mp4"
                             type="video/mp4"></source>
                 </video>
             </div>
@@ -202,7 +202,7 @@ class Ssbhesabix_Setting {
         <h3><?php echo __( 'Extra Settings', 'ssbhesabix' ); ?></h3>
 
         <?php
-            $ssbhesabf_setting_fields = self::ssbhesabix_extra_setting_fields();
+            $ssbhesabi_setting_fields = self::ssbhesabix_extra_setting_fields();
             $Html_output = new Ssbhesabix_Html_output();
         ?>
         <form id="ssbhesabix_form" enctype="multipart/form-data" action="" method="post">
@@ -235,7 +235,7 @@ class Ssbhesabix_Setting {
                     . '</table>';
             ?>
             <div class="d-flex flex-column" style="width: 90%;">
-                <?php $Html_output->init( $ssbhesabf_setting_fields ); ?>
+                <?php $Html_output->init( $ssbhesabi_setting_fields ); ?>
                 <div class="ssbhesabix_set_rpp_container mt-2 d-flex align-items-center gap-2">
                     <label class="form-label" for="ssbhesabix_set_rpp">
                         <?php echo __('Set request amount per batch for sync products based on woocommerce in Hesabix', 'ssbhesabix');
@@ -462,9 +462,9 @@ class Ssbhesabix_Setting {
     }
 //==============================================================================================
     public static function ssbhesabix_extra_setting_save_field() {
-        $ssbhesabf_setting_fields = self::ssbhesabix_extra_setting_fields();
+        $ssbhesabi_setting_fields = self::ssbhesabix_extra_setting_fields();
         $Html_output              = new Ssbhesabix_Html_output();
-        $Html_output->save_fields( $ssbhesabf_setting_fields );
+        $Html_output->save_fields( $ssbhesabi_setting_fields );
     }
 //==============================================================================================
 	public static function ssbhesabix_catalog_setting_fields() {
@@ -598,11 +598,11 @@ class Ssbhesabix_Setting {
 	}
 //====================================================================================================
 	public static function ssbhesabix_catalog_setting() {
-		$ssbhesabf_setting_fields = self::ssbhesabix_catalog_setting_fields();
+		$ssbhesabi_setting_fields = self::ssbhesabix_catalog_setting_fields();
 		$Html_output = new Ssbhesabix_Html_output();
 		?>
         <form id="ssbhesabix_form" enctype="multipart/form-data" action="" method="post">
-			<?php $Html_output->init( $ssbhesabf_setting_fields ); ?>
+			<?php $Html_output->init( $ssbhesabi_setting_fields ); ?>
             <p class="submit hesabix-p">
                 <input type="submit" name="ssbhesabix_integration" class="button-primary"
                        value="<?php esc_attr_e( 'Save changes', 'ssbhesabix' ); ?>"/>
@@ -612,9 +612,9 @@ class Ssbhesabix_Setting {
 	}
 //=============================================================================================
 	public static function ssbhesabix_catalog_setting_save_field() {
-		$ssbhesabf_setting_fields = self::ssbhesabix_catalog_setting_fields();
+		$ssbhesabi_setting_fields = self::ssbhesabix_catalog_setting_fields();
 		$Html_output = new Ssbhesabix_Html_output();
-		$Html_output->save_fields( $ssbhesabf_setting_fields );
+		$Html_output->save_fields( $ssbhesabi_setting_fields );
 	}
 //=============================================================================================
 	public static function ssbhesabix_customers_setting_fields() {
@@ -668,7 +668,7 @@ class Ssbhesabix_Setting {
 //=============================================================================================
 	public static function ssbhesabix_customers_setting() {
 
-		$ssbhesabf_setting_fields   = self::ssbhesabix_customers_setting_fields();
+		$ssbhesabi_setting_fields   = self::ssbhesabix_customers_setting_fields();
 
 		$add_fields                 = get_option( 'ssbhesabix_contact_add_additional_checkout_fields_hesabix', 1 );
 		$nationalCodeCheck          = get_option( 'ssbhesabix_contact_NationalCode_checkbox_hesabix' ) == 'yes';
@@ -689,7 +689,7 @@ class Ssbhesabix_Setting {
 		$Html_output = new Ssbhesabix_Html_output();
 		?>
         <form id="ssbhesabix_form" enctype="multipart/form-data" action="" method="post">
-			<?php $Html_output->init( $ssbhesabf_setting_fields ); ?>
+			<?php $Html_output->init( $ssbhesabi_setting_fields ); ?>
 
             <div class="row my-3">
                 <div class="col-1 ml-4">
@@ -779,7 +779,7 @@ class Ssbhesabix_Setting {
 	}
 //=============================================================================================
 	public static function ssbhesabix_customers_setting_save_field() {
-		$ssbhesabf_setting_fields = self::ssbhesabix_customers_setting_fields();
+		$ssbhesabi_setting_fields = self::ssbhesabix_customers_setting_fields();
 
 		if ($_POST) {
 
@@ -825,7 +825,7 @@ class Ssbhesabix_Setting {
         }
 
 		$Html_output = new Ssbhesabix_Html_output();
-		$Html_output->save_fields( $ssbhesabf_setting_fields );
+		$Html_output->save_fields( $ssbhesabi_setting_fields );
 		// ....
 	}
 
@@ -937,7 +937,7 @@ class Ssbhesabix_Setting {
 	}
 //=============================================================================================
 	public static function ssbhesabix_invoice_setting() {
-		$ssbhesabf_setting_fields = self::ssbhesabix_invoice_setting_fields();
+		$ssbhesabi_setting_fields = self::ssbhesabix_invoice_setting_fields();
 		$Html_output              = new Ssbhesabix_Html_output();
 		?>
         <style>
@@ -960,7 +960,7 @@ class Ssbhesabix_Setting {
             توجه کنید که مقدار این فیلد به درستی وارد شده باشد تا در ثبت فاکتور مشکلی ایجاد نشود.
         </div>
         <form id="ssbhesabix_form" enctype="multipart/form-data" action="" method="post">
-			<?php $Html_output->init( $ssbhesabf_setting_fields ); ?>
+			<?php $Html_output->init( $ssbhesabi_setting_fields ); ?>
             <p class="submit hesabix-p">
                 <input type="submit" name="ssbhesabix_integration" class="button-primary"
                        value="<?php esc_attr_e( 'Save changes', 'ssbhesabix' ); ?>"/>
@@ -976,9 +976,9 @@ class Ssbhesabix_Setting {
 	}
 //=============================================================================================
 	public static function ssbhesabix_invoice_setting_save_field() {
-		$ssbhesabf_setting_fields = self::ssbhesabix_invoice_setting_fields();
+		$ssbhesabi_setting_fields = self::ssbhesabix_invoice_setting_fields();
 		$Html_output              = new Ssbhesabix_Html_output();
-		$Html_output->save_fields( $ssbhesabf_setting_fields );
+		$Html_output->save_fields( $ssbhesabi_setting_fields );
 	}
 //=============================================================================================
 	public static function ssbhesabix_payment_setting_fields() {
@@ -1102,7 +1102,7 @@ class Ssbhesabix_Setting {
 	}
 //=============================================================================================
 	public static function ssbhesabix_payment_setting() {
-		$ssbhesabf_setting_fields = self::ssbhesabix_payment_setting_fields();
+		$ssbhesabi_setting_fields = self::ssbhesabix_payment_setting_fields();
 		$Html_output              = new Ssbhesabix_Html_output();
 		?>
         <style>
@@ -1122,7 +1122,7 @@ class Ssbhesabix_Setting {
             درصد کارمزد تراکنش پیش فرض زمانی اعمال می شود که درصد یک روش پرداخت یا تعریف نشده باشد و یا صفر باشد.
         </div>
         <form id="ssbhesabix_form" enctype="multipart/form-data" action="" method="post">
-			<?php $Html_output->init( $ssbhesabf_setting_fields ); ?>
+			<?php $Html_output->init( $ssbhesabi_setting_fields ); ?>
             <p class="submit hesabix-p">
                 <input type="submit" name="ssbhesabix_integration" class="button-primary"
                        value="<?php esc_attr_e( 'Save changes', 'ssbhesabix' ); ?>"/>
@@ -1149,9 +1149,9 @@ class Ssbhesabix_Setting {
 	}
 //=============================================================================================
 	public static function ssbhesabix_payment_setting_save_field() {
-		$ssbhesabf_setting_fields = self::ssbhesabix_payment_setting_fields();
+		$ssbhesabi_setting_fields = self::ssbhesabix_payment_setting_fields();
 		$Html_output              = new Ssbhesabix_Html_output();
-		$Html_output->save_fields( $ssbhesabf_setting_fields );
+		$Html_output->save_fields( $ssbhesabi_setting_fields );
 	}
 //=============================================================================================
     public static function ssbhesabix_api_setting_fields() {
@@ -1192,7 +1192,7 @@ class Ssbhesabix_Setting {
 			$expireDateStr  = date( "Y/m/d", $expireDate );
 		}
 
-		$ssbhesabf_setting_fields = self::ssbhesabix_api_setting_fields();
+		$ssbhesabi_setting_fields = self::ssbhesabix_api_setting_fields();
 		$Html_output              = new Ssbhesabix_Html_output();
 		?>
         <div class="alert alert-warning hesabix-f">
@@ -1238,7 +1238,7 @@ class Ssbhesabix_Setting {
         </div>
 
         <form id="ssbhesabix_form" enctype="multipart/form-data" action="" method="post">
-			<?php $Html_output->init( $ssbhesabf_setting_fields ); ?>
+			<?php $Html_output->init( $ssbhesabi_setting_fields ); ?>
             <p class="submit hesabix-p">
                 <input type="submit" name="ssbhesabix_integration" class="button-primary"
                        value="<?php esc_attr_e( 'Save changes', 'ssbhesabix' ); ?>"/>
@@ -1248,9 +1248,9 @@ class Ssbhesabix_Setting {
 	}
 //=============================================================================================
 	public static function ssbhesabix_api_setting_save_field() {
-		$ssbhesabf_setting_fields = self::ssbhesabix_api_setting_fields();
+		$ssbhesabi_setting_fields = self::ssbhesabix_api_setting_fields();
 		$Html_output              = new Ssbhesabix_Html_output();
-		$Html_output->save_fields( $ssbhesabf_setting_fields );
+		$Html_output->save_fields( $ssbhesabi_setting_fields );
 
 		Ssbhesabix_Setting::ssbhesabix_set_webhook();
 	}
