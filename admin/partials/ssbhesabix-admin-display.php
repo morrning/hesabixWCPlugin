@@ -2,13 +2,12 @@
 
 /**
  * @class      Ssbhesabix_Admin_Display
- * @version    2.0.93
+ * @version    2.1.1
  * @since      1.0.0
  * @package    ssbhesabix
  * @subpackage ssbhesabix/admin/display
  * @author     Saeed Sattar Beglou <saeed.sb@gmail.com>
  * @author     HamidReza Gharahzadeh <hamidprime@gmail.com>
- * @author     Babak Alizadeh <alizadeh.babak@gmail.com>
  * @author     Sepehr Najafi <sepehrn249@gmail.com>
  */
 
@@ -90,7 +89,7 @@ class Ssbhesabix_Admin_Display
                 <strong>توجه!</strong>
                 <ul style="list-style-type:square">
                     <li>تغییرات هر صفحه را ذخیره کنید و سپس به صفحه بعد بروید.</li>
-                    <li>کد حسابیکس همان کد 4 رقمی (کد حسابداری کالا) است.</li>
+                    <li>کد حسابیکس همان کد 6 رقمی (کد حسابداری کالا) است.</li>
                     <li>از وجود تعریف کالا در حسابیکس اطمینان حاصل کنید.</li>
                     <li>این صفحه برای زمانی است که شما از قبل یک کالا را هم در فروشگاه و هم در حسابیکس
                         تعریف کرده اید اما اتصالی بین آنها وجود ندارد.
@@ -178,14 +177,34 @@ class Ssbhesabix_Admin_Display
     function hesabix_plugin_repeated_products()
     {
         global $wpdb;
-        $rows = $wpdb->get_results("SELECT id_hesabix FROM " . $wpdb->prefix . "ssbhesabix WHERE obj_type = 'product' GROUP BY id_hesabix HAVING COUNT(id_hesabix) > 1;");
+        //$rows = $wpdb->get_results("SELECT id_hesabix FROM " . $wpdb->prefix . "ssbhesabix WHERE obj_type = 'product' GROUP BY id_hesabix HAVING COUNT(id_hesabix) > 1;");
+
+        $rows = $wpdb->get_results(
+            "SELECT id_hesabix
+            FROM {$wpdb->prefix}ssbhesabix
+            WHERE obj_type = 'product'
+            GROUP BY id_hesabix
+            HAVING COUNT(id_hesabix) > 1"
+        );
+
         $ids = array();
 
         foreach ($rows as $row)
             $ids[] = $row->id_hesabix;
 
         $idsStr = implode(',', $ids);
-        $rows = $wpdb->get_results("SELECT * FROM " . $wpdb->prefix . "ssbhesabix WHERE obj_type = 'product' AND id_hesabix IN ($idsStr) ORDER BY id_hesabix");
+        //$rows = $wpdb->get_results("SELECT * FROM " . $wpdb->prefix . "ssbhesabix WHERE obj_type = 'product' AND id_hesabix IN ($idsStr) ORDER BY id_hesabix");
+
+        $rows = $wpdb->get_results(
+            $wpdb->prepare(
+                "SELECT *
+                FROM {$wpdb->prefix}ssbhesabix
+                WHERE obj_type = 'product'
+                AND id_hesabix IN ($idsStr)
+                ORDER BY id_hesabix"
+            )
+        );
+
         $i = 0;
 
         self::hesabix_plugin_header();
@@ -239,19 +258,52 @@ class Ssbhesabix_Admin_Display
         $offset = ($page - 1) * $rpp;
 
         global $wpdb;
-        $rows = $wpdb->get_results("SELECT post.ID,post.post_title,post.post_parent,post_excerpt,wc.sku FROM `" . $wpdb->prefix . "posts` as post
-                                LEFT OUTER JOIN `" . $wpdb->prefix . "wc_product_meta_lookup` as wc
-                                ON post.id =  wc.product_id
-                                WHERE post.post_type IN('product','product_variation') AND post.post_status IN('publish','private')
-                                ORDER BY post.post_title ASC LIMIT $offset,$rpp");
+//        $rows = $wpdb->get_results("SELECT post.ID,post.post_title,post.post_parent,post_excerpt,wc.sku FROM `" . $wpdb->prefix . "posts` as post
+//                                LEFT OUTER JOIN `" . $wpdb->prefix . "wc_product_meta_lookup` as wc
+//                                ON post.id =  wc.product_id
+//                                WHERE post.post_type IN('product','product_variation') AND post.post_status IN('publish','private')
+//                                ORDER BY post.post_title ASC LIMIT $offset,$rpp");
 
-        $totalCount = $wpdb->get_var("SELECT COUNT(*) FROM `" . $wpdb->prefix . "posts` as post
-                                LEFT OUTER JOIN `" . $wpdb->prefix . "wc_product_meta_lookup` as wc
-                                ON post.id =  wc.product_id
-                                WHERE post.post_type IN('product','product_variation') AND post.post_status IN('publish','private')");
+        $rows = $wpdb->get_results(
+            $wpdb->prepare(
+                "SELECT post.ID, post.post_title, post.post_parent, post.post_excerpt, wc.sku
+                FROM {$wpdb->posts} AS post
+                LEFT OUTER JOIN {$wpdb->prefix}wc_product_meta_lookup AS wc
+                ON post.ID = wc.product_id
+                WHERE post.post_type IN ('product', 'product_variation')
+                AND post.post_status IN ('publish', 'private')
+                ORDER BY post.post_title ASC
+                LIMIT %d, %d",
+                $offset,
+                $rpp
+            )
+        );
 
-        $links = $wpdb->get_results("SELECT * FROM `" . $wpdb->prefix . "ssbhesabix`
-                                WHERE obj_type ='product'");
+
+
+//        $totalCount = $wpdb->get_var("SELECT COUNT(*) FROM `" . $wpdb->prefix . "posts` as post
+//                                LEFT OUTER JOIN `" . $wpdb->prefix . "wc_product_meta_lookup` as wc
+//                                ON post.id =  wc.product_id
+//                                WHERE post.post_type IN('product','product_variation') AND post.post_status IN('publish','private')");
+
+        $totalCount = $wpdb->get_var(
+            "SELECT COUNT(*)
+            FROM {$wpdb->posts} AS post
+            LEFT OUTER JOIN {$wpdb->prefix}wc_product_meta_lookup AS wc
+            ON post.ID = wc.product_id
+            WHERE post.post_type IN ('product', 'product_variation')
+            AND post.post_status IN ('publish', 'private')"
+        );
+
+
+//        $links = $wpdb->get_results("SELECT * FROM `" . $wpdb->prefix . "ssbhesabix`
+//                                WHERE obj_type ='product'");
+
+        $links = $wpdb->get_results(
+            "SELECT *
+            FROM {$wpdb->prefix}ssbhesabix
+            WHERE obj_type = 'product'"
+        );
 
         foreach ($rows as $r) {
             if ($r->post_excerpt)
@@ -329,10 +381,10 @@ class Ssbhesabix_Admin_Display
                 </div>
                 <div class="col"></div>
                 <div class="col-auto">
-                    <a class="btn btn-sm btn-success" href="https://my.hesabix.ir" target="_blank">ورود به
+                    <a class="btn btn-sm btn-success" href="https://hesabix.ir" target="_blank">ورود به
                         حسابیکس</a>
                     <a class="btn btn-sm btn-warning"
-                       href="https://hesabix.ir/help/topics/%D8%A7%D9%81%D8%B2%D9%88%D9%86%D9%87/%D9%88%D9%88%DA%A9%D8%A7%D9%85%D8%B1%D8%B3"
+                       href="https://www.hesabix.com/help/topics/%D8%A7%D9%81%D8%B2%D9%88%D9%86%D9%87/%D9%88%D9%88%DA%A9%D8%A7%D9%85%D8%B1%D8%B3"
                        target="_blank">راهنمای افزونه</a>
                 </div>
             </div>

@@ -308,19 +308,23 @@ jQuery(function ($) {
 
     function syncOrders(batch, totalBatch, total, updateCount) {
         var date = $('#ssbhesabix_sync_order_date').val();
+        var endDate = $('#ssbhesabix_sync_order_end_date').val();
 
         const data = {
             'action': 'adminSyncOrders',
             'date': date,
+            'endDate': endDate,
             'batch': batch,
             'totalBatch': totalBatch,
             'total': total,
-            'updateCount': updateCount
+            'updateCount': updateCount,
         };
+
         $.post(ajaxurl, data, function (response) {
             if (response !== 'failed') {
                 const res = JSON.parse(response);
                 res.batch = parseInt(res.batch);
+                if(res.batch) $('#syncOrdersStatistics').html(`<div>پارت: ${res.batch} از ${res.totalBatch} - تعداد کل: ${res.total}</div>`);
                 if (res.batch < res.totalBatch) {
                     let progress = (res.batch * 100) / res.totalBatch;
                     progress = Math.round(progress);

@@ -1,22 +1,21 @@
 <?php
 
 /**
- * @link              https://hesabix.ir/
+ * @link              https://www.Hesabix.ir/
  * @since             1.0.0
- * @package           ssbhesabix
+ * @package           ssbHesabix
  *
  * @wordpress-plugin
  * Plugin Name:       hesabix Accounting
  * Plugin URI:        https://www.hesabix.ir/
- * Description:       Connect hesabix Online Accounting to WooCommerce.
- * Version:           0.1.1
+ * Description:       Connect Hesabix Online Accounting to WooCommerce.
+ * Version:           2.1.1
  * Author:            Babak Alizadeh
  * License:           GPL-3.0+
  * License URI:       http://www.gnu.org/licenses/gpl-3.0.txt
- * Text Domain:       ssbhesabix
+ * Text Domain:       ssbHesabix
  * Domain Path:       /languages
  * WC requires at least: 3.0.0
- * WC tested up to: 8.4.0
  */
 
 // If this file is called directly, abort.
@@ -27,11 +26,11 @@ if (!defined('WPINC')) {
 /**
  * Currently plugin version.
  */
-define('SSBHESABIX_VERSION', '0.1.0');
+define('SSBHESABIX_VERSION', '4.0.1');
 
 /**
  * The code that runs during plugin activation.
- * This action is documented in includes/class-ssbhesabix-activator.php
+ * This action is documented in includes/class-ssbHesabix-activator.php
  */
 function activate_ssbhesabix() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-ssbhesabix-activator.php';

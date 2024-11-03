@@ -7,7 +7,7 @@ include_once(plugin_dir_path(__DIR__) . 'admin/services/HesabixWpFaService.php')
  * The admin-specific functionality of the plugin.
  *
  * @class      Ssbhesabix_Admin
- * @version    2.0.93
+ * @version    2.1.1
  * @since      1.0.0
  * @package    ssbhesabix
  * @subpackage ssbhesabix/admin
@@ -168,7 +168,11 @@ class Ssbhesabix_Admin
         echo '<div class="error"><p>' . __('Hesabix Plugin need to connect to Hesabix Accounting, Please check the API credential!', 'ssbhesabix') . '</p></div>';
     }
 //=========================================================================================================================
-    
+    public function ssbhesabix_business_expired_notice()
+    {
+        echo '<div class="error"><p>' . __('Cannot connect to Hesabix. Business expired.', 'ssbhesabix') . '</p></div>';
+    }
+
     /**
      * Missing hesabix default currency notice for the admin area.
      *
@@ -367,9 +371,10 @@ class Ssbhesabix_Admin
             $total = wc_clean($_POST['total']);
             $updateCount = wc_clean($_POST['updateCount']);
             $from_date = wc_clean($_POST['date']);
+            $end_date = wc_clean($_POST['endDate']);
 
             $func = new Ssbhesabix_Admin_Functions();
-            $result = $func->syncOrders($from_date, $batch, $totalBatch, $total, $updateCount);
+            $result = $func->syncOrders($from_date, $end_date, $batch, $totalBatch, $total, $updateCount);
 
             if (!$result['error'])
                 $result["redirectUrl"] = admin_url('admin.php?page=ssbhesabix-option&tab=sync&orderSyncResult=true&processed=' . $result["updateCount"]);
@@ -447,7 +452,6 @@ class Ssbhesabix_Admin
         HesabixLogService::writeLogStr('Submit Invoice Manually');
 
         if (is_admin() && (defined('DOING_AJAX') || DOING_AJAX)) {
-
             $orderId = wc_clean($_POST['orderId']);
 
             $func = new Ssbhesabix_Admin_Functions();
@@ -504,7 +508,7 @@ class Ssbhesabix_Admin
             $result = $hesabixApi->fixClearTags();
             if (!$result->Success) {
 
-                HesabixLogService::log(array("ssbhesabix - Cannot clear tags. Error Message: " . (string)$changes->ErrorMessage . ". Error Code: " . (string)$changes->ErrorCode));
+                HesabixLogService::log(array("ssbhesabix - Cannot clear tags. Error Message: " . (string)$result->ErrorMessage . ". Error Code: " . (string)$result->ErrorCode));
             }
 
             global $wpdb;
@@ -533,6 +537,77 @@ class Ssbhesabix_Admin
         }
     }
 //=========================================================================================================================
+    public function admin_product_add_column( $columns ) {
+        $hesabixArray = array("hesabix_code" => "کد در حسابیکس");
+        $columns = $hesabixArray + $columns;
+        return $columns;
+    }
+//=========================================================================================================================
+    public function admin_product_export_rows($rows, $products) {
+        $rowsArray = explode("\n", $rows);
+        $exportRows = [];
+
+        $reflection = new ReflectionClass($products);
+        $property = $reflection->getProperty('row_data');
+        $property->setAccessible(true);
+        $productsArray = $property->getValue($products);
+        $matchingArray = [];
+
+        if (!empty($productsArray)) {
+            foreach ($productsArray as $product) {
+                if (is_array($product) && isset($product['id'])) {
+                    $wpFaService = new HesabixWpFaService();
+
+                    if ($product["type"] == "variation") {
+                        if(array_key_exists('parent_id', $product)) {
+                            $parentId = $product['parent_id'];
+                            $productParentId = explode(':', $parentId)[1];
+                            $wpFa = $wpFaService->getWpFaSearch($productParentId, $product['id'], '', "product");
+                        }
+                    } elseif ($product["type"] == "simple" || $product["type"] == "variable") {
+                        $wpFa = $wpFaService->getWpFaSearch($product['id'], 0, '', "product");
+                    }
+
+                    if (is_array($wpFa)) {
+                        foreach ($wpFa as $item) {
+                            if ($item->idWpAttribute != 0) {
+                                $matchingArray[$item->idWpAttribute] = $item->idHesabix;
+                            } else {
+                                $matchingArray[$item->idWp] = $item->idHesabix;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        foreach ($rowsArray as $row) {
+            if (empty(trim($row))) {
+                continue;
+            }
+            $columns = str_getcsv($row);
+            $inserted = false;
+
+            if (isset($columns[1])) {
+                foreach ($matchingArray as $wpId => $hesabixId) {
+                    if ($columns[1] == $wpId && !$inserted) {
+                        $columns[0] = $hesabixId;
+                        $inserted = true;
+                        break;
+                    }
+                }
+            }
+
+            if (!$inserted) {
+                $columns[0] = "کد ندارد";
+            }
+
+            $exportRows[] = implode(",", $columns);
+        }
+
+        return implode("\n", $exportRows);
+    }
+//=========================================================================================================================
     public function ssbhesabix_init_internal()
     {
         add_rewrite_rule('ssbhesabix-webhook.php$', 'index.php?ssbhesabix_webhook=1', 'top');
@@ -550,7 +625,7 @@ class Ssbhesabix_Admin
         $nowDateTime = new DateTime();
         $diff = $nowDateTime->diff($syncChangesLastDate);
 
-        if ($diff->i >= 3) {
+        if ($diff->i >= 4) {
             HesabixLogService::writeLogStr('Sync Changes Automatically');
             update_option('ssbhesabix_sync_changes_last_date', new DateTime());
             require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-ssbhesabix-webhook.php';
@@ -581,26 +656,58 @@ class Ssbhesabix_Admin
 //=========================================================================================================================
     public function custom_orders_list_column_content($column, $post_id)
     {
-        global $wpdb;
 
-        switch ($column) {
-            case 'hesabix-column-invoice-number' :
-                // Get custom post meta data
-                $row = $wpdb->get_row("SELECT `id_hesabix` FROM `" . $wpdb->prefix . "ssbhesabix` WHERE `id_ps` = $post_id AND `obj_type` = 'order'");
+	    global $wpdb;
 
-                //$my_var_one = get_post_meta( $post_id, '_the_meta_key1', true );
-                if (!empty($row))
-                    echo '<mark class="order-status"><span>' . $row->id_hesabix . '</span></mark>';
-                else
-                    echo '<small></small>';
-                break;
+        if (get_option('woocommerce_custom_orders_table_enabled') == 'yes') {
+            switch ($column) {
+                case 'hesabix-column-invoice-number':
+                    $product_id = $post_id->ID; // Extract product ID from the object
+    //                $row = $wpdb->get_row("SELECT `id_hesabix` FROM `" . $wpdb->prefix . "ssbhesabix` WHERE `id_ps` = $post_id AND `obj_type` = 'order'");
+                    $table_name = $wpdb->prefix . 'ssbhesabix';
+                    $row = $wpdb->get_row(
+                        $wpdb->prepare(
+                            "SELECT id_hesabix FROM $table_name WHERE id_ps = %d AND obj_type = 'order'",
+                            $product_id
+                        )
+                    );
 
-            case 'hesabix-column-submit-invoice' :
-                echo '<a role="button" class="button btn-submit-invoice" ';
-                echo "data-order-id='$post_id'>";
-                echo __('Submit Invoice', 'ssbhesabix');
-                echo '</a>';
-                break;
+                    if (!empty($row)) {
+                        echo '<mark class="order-status"><span>' . $row->id_hesabix . '</span></mark>';
+                    } else {
+                        echo '<small></small>';
+                    }
+                    break;
+
+                case 'hesabix-column-submit-invoice':
+                    // Use the product ID for the data attribute value
+                    $product_id = $post_id->ID;
+                    echo '<a role="button" class="button btn-submit-invoice" ';
+                    echo 'data-order-id="' . $product_id . '">';
+                    echo __('Submit Invoice', 'ssbhesabix');
+                    echo '</a>';
+                    break;
+            }
+        } else {
+            switch ($column) {
+                case 'hesabix-column-invoice-number' :
+                    // Get custom post meta data
+                    $row = $wpdb->get_row("SELECT `id_hesabix` FROM `" . $wpdb->prefix . "ssbhesabix` WHERE `id_ps` = $post_id AND `obj_type` = 'order'");
+
+                    //$my_var_one = get_post_meta( $post_id, '_the_meta_key1', true );
+                    if (!empty($row))
+                        echo '<mark class="order-status"><span>' . $row->id_hesabix . '</span></mark>';
+                    else
+                        echo '<small></small>';
+                    break;
+
+                case 'hesabix-column-submit-invoice' :
+                    echo '<a role="button" class="button btn-submit-invoice" ';
+                    echo "data-order-id='$post_id'>";
+                    echo __('Submit Invoice', 'ssbhesabix');
+                    echo '</a>';
+                    break;
+            }
         }
     }
 //=========================================================================================================================
@@ -658,7 +765,8 @@ class Ssbhesabix_Admin
         <table class="form-table">
             <tr>
                 <th><label for="user_hesabix_code"
-                           class="text-info"><?php echo __('Contact Code in Hesabix', 'ssbhesabix'); ?></label></th>
+                           class="text-info"><?php echo __('Contact Code in Hesabix', 'ssbhesabix'); ?></label>
+                </th>
                 <td>
                     <input
                             type="text"
@@ -720,7 +828,6 @@ class Ssbhesabix_Admin
             $row = $wpdb->get_row("SELECT `id_hesabix` FROM `" . $wpdb->prefix . "ssbhesabix` WHERE `id` = $id_obj AND `obj_type` = 'customer'");
 
             if (is_object($row)) {
-                //Call API
                 $hesabixApi = new Ssbhesabix_Api();
                 $hesabixApi->contactDelete($row->id_hesabix);
             }
@@ -764,6 +871,40 @@ class Ssbhesabix_Admin
         }
     }
 //=========================================================================================================================
+    public function ssbhesabix_hook_new_order($id_order, $order)
+    {
+        HesabixLogService::writeLogStr("New Order Hook");
+        $function = new Ssbhesabix_Admin_Functions();
+        $orderStatus = wc_get_order($id_order)->get_status();
+        $orderItems = $order->get_items();
+
+        foreach (get_option('ssbhesabix_invoice_status') as $status) {
+
+            HesabixLogService::writeLogStr("status: $status");
+
+            if ($status == $orderStatus) {
+                $orderResult = $function->setOrder($id_order, 0, null, $orderItems);
+                if ($orderResult) {
+                    // set payment
+                    foreach (get_option('ssbhesabix_payment_status') as $statusPayment) {
+                        if ($statusPayment == $orderStatus)
+                            $function->setOrderPayment($id_order);
+                    }
+                }
+            }
+        }
+
+        HesabixLogService::log(array($orderStatus));
+
+        $values = get_option('ssbhesabix_invoice_return_status');
+        if(is_array($values) || is_object($values)) {
+            foreach ($values as $status) {
+                if ($status == $orderStatus)
+                    $function->setOrder($id_order, 2, $function->getInvoiceCodeByOrderId($id_order), $orderItems);
+            }
+        }
+    }
+//=========================================================================================================================
     public function ssbhesabix_hook_payment_confirmation($id_order, $from, $to)
     {
         foreach (get_option('ssbhesabix_payment_status') as $status) {
@@ -779,8 +920,8 @@ class Ssbhesabix_Admin
 //=========================================================================================================================
     public function ssbhesabix_hook_new_product($id_product)
     {
-        if (get_option("ssbhesabix_inside_product_edit", 0) === 1)
-            return;
+//        if (get_option("ssbhesabix_inside_product_edit", 0) === 1)
+//            return;
 
         if ($this->call_time === 1) {
             $this->call_time++;
@@ -799,54 +940,56 @@ class Ssbhesabix_Admin
 
         HesabixLogService::writeLogStr("ssbhesabix_hook_save_product_variation");
 
-        //change hesabix item code
-        $variable_field_id = "ssbhesabix_hesabix_item_code_" . $id_attribute;
-        $code = $_POST[$variable_field_id];
-        $id_product = $_POST['product_id'];
+        if (get_option("ssbhesabix_do_not_submit_product_automatically", "no") === "yes" || get_option("ssbhesabix_do_not_submit_product_automatically", "no") == "1") {
+            //change hesabix item code
+            $variable_field_id = "ssbhesabix_hesabix_item_code_" . $id_attribute;
+            $code = $_POST[$variable_field_id];
+            $id_product = $_POST['product_id'];
 
-        if ($code === "")
-            return;
+            if ($code === "")
+                return;
 
-        if (isset($code)) {
-            global $wpdb;
-            $row = $wpdb->get_row("SELECT * FROM `" . $wpdb->prefix . "ssbhesabix` WHERE `id_hesabix` = " . $code . " AND `obj_type` = 'product'");
+            if (isset($code)) {
+                global $wpdb;
+                $row = $wpdb->get_row("SELECT * FROM `" . $wpdb->prefix . "ssbhesabix` WHERE `id_hesabix` = " . $code . " AND `obj_type` = 'product'");
 
-            if (is_object($row)) {
-                if ($row->id_ps == $id_product && $row->id_ps_attribute == $id_attribute) {
-                    return false;
-                }
+                if (is_object($row)) {
+                    if ($row->id_ps == $id_product && $row->id_ps_attribute == $id_attribute) {
+                        return false;
+                    }
 
-                echo '<div class="error"><p>' . __('The new Item code already used for another Item', 'ssbhesabix') . '</p></div>';
+                    echo '<div class="error"><p>' . __('The new Item code already used for another Item', 'ssbhesabix') . '</p></div>';
 
-                HesabixLogService::log(array("The new Item code already used for another Item. Product ID: $id_product"));
-            } else {
-                $row2 = $wpdb->get_row("SELECT * FROM `" . $wpdb->prefix . "ssbhesabix` WHERE `id_ps` = $id_product AND `obj_type` = 'product' AND `id_ps_attribute` = $id_attribute");
+                    HesabixLogService::log(array("The new Item code already used for another Item. Product ID: $id_product"));
+                } else {
+                    $row2 = $wpdb->get_row("SELECT * FROM `" . $wpdb->prefix . "ssbhesabix` WHERE `id_ps` = $id_product AND `obj_type` = 'product' AND `id_ps_attribute` = $id_attribute");
 
-                if (is_object($row2)) {
-                    $wpdb->update($wpdb->prefix . 'ssbhesabix', array(
-                        'id_hesabix' => (int)$code,
-                    ), array(
-                        'id_ps' => $id_product,
-                        'id_ps_attribute' => $id_attribute,
-                        'obj_type' => 'product',
-                    ));
-                } else if ((int)$code !== 0) {
-                    $wpdb->insert($wpdb->prefix . 'ssbhesabix', array(
-                        'id_hesabix' => (int)$code,
-                        'id_ps' => (int)$id_product,
-                        'id_ps_attribute' => $id_attribute,
-                        'obj_type' => 'product',
-                    ));
+                    if (is_object($row2)) {
+                        $wpdb->update($wpdb->prefix . 'ssbhesabix', array(
+                            'id_hesabix' => (int)$code,
+                        ), array(
+                            'id_ps' => $id_product,
+                            'id_ps_attribute' => $id_attribute,
+                            'obj_type' => 'product',
+                        ));
+                    } else if ((int)$code !== 0) {
+                        $wpdb->insert($wpdb->prefix . 'ssbhesabix', array(
+                            'id_hesabix' => (int)$code,
+                            'id_ps' => (int)$id_product,
+                            'id_ps_attribute' => $id_attribute,
+                            'obj_type' => 'product',
+                        ));
+                    }
                 }
             }
-        }
 
-        //add attribute if not exists
-        $func = new Ssbhesabix_Admin_Functions();
-        $wpFaService = new HesabixWpFaService();
-        $code = $wpFaService->getProductCodeByWpId($id_product, $id_attribute);
-        if ($code == null) {
-            $func->setItems(array($id_product));
+            //add attribute if not exists
+            $func = new Ssbhesabix_Admin_Functions();
+            $wpFaService = new HesabixWpFaService();
+            $code = $wpFaService->getProductCodeByWpId($id_product, $id_attribute);
+            if ($code == null) {
+                $func->setItems(array($id_product));
+            }
         }
     }
 //=========================================================================================================================
@@ -1179,7 +1322,6 @@ class Ssbhesabix_Admin
     function adminDeleteProductLinkCallback()
     {
         if (is_admin() && (defined('DOING_AJAX') || DOING_AJAX)) {
-
             $productId = wc_clean($_POST['productId']);
             $attributeId = wc_clean($_POST['attributeId']);
             if ($productId == $attributeId) $attributeId = 0;
@@ -1187,8 +1329,10 @@ class Ssbhesabix_Admin
 
             $wpFaService = new HesabixWpFaService();
             $wpFa = $wpFaService->getWpFa('product', $productId, $attributeId);
-            if ($wpFa)
+            if ($wpFa) {
                 $wpFaService->delete($wpFa);
+                HesabixLogService::writeLogStr("حذف ارتباط کالا. کد کالا: " . $productId . " - ". "کد متغیر:". $attributeId);
+            }
 
             $result["error"] = false;
             echo json_encode($result);
@@ -1282,14 +1426,13 @@ class Ssbhesabix_Admin
             }
 
             $api = new Ssbhesabix_Api();
-            $filters = array(array("Property" => "Code", "Operator" => "in", "Value" => $codes));
-            $response = $api->itemGetItems(array('Filters' => $filters));
+            $response = $api->itemGetItemsByCodes(array('values' => $codes));
             if ($response->Success) {
-                $items = $response->Result->List;
+                $items = $response->result;
                 foreach ($codes as $code) {
                     $found = false;
                     foreach ($items as $item) {
-                        if ($item->Code == $code)
+                        if ($item->code == $code)
                             $found = true;
                     }
                     if (!$found) {
@@ -1343,6 +1486,7 @@ class Ssbhesabix_Admin
 
             $wpFaService = new HesabixWpFaService();
             $wpFaService->deleteAll($productId);
+            HesabixLogService::writeLogStr("حذف ارتباط کالاها. کد کالا: " . $productId);
 
             $result["error"] = false;
             echo json_encode($result);
@@ -1384,10 +1528,9 @@ class Ssbhesabix_Admin
                     update_post_meta($p->idWpAttribute == 0 ? $p->idWp : $p->idWpAttribute, '_manage_stock', 'yes');
             }
 
-            $filters = array(array("Property" => "Code", "Operator" => "in", "Value" => $codes));
             $warehouse = get_option('ssbhesabix_item_update_quantity_based_on', "-1");
             if ($warehouse == "-1")
-                $response = $api->itemGetItems(array('Filters' => $filters));
+                $response = $api->itemGetItemsByCodes($codes);
             else {
                 $response = $api->itemGetQuantity($warehouse, $codes);
             }
@@ -1418,7 +1561,6 @@ class Ssbhesabix_Admin
     }
 //=========================================================================================================================
     function add_additional_fields_to_checkout( $fields ) {
-
         $NationalCode_isActive = get_option('ssbhesabix_contact_NationalCode_checkbox_hesabix');
         $EconomicCode_isActive = get_option('ssbhesabix_contact_EconomicCode_checkbox_hesabix');
         $RegistrationNumber_isActive = get_option('ssbhesabix_contact_RegistrationNumber_checkbox_hesabix');
@@ -1428,7 +1570,6 @@ class Ssbhesabix_Admin
 	    $EconomicCode_isRequired = get_option('ssbhesabix_contact_EconomicCode_isRequired_hesabix');
 	    $RegistrationNumber_isRequired = get_option('ssbhesabix_contact_RegistrationNumber_isRequired_hesabix');
 	    $Website_isRequired = get_option('ssbhesabix_contact_Website_isRequired_hesabix');
-
 
         //NationalCode
 	    if($NationalCode_isActive == 'yes'){
@@ -1477,11 +1618,11 @@ class Ssbhesabix_Admin
             $NationalCode = $_POST['billing_hesabix_nationalcode'];
             $Website = $_POST['billing_hesabix_website'];
             if($NationalCode_isRequired) {
-                $func->CheckNationalCode($NationalCode);
+                $func->checkNationalCode($NationalCode);
             }
 
             if($Website_isRequired) {
-                $func->CheckWebsite($Website);
+                $func->checkWebsite($Website);
             }
         }
 	        return $fields;

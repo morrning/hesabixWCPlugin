@@ -6,7 +6,7 @@
  * This class defines all code necessary to run during the plugin's activation.
  *
  * @class      Ssbhesabix_Activator
- * @version    2.0.93
+ * @version    2.1.1
  * @since      1.0.0
  * @package    ssbhesabix
  * @subpackage ssbhesabix/includes
@@ -40,9 +40,7 @@ class Ssbhesabix_Activator {
         add_option('ssbhesabix_do_not_submit_product_automatically', "no");
         add_option('ssbhesabix_do_not_update_product_price_in_hesabix', "no");
         add_option('ssbhesabix_contact_add_additional_checkout_fields_hesabix', 1);
-        add_option('ssbhesabix_account_bid', 0);
-        add_option('ssbhesabix_account_year', 0);
-        
+
         self::ssbhesabix_create_database_table();
 	}
 //===============================================================================================================

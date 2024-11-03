@@ -9,6 +9,7 @@ include_once(plugin_dir_path(__DIR__) . 'admin/services/HesabixWpFaService.php')
  * @author     Saeed Sattar Beglou <saeed.sb@gmail.com>
  * @author     HamidReza Gharahzadeh <hamidprime@gmail.com>
  * @author     Sepehr Najafi <sepehrn249@gmail.com>
+ * @author     Babak Alizadeh <alizadeh.babak@gmail.com>
  */
 
 class Ssbhesabix_Webhook
@@ -21,7 +22,7 @@ class Ssbhesabix_Webhook
 
     public function __construct()
     {
-        //HesabixLogService::writeLogStr("Calling Webhook");
+        //hesabixLogService::writeLogStr("Calling Webhook");
         $wpFaService = new HesabixWpFaService();
 
         $hesabixApi = new Ssbhesabix_Api();
@@ -51,6 +52,70 @@ class Ssbhesabix_Webhook
                             }
                             break;
                         case 'WarehouseReceipt':
+                            if ($item->Action == 261) {
+                                global $wpdb;
+                                $hesabixApi = new Ssbhesabix_Api();
+                                $receipt = $hesabixApi->getWarehouseReceipt($item->ObjectId);
+//                                HesabixLogService::writeLogObj($receipt->Result->Items);
+                                foreach ($receipt->Result->Items as $receiptItem) {
+                                    $wpFa = $wpFaService->getWpFaByHesabixId('product', $receiptItem->ItemCode);
+                                    $wpdb->insert($wpdb->prefix . 'ssbhesabix', array(
+                                        'id_hesabix' => (int)$item->ObjectId,
+                                        'obj_type' => "receiptItems",
+                                        'id_ps' => $wpFa->idWp,
+                                        'id_ps_attribute' => $wpFa->idWpAttribute
+                                    ));
+                                }
+
+                                if (get_option('ssbhesabix_item_update_quantity', 'no') == 'no') {
+                                    HesabixLogService::writeLogStr("Sync Products Quantity is Off");
+                                }
+                            }
+                            if ($item->Action == 263) {
+                                global $wpdb;
+                                $rows = $wpdb->get_results("SELECT * FROM `" . $wpdb->prefix . "ssbhesabix` WHERE `id_hesabix` = $item->ObjectId");
+                                $receiptID = $item->ObjectId;
+                                foreach ($rows as $row) {
+                                    $post_id = ($row->id_ps_attribute && $row->id_ps_attribute > 0) ? $row->id_ps_attribute : $row->id_ps;
+                                    //$product = wc_get_product( $post_id );
+
+                                    if (get_option('ssbhesabix_item_update_quantity', 'no') == 'no') {
+                                        HesabixLogService::writeLogStr("Sync Products Quantity is Off");
+                                    }
+
+                                    $productId = $row->id_ps;
+                                    $attributeId = $row->id_ps_attribute;
+
+                                    if (get_option('ssbhesabix_item_update_quantity', 'no') == 'yes')
+                                        update_post_meta($attributeId, '_manage_stock', 'yes');
+
+                                    if ($productId == $attributeId) $attributeId = 0;
+                                    $result = array();
+
+                                    $wpFaService = new HesabixWpFaService();
+                                    $wpFa = $wpFaService->getWpFa('product', $productId, $attributeId);
+                                    if ($wpFa) {
+
+                                        $api = new Ssbhesabix_Api();
+                                        $warehouse = get_option('ssbhesabix_item_update_quantity_based_on', "-1");
+                                        if ($warehouse == "-1")
+                                            $response = $api->itemGet($wpFa->idHesabix);
+                                        else {
+                                            $response = $api->itemGetQuantity($warehouse, array($wpFa->idHesabix));
+                                        }
+
+                                        if ($response->Success) {
+                                            $item = $warehouse == "-1" ? $response->Result : $response->Result[0];
+                                            $newProps = Ssbhesabix_Admin_Functions::setItemChanges($item);
+                                        } else {
+                                            HesabixLogService::writeLogStr("Product is not defined in Hesabix");
+                                        }
+                                    }
+                                }
+
+                                $wpdb->delete($wpdb->prefix . 'ssbhesabix', array('id_hesabix' => $receiptID));
+                                break;
+                            }
                             $this->warehouseReceiptsObjectId[] = $item->ObjectId;
                             break;
                         case 'Product':
@@ -94,10 +159,19 @@ class Ssbhesabix_Webhook
 
         } else {
             HesabixLogService::log(array("ssbhesabix - Cannot check last changes. Error Message: " . (string)$changes->ErrorMessage . ". Error Code: " . (string)$changes->ErrorCode));
+            if ($changes->ErrorCode == 108) {
+                update_option('ssbhesabix_business_expired', 1);
+                add_action('admin_notices', array(__CLASS__, 'ssbhesabix_business_expired_notice'));
+            }
             return false;
         }
 
         return true;
+    }
+//=================================================================================================================================
+    public function ssbhesabix_business_expired_notice()
+    {
+        echo '<div class="error"><p>' . __('Cannot connect to Hesabix. Business expired.', 'ssbhesabix') . '</p></div>';
     }
 //=================================================================================================================================
     public function setChanges()
@@ -174,7 +248,7 @@ class Ssbhesabix_Webhook
                     $row = $wpdb->get_row("SELECT `id_hesabix` FROM `" . $wpdb->prefix . "ssbhesabix` WHERE `id` = $id_obj");
                     if (is_object($row) && $row->id_hesabix != $number) {
                         $id_hesabix_old = $row->id_hesabix;
-                        //ToDo: number must be int in hesabix, what can I do
+                        //ToDo: number must be int in hesabix
                         $wpdb->update($wpdb->prefix . 'ssbhesabix', array('id_hesabix' => $number), array('id' => $id_obj));
                         HesabixLogService::log(array("Invoice Number changed. Old Number: $id_hesabix_old. New ID: $number"));
                     }
@@ -258,12 +332,11 @@ class Ssbhesabix_Webhook
 //=================================================================================================================================
     public function getObjectsByCodeList($codeList)
     {
-        $filters = array(array("Property" => "Code", "Operator" => "in", "Value" => $codeList));
         $hesabixApi = new Ssbhesabix_Api();
 
         $warehouse = get_option('ssbhesabix_item_update_quantity_based_on', "-1");
         if ($warehouse == "-1")
-            $result = $hesabixApi->itemGetItems(array('Take' => 100000, 'Filters' => $filters));
+            $result = $hesabixApi->itemGetItemsByCodes($codeList);
         else {
             $result = $hesabixApi->itemGetQuantity($warehouse, $codeList);
         }

@@ -16,12 +16,12 @@ class ssbhesabixCustomerService
         $name = $firstName . ' ' . $lastName;
         $nodeFamily = get_option('ssbhesabix_contact_automatic_save_node_family') == 'yes'? 'اشخاص :' . get_option('ssbhesabix_contact_node_family') : null;
 
-		//checkout fields
-	    $checkout_fields = ssbhesabixCustomerService::getAdditionalCheckoutFileds($id_order);
+        //checkout fields
+        $checkout_fields = ssbhesabixCustomerService::getAdditionalCheckoutFileds($id_order);
         $NationalCode = $checkout_fields['NationalCode'];
         $EconomicCode = $checkout_fields['EconomicCode'];
-	    $RegistrationNumber = $checkout_fields['RegistrationNumber'];
-	    $Website = $checkout_fields['Website'];
+        $RegistrationNumber = $checkout_fields['RegistrationNumber'];
+        $Website = $checkout_fields['Website'];
 
         if($NationalCode === false) $NationalCode = '';
         if($EconomicCode === false) $EconomicCode = '';
@@ -39,54 +39,96 @@ class ssbhesabixCustomerService
                 $country_name = self::$countries[$order->get_billing_country()];
                 $state_name = self::$states[$order->get_billing_country()][$order->get_billing_state()];
                 $fullAddress = $order->get_billing_address_1() . '-' . $order->get_billing_address_2();
+                $postalCode = $order->get_billing_postcode();
+                if(strlen($fullAddress) < 5) {
+                    $fullAddress = $customer->get_billing_address_1() . '-' . $customer->get_billing_address_2();
+                }
+                if(empty($country_name))
+                    $country_name = self::$countries[$customer->get_billing_country()];
+                if(empty($state_name))
+                    $state_name = self::$states[$customer->get_billing_country()][$customer->get_billing_state()];
+                if(empty($postalCode))
+                    $postalCode = $customer->get_billing_postcode();
+
+                $city = $order->get_billing_city();
+                if(preg_match('/^[0-9]+$/', $city)) {
+                    $func = new Ssbhesabix_Admin_Functions();
+                    $city = $func->convertCityCodeToName($order->get_billing_city());
+                }
 
                 $hesabixCustomer = array(
-                    'Code' => $code,
-                    'Name' => $name,
-                    'FirstName' => Ssbhesabix_Validation::contactFirstNameValidation($firstName),
-                    'LastName' => Ssbhesabix_Validation::contactLastNameValidation($lastName),
+                    'code' => $code,
+                    'nikename' => $name,
+                    'name' => Ssbhesabix_Validation::contactFirstNameValidation($firstName) . Ssbhesabix_Validation::contactLastNameValidation($lastName),
                     'ContactType' => 1,
                     'NodeFamily' => $nodeFamily,
-                    'NationalCode' => $NationalCode,
-                    'EconomicCode' => $EconomicCode,
+                    'shenasemeli' => $NationalCode,
+                    'codeeghtesadi' => $EconomicCode,
                     'RegistrationNumber' => $RegistrationNumber,
-                    'Website' => $Website,
-                    'Address' => Ssbhesabix_Validation::contactAddressValidation($fullAddress),
-                    'City' => Ssbhesabix_Validation::contactCityValidation($customer->get_billing_city()),
-                    'State' => Ssbhesabix_Validation::contactStateValidation($state_name),
-                    'Country' => Ssbhesabix_Validation::contactCountryValidation($country_name),
-                    'PostalCode' => Ssbhesabix_Validation::contactPostalCodeValidation($customer->get_billing_postcode()),
-                    'Phone' => Ssbhesabix_Validation::contactPhoneValidation($customer->get_billing_phone()),
-                    'Email' => Ssbhesabix_Validation::contactEmailValidation($customer->get_email()),
+                    'website' => $Website,
+                    'address' => Ssbhesabix_Validation::contactAddressValidation($fullAddress),
+                    'shahr' => Ssbhesabix_Validation::contactCityValidation($city),
+                    'ostan' => Ssbhesabix_Validation::contactStateValidation($state_name),
+                    'keshvar' => Ssbhesabix_Validation::contactCountryValidation($country_name),
+                    'postalcode' => Ssbhesabix_Validation::contactPostalCodeValidation($postalCode),
+                    'tel' => Ssbhesabix_Validation::contactPhoneValidation($customer->get_billing_phone()),
+                    'emal' => Ssbhesabix_Validation::contactEmailValidation($customer->get_email()),
                     'Tag' => json_encode(array('id_customer' => $id_customer)),
-                    'Note' => __('Customer ID in OnlineStore: ', 'ssbhesabix') . $id_customer,
+                    'des' => __('Customer ID in OnlineStore: ', 'ssbhesabix') . $id_customer,
+                    'types' => [
+                        [
+                            'checked'=>true,
+                            'code'=>'customer'
+                        ]
+                    ]
                 );
                 break;
             case 'shipping':
                 $country_name = self::$countries[$order->get_shipping_country()];
                 $state_name = self::$states[$order->get_shipping_country()][$order->get_shipping_state()];
                 $fullAddress = $order->get_shipping_address_1() . ' - ' . $order->get_shipping_address_2();
+                $postalCode = $order->get_shipping_postcode();
+
+                if(strlen($fullAddress) < 5)
+                    $fullAddress = $customer->get_billing_address_1() . '-' . $customer->get_billing_address_2();
+                if(empty($country_name))
+                    $country_name = self::$countries[$customer->get_billing_country()];
+                if(empty($state_name))
+                    $state_name = self::$states[$customer->get_billing_country()][$customer->get_billing_state()];
+                if(empty($postalCode))
+                    $postalCode = $customer->get_shipping_postcode();
+
+                $city = $order->get_shipping_city();
+                if(preg_match('/^[0-9]+$/', $city)) {
+                    $func = new Ssbhesabix_Admin_Functions();
+                    $city = $func->convertCityCodeToName($order->get_shipping_city());
+                }
 
                 $hesabixCustomer = array(
-                    'Code' => $code,
-                    'Name' => $name,
-                    'FirstName' => Ssbhesabix_Validation::contactFirstNameValidation($firstName),
-                    'LastName' => Ssbhesabix_Validation::contactLastNameValidation($lastName),
+                    'code' => $code,
+                    'nikename' => $name,
+                    'name' => Ssbhesabix_Validation::contactFirstNameValidation($firstName) . Ssbhesabix_Validation::contactLastNameValidation($lastName),
                     'ContactType' => 1,
                     'NodeFamily' => $nodeFamily,
-                    'NationalCode' => $NationalCode,
-                    'EconomicCode' => $EconomicCode,
+                    'shenasemeli' => $NationalCode,
+                    'codeeghtesadi' => $EconomicCode,
                     'RegistrationNumber' => $RegistrationNumber,
-                    'Website' => $Website,
-                    'Address' => Ssbhesabix_Validation::contactAddressValidation($fullAddress),
-                    'City' => Ssbhesabix_Validation::contactCityValidation($customer->get_shipping_city()),
-                    'State' => Ssbhesabix_Validation::contactStateValidation($state_name),
-                    'Country' => Ssbhesabix_Validation::contactCountryValidation($country_name),
-                    'PostalCode' => Ssbhesabix_Validation::contactPostalCodeValidation($customer->get_shipping_postcode()),
-                    'Phone' => Ssbhesabix_Validation::contactPhoneValidation($customer->get_billing_phone()),
-                    'Email' => Ssbhesabix_Validation::contactEmailValidation($customer->get_email()),
+                    'website' => $Website,
+                    'address' => Ssbhesabix_Validation::contactAddressValidation($fullAddress),
+                    'shahr' => Ssbhesabix_Validation::contactCityValidation($city),
+                    'ostan' => Ssbhesabix_Validation::contactStateValidation($state_name),
+                    'keshvar' => Ssbhesabix_Validation::contactCountryValidation($country_name),
+                    'postalcode' => Ssbhesabix_Validation::contactPostalCodeValidation($postalCode),
+                    'tel' => Ssbhesabix_Validation::contactPhoneValidation($customer->get_billing_phone()),
+                    'email' => Ssbhesabix_Validation::contactEmailValidation($customer->get_email()),
                     'Tag' => json_encode(array('id_customer' => $id_customer)),
-                    'Note' => __('Customer ID in OnlineStore: ', 'ssbhesabix') . $id_customer,
+                    'des' => __('Customer ID in OnlineStore: ', 'ssbhesabix') . $id_customer,
+                    'types' => [
+                        [
+                            'checked'=>true,
+                            'code'=>'customer'
+                        ]
+                    ]
                 );
                 break;
         }
@@ -104,12 +146,12 @@ class ssbhesabixCustomerService
         }
         $nodeFamily = get_option('ssbhesabix_contact_automatic_save_node_family') == 'yes'? 'اشخاص :' . get_option('ssbhesabix_contact_node_family') :null;
 
-		//checkout fields
-	    $checkout_fields = ssbhesabixCustomerService::getAdditionalCheckoutFileds($id_order);
-	    $NationalCode = $checkout_fields['NationalCode'];
-	    $EconomicCode = $checkout_fields['EconomicCode'];
-	    $RegistrationNumber = $checkout_fields['RegistrationNumber'];
-	    $Website = $checkout_fields['Website'];
+        //checkout fields
+        $checkout_fields = ssbhesabixCustomerService::getAdditionalCheckoutFileds($id_order);
+        $NationalCode = $checkout_fields['NationalCode'];
+        $EconomicCode = $checkout_fields['EconomicCode'];
+        $RegistrationNumber = $checkout_fields['RegistrationNumber'];
+        $Website = $checkout_fields['Website'];
 
 //        $country_name = self::$countries[$order->get_billing_country()];
 //        $state_name = self::$states[$order->get_billing_state()];
@@ -122,6 +164,12 @@ class ssbhesabixCustomerService
         if(!$state_name) $state_name = WC()->countries->states[$order->billing_country][$order->billing_state];
         if(!$state_name) $state_name = $order->get_billing_state();
 
+        $city = $order->get_billing_city();
+        if(preg_match('/^[0-9]+$/', $city)) {
+            $func = new Ssbhesabix_Admin_Functions();
+            $city = $func->convertCityCodeToName($order->get_billing_city());
+        }
+
         $fullAddress = $order->get_billing_address_1() . '-' . $order->get_billing_address_2();
 
         $hesabixCustomer = array(
@@ -130,13 +178,13 @@ class ssbhesabixCustomerService
             'FirstName' => Ssbhesabix_Validation::contactFirstNameValidation($order->get_billing_first_name()),
             'LastName' => Ssbhesabix_Validation::contactLastNameValidation($order->get_billing_last_name()),
             'ContactType' => 1,
-			'NationalCode' => $NationalCode,
-			'EconomicCode' => $EconomicCode,
-			'RegistrationNumber' => $RegistrationNumber,
-			'Website' => $Website,
+            'NationalCode' => $NationalCode,
+            'EconomicCode' => $EconomicCode,
+            'RegistrationNumber' => $RegistrationNumber,
+            'Website' => $Website,
             'NodeFamily' => $nodeFamily,
             'Address' => Ssbhesabix_Validation::contactAddressValidation($fullAddress),
-            'City' => Ssbhesabix_Validation::contactCityValidation($order->get_billing_city()),
+            'City' => Ssbhesabix_Validation::contactCityValidation($city),
             'State' => Ssbhesabix_Validation::contactStateValidation($state_name),
             'Country' => Ssbhesabix_Validation::contactCountryValidation($country_name),
             'PostalCode' => Ssbhesabix_Validation::contactPostalCodeValidation($order->get_billing_postcode()),
@@ -192,14 +240,14 @@ class ssbhesabixCustomerService
         $EconomicCode = '_billing_hesabix_economiccode';
         $RegistrationNumber = '_billing_hesabix_registerationnumber';
         $Website = '_billing_hesabix_website';
-	    $NationalCode_isActive = get_option('ssbhesabix_contact_NationalCode_checkbox_hesabix');
-	    $EconomicCode_isActive = get_option('ssbhesabix_contact_EconomicCode_checkbox_hesabix');
-	    $RegistrationNumber_isActive = get_option('ssbhesabix_contact_RegistrationNumber_checkbox_hesabix');
-	    $Website_isActive = get_option('ssbhesabix_contact_Website_checkbox_hesabix');
-	    $add_additional_fileds = get_option('ssbhesabix_contact_add_additional_checkout_fields_hesabix');
-	    $fields = array();
+        $NationalCode_isActive = get_option('ssbhesabix_contact_NationalCode_checkbox_hesabix');
+        $EconomicCode_isActive = get_option('ssbhesabix_contact_EconomicCode_checkbox_hesabix');
+        $RegistrationNumber_isActive = get_option('ssbhesabix_contact_RegistrationNumber_checkbox_hesabix');
+        $Website_isActive = get_option('ssbhesabix_contact_Website_checkbox_hesabix');
+        $add_additional_fileds = get_option('ssbhesabix_contact_add_additional_checkout_fields_hesabix');
+        $fields = array();
 
-	    // add additional fields to checkout
+        // add additional fields to checkout
         if($add_additional_fileds == '1') {
             $fields['NationalCode'] = get_post_meta( $id_order, $NationalCode, true) ?? null;
             $fields['EconomicCode'] = get_post_meta( $id_order, $EconomicCode, true) ?? null;
@@ -220,8 +268,8 @@ class ssbhesabixCustomerService
             if($RegistrationNumber_isActive == 'yes' && $RegistrationNumber)
                 $fields['RegistrationNumber'] = get_post_meta( $id_order, $RegistrationNumber, true) ?? null;
 
-	        if($Website_isActive == 'yes' && $Website)
-		        $fields['Website'] = get_post_meta( $id_order, $Website, true) ?? null;
+            if($Website_isActive == 'yes' && $Website)
+                $fields['Website'] = get_post_meta( $id_order, $Website, true) ?? null;
         }
         return $fields;
     }

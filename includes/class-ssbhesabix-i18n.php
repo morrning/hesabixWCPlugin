@@ -12,6 +12,7 @@
  * @author     Saeed Sattar Beglou <saeed.sb@gmail.com>
  * @author     HamidReza Gharahzadeh <hamidprime@gmail.com>
  * @author     Sepehr Najafi <sepehrn249@gmail.com>
+ * @author     Babak Alizadeh <alizadeh.babak@gmail.com>
  */
 class Ssbhesabix_i18n {
 
@@ -26,7 +27,7 @@ class Ssbhesabix_i18n {
 		load_plugin_textdomain(
 			'ssbhesabix',
 			false,
-			dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages1/'
+			dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/'
 		);
 
 	}

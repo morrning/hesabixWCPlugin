@@ -1,14 +1,13 @@
 <?php
 /*
  * @class      Ssbhesabix_Html_output
- * @version    2.0.93
+ * @version    2.1.1
  * @since      1.0.0
  * @package    ssbhesabix
  * @subpackage ssbhesabix/admin/output
  * @author     Saeed Sattar Beglou <saeed.sb@gmail.com>
  * @author     HamidReza Gharahzadeh <hamidprime@gmail.com>
  * @author     Sepehr Najafi <sepehrn249@gmail.com>
- * @author     Babak Alizadeh <alizadeh.babak@gmail.com>
  */
 
 class Ssbhesabix_Html_output {

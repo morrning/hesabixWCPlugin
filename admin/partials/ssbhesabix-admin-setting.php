@@ -4,7 +4,7 @@ include_once( plugin_dir_path( __DIR__ ) . 'services/HesabixLogService.php' );
 error_reporting(0);
 /**
  * @class      Ssbhesabix_Setting
- * @version    2.0.93
+ * @version    2.1.1
  * @since      1.0.0
  * @package    ssbhesabix
  * @subpackage ssbhesabix/admin/setting
@@ -67,7 +67,7 @@ class Ssbhesabix_Setting {
 		?>
         <h3 class="h3 hesabix-tab-page-title mt-4"><?php esc_attr_e( 'Hesabix Accounting', 'ssbhesabix' ); ?></h3>
         <p class="p mt-4 hesabix-p hesabix-f-12 ms-3"
-           style="text-align: justify"><?php esc_attr_e( 'This module helps connect your (online) store to Hesabix online accounting software. By using this module, saving products, contacts, and orders in your store will also save them automatically in your Hesabix account. Besides that, just after a client pays a bill, the receipt document will be stored in Hesabix as well. Of course, you have to register your account in Hesabix first. To do so, visit Hesabix at the link here hesabix.ir and sign up for free. After you signed up and entered your account, choose your business, then in the settings menu/API, you can find the API keys for the business and import them to the plugin’s settings. Now your module is ready to use.', 'ssbhesabix' ); ?></p>
+           style="text-align: justify"><?php esc_attr_e( 'This module helps connect your (online) store to Hesabix online accounting software. By using this module, saving products, contacts, and orders in your store will also save them automatically in your Hesabix account. Besides that, just after a client pays a bill, the receipt document will be stored in Hesabix as well. Of course, you have to register your account in Hesabix first. To do so, visit Hesabix at the link here www.hesabix.com and sign up for free. After you signed up and entered your account, choose your business, then in the settings menu/API, you can find the API keys for the business and import them to the plugin’s settings. Now your module is ready to use.', 'ssbhesabix' ); ?></p>
         <p class="p hesabix-p hesabix-f-12"><?php esc_attr_e( 'For more information and a full guide to how to use Hesabix and WooCommerce Plugin, visit Hesabix’s website and go to the “Guides and Tutorials” menu.', 'ssbhesabix' ); ?></p>
 
         <div class="alert alert-danger hesabix-f mt-4">
@@ -85,6 +85,94 @@ class Ssbhesabix_Setting {
                     و کلیه ارتباطات از بین می رود.
                 </li>
             </ul>
+        </div>
+        <div class="alert alert-warning hesabix-f mt-4">
+            <strong style="font-size: 1rem;">نکات</strong>
+            <br>
+            <ul class="mt-2">
+                <li> *
+                    پیشنهاد می شود قبل از شروع کار با افزونه، حتما ویدیو خودآموز افزونه را مشاهده نمایید.
+                </li>
+            </ul>
+        </div>
+<!--////////////////////////video timing in the first page of the plugin////////////////////////////////////////////-->
+        <div class="row d-none" style="margin-left: 10px;">
+            <div class="col">
+                <h4 class="h4 hesabix-tab-page-title mt-4"><?php esc_attr_e( 'Plugin Tutorial Video', 'ssbhesabix' ); ?></h4>
+
+                <video controls poster="https://www.hesabix.com/img/woocommerc-plugin-help-cover.jpg"
+                       id="hesabix-tutorial-video" style="border: 1px solid gray" class="mt-3">
+                    <source src="https://www.hesabix.com/file/woocommerce/woocommerce-plugin-tutorial.mp4"
+                            type="video/mp4"></source>
+                </video>
+            </div>
+            <div class="col-3">
+                <h4 class="h4 hesabix-tab-page-title mt-4 mb-3"><?php esc_attr_e( 'Titles', 'ssbhesabix' ); ?></h4>
+                <div class="hesabix-plugin-tutorial-chapter" onclick="hesabixTutorialJumpTo(0)">
+                    نصب افزونه
+                    <br><strong class="text-info">00:00</strong>
+                </div>
+                <div class="hesabix-plugin-tutorial-chapter" onclick="hesabixTutorialJumpTo(75)">
+                    اتصال افزونه به حسابیکس
+                    <br><strong class="text-info">01:15</strong>
+                </div>
+                <div class="hesabix-plugin-tutorial-chapter" onclick="hesabixTutorialJumpTo(246)">
+                    تنظیمات افزونه
+                    <br><strong class="text-info">04:06</strong>
+                </div>
+                <div class="hesabix-plugin-tutorial-chapter" onclick="hesabixTutorialJumpTo(520)">
+                    تعریف محصول و لینک کردن محصول به حسابیکس
+                    <br><strong class="text-info">08:40</strong>
+                </div>
+                <div class="hesabix-plugin-tutorial-chapter" onclick="hesabixTutorialJumpTo(1378)">
+                    خروجی محصولات به حسابیکس
+                    <br><strong class="text-info">22:58</strong>
+                </div>
+                <div class="hesabix-plugin-tutorial-chapter" onclick="hesabixTutorialJumpTo(1462)">
+                    خروجی موجودی اول دوره محصولات به حسابیکس
+                    <br><strong class="text-info">24:22</strong>
+                </div>
+                <div class="hesabix-plugin-tutorial-chapter" onclick="hesabixTutorialJumpTo(1495)">
+                    خروجی مشتریان
+                    <br><strong class="text-info">24:55</strong>
+                </div>
+                <div class="hesabix-plugin-tutorial-chapter" onclick="hesabixTutorialJumpTo(1525)">
+                    ورود محصولات از حسابیکس به فروشگاه
+                    <br><strong class="text-info">25:25</strong>
+                </div>
+                <div class="hesabix-plugin-tutorial-chapter" onclick="hesabixTutorialJumpTo(1592)">
+                    همسان سازی قیمت و موجودی محصولات
+                    <br><strong class="text-info">26:32</strong>
+                </div>
+                <div class="hesabix-plugin-tutorial-chapter" onclick="hesabixTutorialJumpTo(1645)">
+                    همسان سازی سفارشات
+                    <br><strong class="text-info">27:25</strong>
+                </div>
+                <div class="hesabix-plugin-tutorial-chapter" onclick="hesabixTutorialJumpTo(1758)">
+                    بروزرسانی محصولات در حسابیکس بر اساس فروشگاه
+                    <br><strong class="text-info">29:18</strong>
+                </div>
+                <div class="hesabix-plugin-tutorial-chapter" onclick="hesabixTutorialJumpTo(1805)">
+                    سفارشات و ثبت فاکتور در حسابیکس
+                    <br><strong class="text-info">30:05</strong>
+                </div>
+                <div class="hesabix-plugin-tutorial-chapter" onclick="hesabixTutorialJumpTo(2120)">
+                    پشتیبان گیری از جدول افزونه در دیتابیس
+                    <br><strong class="text-info">35:20</strong>
+                </div>
+                <div class="hesabix-plugin-tutorial-chapter" onclick="hesabixTutorialJumpTo(2502)">
+                    لاگ رویدادها و خطاها
+                    <br><strong class="text-info">41:42</strong>
+                </div>
+                <div class="hesabix-plugin-tutorial-chapter" onclick="hesabixTutorialJumpTo(3046)">
+                    حذف محصولات
+                    <br><strong class="text-info">50:46</strong>
+                </div>
+                <div class="hesabix-plugin-tutorial-chapter" onclick="hesabixTutorialJumpTo(3143)">
+                    محصول پیش نویس
+                    <br><strong class="text-info">52:23</strong>
+                </div>
+            </div>
         </div>
 
 		<?php
@@ -120,8 +208,8 @@ class Ssbhesabix_Setting {
         <form id="ssbhesabix_form" enctype="multipart/form-data" action="" method="post">
             <?php
                 global $plugin_version;
-                if (defined('SSBHESABIX_VERSION')) {
-                    $plugin_version = constant('SSBHESABIX_VERSION');
+                if (defined('SSBHESABFA_VERSION')) {
+                    $plugin_version = constant('SSBHESABFA_VERSION');
                 }
                 $server_php_version  = phpversion();
                 $plugin_php_version = '8.1';
@@ -146,19 +234,157 @@ class Ssbhesabix_Setting {
 
                     . '</table>';
             ?>
-            <div class="d-flex flex-column">
+            <div class="d-flex flex-column" style="width: 90%;">
                 <?php $Html_output->init( $ssbhesabf_setting_fields ); ?>
+                <div class="ssbhesabix_set_rpp_container mt-2 d-flex align-items-center gap-2">
+                    <label class="form-label" for="ssbhesabix_set_rpp">
+                        <?php echo __('Set request amount per batch for sync products based on woocommerce in Hesabix', 'ssbhesabix');
+                            if(!(get_option('ssbhesabix_set_rpp_for_sync_products_into_hesabix'))) add_option('ssbhesabix_set_rpp_for_sync_products_into_hesabix-rpp', '-1');
+                        ?>
+                    </label>
+                    <select style="max-width: 100px;" class="form-select" name="ssbhesabix_set_rpp_for_sync_products_into_hesabix" id="ssbhesabix_set_rpp_for_sync_products_into_hesabix">
+                        <option value="-1"  <?php if(!get_option('ssbhesabix_set_rpp_for_sync_products_into_hesabix')) echo 'selected'; ?>><?php echo __('select', 'ssbhesabix');?></option>
+                        <option value="50"  <?php if(get_option('ssbhesabix_set_rpp_for_sync_products_into_hesabix') == '50') echo 'selected'; ?>>50</option>
+                        <option value="100" <?php if(get_option('ssbhesabix_set_rpp_for_sync_products_into_hesabix') == '100') echo 'selected'; ?>>100</option>
+                        <option value="150" <?php if(get_option('ssbhesabix_set_rpp_for_sync_products_into_hesabix') == '150') echo 'selected'; ?>>150</option>
+                        <option value="200" <?php if(get_option('ssbhesabix_set_rpp_for_sync_products_into_hesabix') == '200') echo 'selected'; ?>>200</option>
+                        <option value="300" <?php if(get_option('ssbhesabix_set_rpp_for_sync_products_into_hesabix') == '300') echo 'selected'; ?>>300</option>
+                        <option value="400" <?php if(get_option('ssbhesabix_set_rpp_for_sync_products_into_hesabix') == '400') echo 'selected'; ?>>400</option>
+                        <option value="500" <?php if(get_option('ssbhesabix_set_rpp_for_sync_products_into_hesabix') == '500') echo 'selected'; ?>>500</option>
+                    </select>
+                    <span><?php echo __("Plugin Default", "ssbhesabix"); ?>: 500</span>
+                </div>
+                <br>
+                <div class="ssbhesabix_set_rpp_container mt-2 d-flex align-items-center gap-2">
+                    <label class="form-label" for="ssbhesabix_set_rpp">
+                        <?php echo __('Set request amount per batch for sync products based on Hesabix in Woocommerce', 'ssbhesabix');
+                        if(!(get_option('ssbhesabix_set_rpp_for_sync_products_into_woocommerce'))) add_option('ssbhesabix_set_rpp_for_sync_products_into_woocommerce', '-1');
+                        ?>
+                    </label>
+                    <select style="max-width: 100px;" class="form-select" name="ssbhesabix_set_rpp_for_sync_products_into_woocommerce" id="ssbhesabix_set_rpp_for_sync_products_into_woocommerce">
+                        <option value="-1"  <?php if(!get_option('ssbhesabix_set_rpp_for_sync_products_into_woocommerce')) echo 'selected'; ?>><?php echo __('select', 'ssbhesabix');?></option>
+                        <option value="50"  <?php if(get_option('ssbhesabix_set_rpp_for_sync_products_into_woocommerce') == '50') echo 'selected'; ?>>50</option>
+                        <option value="100" <?php if(get_option('ssbhesabix_set_rpp_for_sync_products_into_woocommerce') == '100') echo 'selected'; ?>>100</option>
+                        <option value="150" <?php if(get_option('ssbhesabix_set_rpp_for_sync_products_into_woocommerce') == '150') echo 'selected'; ?>>150</option>
+                        <option value="200" <?php if(get_option('ssbhesabix_set_rpp_for_sync_products_into_woocommerce') == '200') echo 'selected'; ?>>200</option>
+                        <option value="300" <?php if(get_option('ssbhesabix_set_rpp_for_sync_products_into_woocommerce') == '300') echo 'selected'; ?>>300</option>
+                        <option value="400" <?php if(get_option('ssbhesabix_set_rpp_for_sync_products_into_woocommerce') == '400') echo 'selected'; ?>>400</option>
+                        <option value="500" <?php if(get_option('ssbhesabix_set_rpp_for_sync_products_into_woocommerce') == '500') echo 'selected'; ?>>500</option>
+                    </select>
+                    <span><?php echo __("Plugin Default", "ssbhesabix"); ?>: 200</span>
+                </div>
+                <br>
+                <div class="ssbhesabix_set_rpp_container mt-2 d-flex align-items-center gap-2">
+                    <label class="form-label" for="ssbhesabix_set_rpp">
+                        <?php echo __('Set request amount per batch for import products', 'ssbhesabix');
+                        if(!(get_option('ssbhesabix_set_rpp_for_import_products'))) add_option('ssbhesabix_set_rpp_for_import_products', '-1');
+                        ?>
+                    </label>
+                    <select style="max-width: 100px;" class="form-select" name="ssbhesabix_set_rpp_for_import_products" id="ssbhesabix_set_rpp_for_import_products">
+                        <option value="-1"  <?php if(!get_option('ssbhesabix_set_rpp_for_import_products')) echo 'selected'; ?>><?php echo __('select', 'ssbhesabix');?></option>
+                        <option value="50"  <?php if(get_option('ssbhesabix_set_rpp_for_import_products') == '50') echo 'selected'; ?>>50</option>
+                        <option value="100" <?php if(get_option('ssbhesabix_set_rpp_for_import_products') == '100') echo 'selected'; ?>>100</option>
+                    </select>
+                    <span><?php echo __("Plugin Default", "ssbhesabix"); ?>: 100</span>
+                </div>
+                <br>
+                <div class="ssbhesabix_set_rpp_container mt-2 d-flex align-items-center gap-2">
+                    <label class="form-label" for="ssbhesabix_set_rpp">
+                        <?php echo __('Set request amount per batch for export products', 'ssbhesabix');
+                        if(!(get_option('ssbhesabix_set_rpp_for_export_products'))) add_option('ssbhesabix_set_rpp_for_export_products', '-1');
+                        ?>
+                    </label>
+                    <select style="max-width: 100px;" class="form-select" name="ssbhesabix_set_rpp_for_export_products" id="ssbhesabix_set_rpp_for_export_products">
+                        <option value="-1"  <?php if(!get_option('ssbhesabix_set_rpp_for_export_products')) echo 'selected'; ?>><?php echo __('select', 'ssbhesabix');?></option>
+                        <option value="50"  <?php if(get_option('ssbhesabix_set_rpp_for_export_products') == '50') echo 'selected'; ?>>50</option>
+                        <option value="100" <?php if(get_option('ssbhesabix_set_rpp_for_export_products') == '100') echo 'selected'; ?>>100</option>
+                        <option value="150" <?php if(get_option('ssbhesabix_set_rpp_for_export_products') == '150') echo 'selected'; ?>>150</option>
+                        <option value="200" <?php if(get_option('ssbhesabix_set_rpp_for_export_products') == '200') echo 'selected'; ?>>200</option>
+                        <option value="300" <?php if(get_option('ssbhesabix_set_rpp_for_export_products') == '300') echo 'selected'; ?>>300</option>
+                        <option value="400" <?php if(get_option('ssbhesabix_set_rpp_for_export_products') == '400') echo 'selected'; ?>>400</option>
+                        <option value="500" <?php if(get_option('ssbhesabix_set_rpp_for_export_products') == '500') echo 'selected'; ?>>500</option>
+                    </select>
+                    <span><?php echo __("Plugin Default", "ssbhesabix"); ?>: 500</span>
+                </div>
+                <br>
+                <div class="ssbhesabix_set_rpp_container mt-2 d-flex align-items-center gap-2">
+                    <label class="form-label" for="ssbhesabix_set_rpp">
+                        <?php echo __('Set request amount per batch for export opening quantity of products', 'ssbhesabix');
+                        if(!(get_option('ssbhesabix_set_rpp_for_export_opening_products'))) add_option('ssbhesabix_set_rpp_for_export_opening_products', '-1');
+                        ?>
+                    </label>
+                    <select style="max-width: 100px;" class="form-select" name="ssbhesabix_set_rpp_for_export_opening_products" id="ssbhesabix_set_rpp_for_export_opening_products">
+                        <option value="-1"  <?php if(!get_option('ssbhesabix_set_rpp_for_export_opening_products')) echo 'selected'; ?>><?php echo __('select', 'ssbhesabix');?></option>
+                        <option value="50"  <?php if(get_option('ssbhesabix_set_rpp_for_export_opening_products') == '50') echo 'selected'; ?>>50</option>
+                        <option value="100" <?php if(get_option('ssbhesabix_set_rpp_for_export_opening_products') == '100') echo 'selected'; ?>>100</option>
+                        <option value="150" <?php if(get_option('ssbhesabix_set_rpp_for_export_opening_products') == '150') echo 'selected'; ?>>150</option>
+                        <option value="200" <?php if(get_option('ssbhesabix_set_rpp_for_export_opening_products') == '200') echo 'selected'; ?>>200</option>
+                        <option value="300" <?php if(get_option('ssbhesabix_set_rpp_for_export_opening_products') == '300') echo 'selected'; ?>>300</option>
+                        <option value="400" <?php if(get_option('ssbhesabix_set_rpp_for_export_opening_products') == '400') echo 'selected'; ?>>400</option>
+                        <option value="500" <?php if(get_option('ssbhesabix_set_rpp_for_export_opening_products') == '500') echo 'selected'; ?>>500</option>
+                    </select>
+                    <span><?php echo __("Plugin Default", "ssbhesabix"); ?>: 500</span>
+                </div>
             </div>
             <p class="submit hesabix-p">
                 <input type="submit" name="ssbhesabix_integration" class="button-primary"
                        value="<?php esc_attr_e( 'Save changes', 'ssbhesabix' ); ?>"/>
             </p>
+            <div class="p-4 rounded" style="width: 90%; background: rgba(211,211,211,0.48);">
+                <h3>بروزرسانی ID آخرین تغییر</h3>
+                <p style="font-weight: bold;">این گزینه تغییرات را به آخرین ID بروزرسانی می کند.</p>
+                <input type="submit" name="ssbhesabix_sync_last_change_id" id="ssbhesabix_sync_last_change_id" class="button-primary"
+                       value="<?php esc_attr_e( 'Sync Last Change ID', 'ssbhesabix' ); ?>"/>
+            </div>
+            <br>
+            <div class="p-4 rounded" style="width: 90%; background: rgba(211,211,211,0.48);">
+                <h3 style="font-weight: bold;">افزودن دستی محصول به حسابیکس</h3>
+                <p style="font-weight: bold;">در فیلد کد ووکامرس، کد محصول بدون لینک را که می خواهید در حسابیکس ذخیره کنید، وارد نمایید.</p>
+                <p style="font-weight: bold;">در فیلد کد حسابیکس، کد حسابداری را وارد نمایید به طوری که محصولی با این کد حسابداری وجود نداشته باشد تا محصول ووکامرس انتخابی با این کد در حسابیکس اضافه شود.</p>
+                <p style="font-weight: bold;">در صورتی که محصول ساده است به جای کد متغیر عدد صفر را قرار دهید.</p>
+
+                <label for="woocommerce_code" class="form-label"><strong>کد پایه ووکامرس کالای بدون لینک</strong></label>
+                <input type="text" name="woocommerce_code" id="woocommerce_code">
+
+                <label for="attribute_code" class="form-label"><strong>کد متغیر ووکامرس کالای بدون لینک</strong></label>
+                <input type="text" name="attribute_code" id="attribute_code">
+
+                <label for="hesabix_code" class="form-label"><strong>کد حسابداری بدون محصول در حسابیکس</strong></label>
+                <input type="text" name="hesabix_code" id="hesabix_code">
+
+                <input type="submit" name="ssbhesabix_save_product_manually_to_hesabix" id="ssbhesabix_save_product_manually_to_hesabix" class="button-primary"
+                       value="ذخیره"/>
+            </div>
         </form>
         <?php
         if(get_option('ssbhesabix_debug_mode_checkbox') == 'yes' || get_option('ssbhesabix_debug_mode_checkbox') == '1') {
             Ssbhesabix_Admin_Functions::enableDebugMode();
         } elseif(get_option('ssbhesabix_debug_mode_checkbox') == 'no' || get_option('ssbhesabix_debug_mode_checkbox') == '0') {
             Ssbhesabix_Admin_Functions::disableDebugMode();
+        }
+
+        if(isset($_POST['ssbhesabix_sync_last_change_id'])) {
+            $func = new Ssbhesabix_Admin_Functions();
+            $func->syncLastChangeID();
+        }
+
+        if(isset($_POST['ssbhesabix_save_product_manually_to_hesabix'])) {
+            $func = new Ssbhesabix_Admin_Functions();
+            if(empty($_POST['attribute_code'])) {
+                $_POST['attribute_code'] = 0;
+            }
+            if (empty($_POST['woocommerce_code'])) {
+                echo "<script>alert('کد پایه ووکامرس را وارد نمایید.')</script>";
+            } else {
+                if(isset($_POST['hesabix_code']) && isset($_POST['woocommerce_code']) && isset($_POST['attribute_code'])) {
+                    $result = $func->SaveProductManuallyToHesabix($_POST['woocommerce_code'],  $_POST['attribute_code'], $_POST['hesabix_code']);
+                    if($result) {
+                        echo '<script>alert("کالا ذخیره گردید")</script>';
+                    } else {
+                        echo '<script>alert("کالا ذخیره نشد. به فایل لاگ مراجعه کنید.")</script>';
+                    }
+                }
+            }
         }
 
         if(isset($_POST["ssbhesabix_integration"])) {
@@ -169,6 +395,70 @@ class Ssbhesabix_Setting {
             if(isset($_POST['ssbhesabix_set_rpp_for_export_opening_products'])) update_option('ssbhesabix_set_rpp_for_export_opening_products', $_POST['ssbhesabix_set_rpp_for_export_opening_products']);
             header('refresh:0');
         }
+        ?>
+        <br>
+        <form class="p-4 rounded" style="max-width: 90%; background: rgba(211,211,211,0.48);" id="ssbhesabix_search_form" enctype="multipart/form-data" method="post">
+            <h3>مشاهده آیتم های جدول ارتباط</h3>
+            <label for="woocommerce_search_code" class="form-label"><strong>کد پایه ووکامرس</strong></label>
+            <input type="text" name="woocommerce_search_code" id="woocommerce_search_code">
+
+            <label for="woocommerce_attribute_search_code" class="form-label"><strong>کد متغیر ووکامرس</strong></label>
+            <input type="text" name="woocommerce_attribute_search_code" id="woocommerce_attribute_search_code">
+
+            <label for="hesabix_search_code" class="form-label"><strong>کد حسابیکس</strong></label>
+            <input type="text" name="hesabix_search_code" id="hesabix_search_code">
+
+            <label for="obj_type_search" class="form-label"><strong>نوع آیتم</strong></label>
+            <select name="obj_type_search" id="obj_type_search">
+                <option value="0">انتخاب کنید</option>
+                <option value="product">محصول</option>
+                <option value="order">فاکتور</option>
+                <option value="customer">مشتری</option>
+            </select>
+            <input type="submit" name="ssbhesabix_search_form_button" id="ssbhesabix_search_form_button" class="button-primary"
+                   value="مشاهده"/>
+        </form>
+        <?php
+            if(isset($_POST["ssbhesabix_search_form_button"])) {
+                $woocommerce_search_code = isset($_POST["woocommerce_search_code"]) ? sanitize_text_field($_POST["woocommerce_search_code"]) : '';
+                $woocommerce_attribute_search_code = isset($_POST["woocommerce_attribute_search_code"]) ? sanitize_text_field($_POST["woocommerce_attribute_search_code"]) : '';
+                $hesabix_search_code = isset($_POST["hesabix_search_code"]) ? sanitize_text_field($_POST["hesabix_search_code"]) : '';
+                $obj_type_search = isset($_POST["obj_type_search"]) ? sanitize_text_field($_POST["obj_type_search"]) : '';
+
+                if (empty($woocommerce_search_code) && empty($woocommerce_attribute_search_code) && empty($hesabix_search_code) && $obj_type_search == '0') {
+                    return;
+                }
+
+                $wpFaService = new HesabixWpFaService();
+                $wpFa = $wpFaService->getWpFaSearch($woocommerce_search_code, $woocommerce_attribute_search_code, $hesabix_search_code, $obj_type_search);
+
+                ?>
+                <div class="table-responsive mt-2 p-2" style="max-height: 400px; overflow-y: auto; max-width:92%; border: 1px solid #333; border-radius: 5px;">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>نوع آیتم</th>
+                            <th>کد حسابیکس</th>
+                            <th>کد ووکامرس</th>
+                            <th>کد متغیر ووکامرس</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php foreach($wpFa as $item) { ?>
+                            <tr>
+                                <td><?php echo $item->id;?></td>
+                                <td><?php echo $item->objType;?></td>
+                                <td><?php echo $item->idHesabix;?></td>
+                                <td><?php echo $item->idWp;?></td>
+                                <td><?php echo $item->idWpAttribute;?></td>
+                            </tr>
+                        <?php } ?>
+                        </tbody>
+                    </table>
+                </div>
+
+            <?php }
     }
 //==============================================================================================
     public static function ssbhesabix_extra_setting_save_field() {
@@ -210,10 +500,26 @@ class Ssbhesabix_Setting {
 			'options' => $warehouses,
 		);
 
-		$fields[] = array(
-			'title'   => "",
-			'desc'    => __( 'Do not submit product in Hesabix automatically by saving product in woocommerce', 'ssbhesabix' ),
-			'id'      => 'ssbhesabix_do_not_submit_product_automatically',
+        $fields[] = array(
+            'title'   => "",
+            'desc'    => __( 'Remove The Titles for Attributes When Saving Product To Hesabix', 'ssbhesabix' ),
+            'id'      => 'ssbhesabix_remove_attributes_titles',
+			'default' => 'no',
+			'type'    => 'checkbox'
+        );
+
+        $fields[] = array(
+            'title'   => "",
+            'desc'    => __( 'Do not update purchase and sales titles in hesabix', 'ssbhesabix' ),
+            'id'      => 'ssbhesabix_do_not_update_titles_in_hesabix',
+			'default' => 'no',
+			'type'    => 'checkbox'
+		);
+
+        $fields[] = array(
+            'title'   => "",
+            'desc'    => __( 'Do not submit product in Hesabix automatically by saving product in woocommerce', 'ssbhesabix' ),
+            'id'      => 'ssbhesabix_do_not_submit_product_automatically',
 			'default' => 'no',
 			'type'    => 'checkbox'
 		);
@@ -254,6 +560,14 @@ class Ssbhesabix_Setting {
 			'title'   => "",
 			'desc'    => __( 'Show Hesabix ID in Products Page', 'ssbhesabix' ),
 			'id'      => 'ssbhesabix_show_product_code_in_products_page',
+			'default' => 'no',
+			'type'    => 'checkbox'
+		);
+
+        $fields[] = array(
+			'title'   => "",
+			'desc'    => __( 'Show Hesabix Code in Woocommerce Excel Export', 'ssbhesabix' ),
+			'id'      => 'ssbhesabix_show_hesabix_code_in_excel_export',
 			'default' => 'no',
 			'type'    => 'checkbox'
 		);
@@ -698,7 +1012,6 @@ class Ssbhesabix_Setting {
 			),
 		);
 
-
         foreach ( $available_payment_gateways as $gateway ) {
             $fields[] = array(
                 'title'   => $gateway->title,
@@ -706,6 +1019,39 @@ class Ssbhesabix_Setting {
                 'type'    => 'select',
                 'options' => $payInputValue
             );
+        }
+
+        foreach ( $available_payment_gateways as $gateway ) {
+            $fields[] = array(
+                'title'   => 'درصد کارمزد تراکنش برای ' . $gateway->title,
+                'id'      => 'ssbhesabix_payment_transaction_fee_' . $gateway->id,
+                'class' => 'payment-transaction-fee',
+                'type'    => 'text',
+                'placeholder' => 'وارد نمایید',
+                'default' => '0',
+            );
+        }
+
+        $plugins = get_plugins();
+        foreach ($plugins as $plugin_file => $plugin_info) {
+            if ($plugin_file === 'snapppay-woocommerce-gateway /index.php') {
+                if(is_plugin_active('snapppay-woocommerce-gateway /index.php')) {
+                    $fields[] = array(
+                        'title'   => 'پرداخت اسنپ پی',
+                        'id'      => 'ssbhesabix_payment_method_snapppay',
+                        'type'    => 'select',
+                        'options' => $payInputValue
+                    );
+
+                    $fields[] = array(
+                        'title'   => 'درصد کارمزد تراکنش برای پرداخت اسنپ پی',
+                        'id'      => 'ssbhesabix_payment_transaction_fee_snapppay',
+                        'type'    => 'text',
+                        'placeholder' => 'وارد نمایید',
+                        'default' => '0',
+                    );
+                }
+            }
         }
 
         $fields[] = array(
@@ -720,10 +1066,11 @@ class Ssbhesabix_Setting {
         );
 
         $fields[] = array(
-            'title'   => __( "Invoice Transaction Fee Percentage", 'ssbhesabix' ),
+            'title'   => __( "Default Invoice Transaction Fee Percentage", 'ssbhesabix' ),
             'id'      => 'ssbhesabix_invoice_transaction_fee',
             'type'    => 'text',
-            'placeholder' => __("Invoice Transaction Fee Percentage", 'ssbhesabix'),
+            'class' => 'payment-transaction-fee',
+            'placeholder' => __("Default Invoice Transaction Fee Percentage", 'ssbhesabix'),
             'default' => '0'
         );
 
@@ -758,12 +1105,21 @@ class Ssbhesabix_Setting {
 		$ssbhesabf_setting_fields = self::ssbhesabix_payment_setting_fields();
 		$Html_output              = new Ssbhesabix_Html_output();
 		?>
+        <style>
+            .payment-transaction-fee {
+                max-width: 100px;
+            }
+        </style>
         <div class="alert alert-warning hesabix-f">
             <strong>توجه</strong><br>
             در اینجا تعیین کنید که رسید دریافت وجه فاکتور در چه وضعیتی ثبت شود
             و در هر روش پرداخت، رسید در چه بانکی و یا صندوقی ثبت شود.
             <br>
             بانک پیش فرض، جهت کاربرانی می باشد که به هر دلیلی روش های پرداخت وکامرس در اینجا نمایش داده نمی شود. در این صورت با انتخاب بانک و ثبت کد آن، تمامی دریافت ها در آن بانک ثبت خواهد شد
+            <br>
+            درصد کارمزد تراکنش برای هر روش پرداخت می تواند تعریف شود(بین 1 تا 100).
+            <br>
+            درصد کارمزد تراکنش پیش فرض زمانی اعمال می شود که درصد یک روش پرداخت یا تعریف نشده باشد و یا صفر باشد.
         </div>
         <form id="ssbhesabix_form" enctype="multipart/form-data" action="" method="post">
 			<?php $Html_output->init( $ssbhesabf_setting_fields ); ?>
@@ -822,7 +1178,6 @@ class Ssbhesabix_Setting {
                 "1" => "next.hesabix.ir"
             )
         );
-
 		$fields[] = array( 'type' => 'sectionend', 'id' => 'api_options' );
 
 		return $fields;
@@ -846,6 +1201,10 @@ class Ssbhesabix_Setting {
                 <li>
                     برای اتصال به API حسابیکس و فعال شدن این افزونه باید در اینجا
                     کلید API و توکن ورود به کسب و کار خود را وارد کنید.
+                </li>
+                <li>
+                    اگر برای اتصال به API حسابیکس از توکن ورود استفاده کنید
+                    نیازی به وارد کردن ایمیل و رمز عبور نیست.
                 </li>
                 <li>
                     برای پیدا کردن توکن ورود و کلید API، در حسابیکس به قسمت تنظیمات، تنظیمات API مراجعه کنید.
@@ -1019,9 +1378,49 @@ class Ssbhesabix_Setting {
                     <label class="fw-bold mb-2">نکات مهم:</label>
                     <ul>
                         <li>با انجام این عملیات محصولات لینک نشده از فروشگاه وارد حسابیکس می شوند.</li>
+                        <li>اگر محصولات از قبل هم در فروشگاه تعریف شده اند و هم در حسابیکس و به هم لینک نشده اند باید از
+                            گزینه
+                            همسان سازی دستی محصولات استفاده کنید.
+                        </li>
                         <li>با انجام این عملیات موجودی محصولات وارد حسابیکس نمی شود و برای وارد کردن موجودی محصولات
                             فروشگاه
                             در حسابیکس، باید از گزینه استخراج موجودی اول دوره استفاده کنید.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </form>
+
+        <form class="card hesabix-card hesabix-f" id="ssbhesabix_export_products_opening_quantity" autocomplete="off"
+              action="<?php echo admin_url( 'admin.php?page=ssbhesabix-option&tab=export' ); ?>"
+              method="post">
+            <div>
+                <div>
+                    <label for="ssbhesabix-export-product-opening-quantity-submit"></label>
+                    <div>
+                        <button class="button button-primary hesabix-f"
+                                id="ssbhesabix-export-product-opening-quantity-submit"
+                                name="ssbhesabix-export-product-opening-quantity-submit"<?php if ( get_option( 'ssbhesabix_use_export_product_opening_quantity' ) == true ) {
+							echo 'disabled';
+						} ?>><?php echo __( 'Export Products opening quantity', 'ssbhesabix' ); ?></button>
+                    </div>
+                </div>
+                <p class="hesabix-p mt-2"><?php echo __( 'Export the products quantity and record the \'products opening quantity\' in the Hesabix', 'ssbhesabix' ); ?></p>
+                <div class="progress mt-1 mb-2" style="height: 5px; max-width: 400px; border: 1px solid silver"
+                     id="exportProductsOpeningQuantityProgress">
+                    <div class="progress-bar progress-bar-striped bg-success"
+                         id="exportProductsOpeningQuantityProgressBar" role="progressbar" style="width: 0%;"
+                         aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <div class="p-2 hesabix-f">
+                    <label class="fw-bold mb-2">نکات مهم:</label>
+                    <ul>
+                        <li>با انجام این عملیات موجودی کنونی محصولات در فروشگاه بعنوان موجودی اول دوره محصولات در حسابیکس
+                            ثبت می شوند.
+                        </li>
+                        <li>بطور کلی فقط یک بار باید از این گزینه استفاده کنید،
+                            که این کار باید پس از خروج محصولات به حسابیکس و یا پس از همسان سازی دستی تمام محصولات
+                            انجام شود.
                         </li>
                     </ul>
                 </div>
@@ -1255,6 +1654,10 @@ class Ssbhesabix_Setting {
                     <div>
                         <input type="date" id="ssbhesabix_sync_order_date" name="ssbhesabix_sync_order_date" value=""
                                class="datepicker"/>
+                        تا
+                        <input type="date" id="ssbhesabix_sync_order_end_date" name="ssbhesabix_sync_order_end_date" value=""
+                               class="datepicker"/>
+
                         <button class="button button-primary hesabix-f" id="ssbhesabix-sync-orders-submit"
                                 name="ssbhesabix-sync-orders-submit"><?php echo __( 'Sync Orders', 'ssbhesabix' ); ?></button>
                     </div>
@@ -1264,8 +1667,10 @@ class Ssbhesabix_Setting {
                      id="syncOrdersProgress">
                     <div class="progress-bar progress-bar-striped bg-success" id="syncOrdersProgressBar"
                          role="progressbar" style="width: 0%;" aria-valuenow="25" aria-valuemin="0"
-                         aria-valuemax="100"></div>
+                         aria-valuemax="100">
+                    </div>
                 </div>
+                <div id="syncOrdersStatistics"></div>
                 <div class="p-2 hesabix-f">
                     <label class="fw-bold mb-2">نکات مهم:</label>
                     <ul>
@@ -1359,37 +1764,73 @@ class Ssbhesabix_Setting {
 	public static function getProductCountsInHesabix() {
 		$hesabix = new Ssbhesabix_Api();
 
-		$filters = array( array( "Property" => "ItemType", "Operator" => "=", "Value" => 0 ) );
+		$filters = array( array( "Property" => "khadamat", "Operator" => "=", "Value" => 0 ) );
 
-		$response = $hesabix->itemGetItems( array( 'Take' => 1, 'Filters' => $filters ) );
+		$response = $hesabix->itemGetItems( array('Filters' => $filters ) );
 		if ( $response->Success ) {
-			return $response->Result->FilteredCount;
+			return $response->data->FilteredCount;
 		} else {
 			return 0;
 		}
 	}
 //=============================================================================================
-	public static function getLinkedProductsCount() {
-		global $wpdb;
+//	public static function getLinkedProductsCount() {
+//		global $wpdb;
+//
+//		return $wpdb->get_var( "SELECT COUNT(*) FROM `" . $wpdb->prefix . "ssbhesabix` WHERE `obj_type` = 'product'" );
+//	}
 
-		return $wpdb->get_var( "SELECT COUNT(*) FROM `" . $wpdb->prefix . "ssbhesabix` WHERE `obj_type` = 'product'" );
-	}
+
+    public static function getLinkedProductsCount() {
+        global $wpdb;
+
+        return $wpdb->get_var(
+            $wpdb->prepare(
+                "SELECT COUNT(*) FROM {$wpdb->prefix}ssbhesabix WHERE obj_type = 'product'"
+            )
+        );
+    }
 //=============================================================================================
-	public static function getProductCountsInStore() {
-		global $wpdb;
+//	public static function getProductCountsInStore() {
+//		global $wpdb;
+//
+//		return $wpdb->get_var( "SELECT COUNT(*) FROM `" . $wpdb->prefix . "posts` WHERE `post_type` IN ('product','product_variation') AND `post_status` IN ('publish', 'private', 'draft')  " );
+//	}
 
-		return $wpdb->get_var( "SELECT COUNT(*) FROM `" . $wpdb->prefix . "posts` WHERE `post_type` IN ('product','product_variation') AND `post_status` IN ('publish', 'private', 'draft')  " );
-	}
+    public static function getProductCountsInStore() {
+        global $wpdb;
+
+        return $wpdb->get_var(
+            $wpdb->prepare(
+                "SELECT COUNT(*) 
+            FROM {$wpdb->prefix}posts 
+            WHERE post_type IN ('product', 'product_variation') 
+            AND post_status IN ('publish', 'private', 'draft')"
+            )
+        );
+    }
+
 //=============================================================================================
 	public static function getSubscriptionInfo() {
 		$businessName = '';
+		$credit       = '';
+		$expireDate   = '';
+		$plan         = '';
+
 		$hesabix  = new Ssbhesabix_Api();
 		$response = $hesabix->settingGetSubscriptionInfo();
 		if ( $response->Success ) {
-			$businessName = $response->Result->name;
+			$businessName = $response->Result->Name;
+			$credit       = $response->Result->Credit;
+			$expireDate   = $response->Result->ExpireDate;
+			$plan         = $response->Result->Subscription;
 		}
+
 		return array(
 			"businessName" => $businessName,
+			"credit"       => $credit,
+			"expireDate"   => $expireDate,
+			"plan"         => $plan
 		);
 	}
 //=============================================================================================
@@ -1400,12 +1841,13 @@ class Ssbhesabix_Setting {
 
 		$ssbhesabix_api = new Ssbhesabix_Api();
 		$response       = $ssbhesabix_api->settingSetChangeHook( $url, $hookPassword );
-    
+
 		if ( is_object( $response ) ) {
 			if ( $response->Success ) {
 				update_option( 'ssbhesabix_live_mode', 1 );
 				update_option( 'ssbhesabix_account_bid', $response->bid );
                 update_option( 'ssbhesabix_account_year', $response->year );
+
 				//set the last log ID if is not set
 				$lastChanges = get_option( 'ssbhesabix_last_log_check_id' );
 				if ( ! $lastChanges ) {
@@ -1438,6 +1880,7 @@ class Ssbhesabix_Setting {
 				//check the Hesabix default currency
 				$default_currency = $ssbhesabix_api->settingGetCurrency();
 				if ( $default_currency->Success ) {
+                    
 					$woocommerce_currency = get_woocommerce_currency();
 					$hesabix_currency     = $default_currency->Result->moneyName;
 					if ( $hesabix_currency == $woocommerce_currency || ( $hesabix_currency == 'IRR' && $woocommerce_currency == 'IRT' ) || ( $hesabix_currency == 'IRT' && $woocommerce_currency == 'IRR' ) ) {
@@ -1463,15 +1906,51 @@ class Ssbhesabix_Setting {
 					echo '<p class="hesabix-p">' . __( 'API Setting updated. Test Successfully', 'ssbhesabix' ) . '</p>';
 					echo '</div>';
 				}
+
+                //add gift wrapping service
+                $wpFaService = new HesabixWpFaService();
+                $wpFa = $wpFaService->getWpFa('gift_wrapping', 0);
+                if(!$wpFa) {
+                    $gift_wrapping = $ssbhesabix_api->itemSave(array(
+                        'name' => 'خدمات بسته بندی هدیه',
+                        'khadamat' => 1,
+                        'Tag' => json_encode(array('id_product' => 0, 'id_attribute' => 0))
+                    ));
+
+                    if($gift_wrapping->Success) {
+                        $wpFa = new WpFa();
+                        $wpFa->idPs = 0;
+                        $wpFa->idPsAttribute = 0;
+                        $wpFa->idHesabix = $gift_wrapping->code;
+                        $wpFa->objType = 'gift_wrapping';
+                        $wpFaService->save($wpFa);
+                        $msg = 'Hesabix Gift wrapping service added successfully. Service Code: ' . $gift_wrapping->Result->Code;
+                        HesabixLogService::writeLogStr($msg);
+                    } else {
+                        $msg = 'Cannot set Gift wrapping service code. Error Message: ' . $gift_wrapping->ErrorMessage . ', Error Code: ' . $gift_wrapping->ErrorCode;
+                        HesabixLogService::writeLogStr($msg);
+                    }
+                }
 			} else {
 				update_option( 'ssbhesabix_live_mode', 0 );
-				echo '<div class="error">';
-				echo '<p class="hesabix-p">' . __( 'Cannot set Hesabix webHook. Error Message:', 'ssbhesabix' ) . $response->ErrorMessage . '</p>';
-				echo '</div>';
+
+				if ( $response->ErrorCode === 108 ) {
+					echo '<div class="error">';
+					echo '<p class="hesabix-p">' . __( 'Cannot connect to Hesabix. Business expired.', 'ssbhesabix' ) . $response->ErrorMessage . '</p>';
+					echo '</div>';
+					update_option( 'ssbhesabix_business_expired', 1 );
+				} else {
+					echo '<div class="error">';
+					echo '<p class="hesabix-p">' . __( 'Cannot set Hesabix webHook. Error Message:', 'ssbhesabix' ) . $response->ErrorMessage . '</p>';
+					echo '</div>';
+					update_option( 'ssbhesabix_business_expired', 0 );
+				}
+
 				HesabixLogService::log( array("Cannot set Hesabix webHook. Error Message: $response->ErrorMessage. Error Code: $response->ErrorCode") );
 			}
 		} else {
 			update_option( 'ssbhesabix_live_mode', 0 );
+
 			echo '<div class="error">';
 			echo '<p class="hesabix-p">' . __( 'Cannot connect to Hesabix servers. Please check your Internet connection', 'ssbhesabix' ) . '</p>';
 			echo '</div>';
@@ -1527,7 +2006,29 @@ class Ssbhesabix_Setting {
 			return $available_cashes;
 		}
 	}
+//=============================================================================================
+	public static function ssbhesabix_get_projects() {
+		$ssbhesabix_api = new Ssbhesabix_Api();
+		$projects       = $ssbhesabix_api->settingGetProjects();
 
+		if ( is_object( $projects ) && $projects->Success ) {
+			$available_projects        = array();
+			$available_projects[ - 1 ] = __( 'Choose', 'ssbhesabix' );
+			foreach ( $projects->data as $project ) {
+				$available_projects[ $project->id ] = $project->name;
+			}
+
+			return $available_projects;
+		} else {
+			update_option( 'ssbhesabix_live_mode', 0 );
+			echo '<div class="error">';
+			echo '<p class="hesabix-p">' . __( 'Cannot get Projects detail.', 'ssbhesabix' ) . '</p>';
+			echo '</div>';
+			HesabixLogService::log( array("Cannot get projects information. Error Code:$projects->ErrorCode. Error Message: $projects->ErrorMessage.") );
+
+			return array( '0' => __( 'Cannot get projects detail.', 'ssbhesabix' ) );
+		}
+	}
 //=============================================================================================
 	public static function ssbhesabix_get_salesmen() {
 		$ssbhesabix_api = new Ssbhesabix_Api();
@@ -1536,10 +2037,8 @@ class Ssbhesabix_Setting {
 		if ( is_object( $salesmen ) && $salesmen->Success ) {
 			$available_salesmen        = array();
 			$available_salesmen[ - 1 ] = __( 'Choose', 'ssbhesabix' );
-			foreach ( $salesmen->Result as $salesman ) {
-				if ( $salesman->Active ) {
-					$available_salesmen[ $salesman->Code ] = $salesman->Name;
-				}
+			foreach ( $salesmen->result as $salesman ) {
+				$available_salesmen[ $salesman->code ] = $salesman->nikename;
 			}
 
 			return $available_salesmen;
@@ -1809,7 +2308,7 @@ class Ssbhesabix_Setting {
 		$ssbhesabix_api = new Ssbhesabix_Api();
 		$warehouses     = $ssbhesabix_api->settingGetWarehouses();
 
-		if ( is_object( $warehouses ) && $warehouses->ErrorCode == 199 ) {
+		if ( is_object( $warehouses->data ) ) {
 			$available_warehouses        = array();
 			$available_warehouses[ - 1 ] = __( 'Accounting quantity (Total inventory)', 'ssbhesabix' );
 
@@ -1819,8 +2318,8 @@ class Ssbhesabix_Setting {
 		if ( is_object( $warehouses ) && $warehouses->Success ) {
 			$available_warehouses        = array();
 			$available_warehouses[ - 1 ] = __( 'Accounting quantity (Total inventory)', 'ssbhesabix' );
-			foreach ( $warehouses->Result as $warehouse ) {
-				$available_warehouses[ $warehouse->Code ] = $warehouse->Name;
+			foreach ( $warehouses->data as $warehouse ) {
+				$available_warehouses[ $warehouse->code ] = $warehouse->name;
 			}
 
 			return $available_warehouses;

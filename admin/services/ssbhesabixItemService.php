@@ -10,18 +10,21 @@ class ssbhesabixItemService
         $price = $product->get_regular_price() ? $product->get_regular_price() : $product->get_price();
 
         $hesabixItem = array(
-            'Code' => $code,
-            'Name' => Ssbhesabix_Validation::itemNameValidation($product->get_title()),
-            'PurchasesTitle' => Ssbhesabix_Validation::itemNameValidation($product->get_title()),
-            'SalesTitle' => Ssbhesabix_Validation::itemNameValidation($product->get_title()),
-            'ItemType' => $product->is_virtual() == 1 ? 1 : 0,
+            'code' => $code,
+            'name' => Ssbhesabix_Validation::itemNameValidation($product->get_title()),
+            'khadamat' => $product->is_virtual() == 1 ? 1 : 0,
             'Tag' => json_encode(array('id_product' => $id, 'id_attribute' => 0))
         );
 
+        if(get_option("ssbhesabix_do_not_update_titles_in_hesabix", "no") === "no") {
+            $hesabixItem['PurchasesTitle'] = Ssbhesabix_Validation::itemNameValidation($product->get_title());
+            $hesabixItem['SalesTitle'] = Ssbhesabix_Validation::itemNameValidation($product->get_title());
+        }
+
         if(!$code || get_option("ssbhesabix_do_not_update_product_price_in_hesabix", "no") === "no")
-            $hesabixItem["SellPrice"] = self::getPriceInHesabixDefaultCurrency($price);
+            $hesabixItem["priceSell"] = self::getPriceInHesabixDefaultCurrency($price);
         if(get_option("ssbhesabix_do_not_update_product_barcode_in_hesabix", "no") === "no")
-            $hesabixItem["Barcode"] = Ssbhesabix_Validation::itemBarcodeValidation($product->get_sku());
+            $hesabixItem["barcodes"] = Ssbhesabix_Validation::itemBarcodeValidation($product->get_sku());
 		if(get_option("ssbhesabix_do_not_update_product_category_in_hesabix", "no") === "no")
             if($categories) $hesabixItem["NodeFamily"] = self::getCategoryPath($categories[0]);
         if(get_option("ssbhesabix_do_not_update_product_product_code_in_hesabix", "no") === "no")
@@ -39,20 +42,30 @@ class ssbhesabixItemService
 
         $productName = $product->get_title();
         $variationName = $variation->get_attribute_summary();
-        $fullName = Ssbhesabix_Validation::itemNameValidation($productName . ' - ' . $variationName);
+
+        if(get_option("ssbhesabix_remove_attributes_titles") == "yes" || get_option("ssbhesabix_remove_attributes_titles") == "1") {
+            $values = self::getAttributesValues($variationName);
+            $fullName = Ssbhesabix_Validation::itemNameValidation($productName . ' - ' . implode(", ", $values));
+        } else {
+            $fullName = Ssbhesabix_Validation::itemNameValidation($productName . ' - ' . $variationName);
+        }
+
         $price = $variation->get_regular_price() ? $variation->get_regular_price() : $variation->get_price();
 
         $hesabixItem = array(
-            'Code' => $code,
-            'Name' => $fullName,
-            'PurchasesTitle' => $fullName,
-            'SalesTitle' => $fullName,
-            'ItemType' => $variation->is_virtual() == 1 ? 1 : 0,
+            'code' => $code,
+            'name' => $fullName,
+            'khadamat' => $variation->is_virtual() == 1 ? 1 : 0,
             'Tag' => json_encode(array(
                 'id_product' => $id_product,
                 'id_attribute' => $id_attribute
             )),
         );
+
+        if(get_option("ssbhesabix_do_not_update_titles_in_hesabix", "no") === "no") {
+            $hesabixItem['PurchasesTitle'] = $fullName;
+            $hesabixItem['SalesTitle'] = $fullName;
+        }
 
         if(!$code || get_option("ssbhesabix_do_not_update_product_price_in_hesabix", "no") === "no")    $hesabixItem["SellPrice"] = self::getPriceInHesabixDefaultCurrency($price);
         if(get_option("ssbhesabix_do_not_update_product_barcode_in_hesabix", "no") === "no")            $hesabixItem["Barcode"] = Ssbhesabix_Validation::itemBarcodeValidation($variation->get_sku());
@@ -60,6 +73,17 @@ class ssbhesabixItemService
         if(get_option("ssbhesabix_do_not_update_product_product_code_in_hesabix", "no") === "no")       $hesabixItem["ProductCode"] = $id_attribute;
 
         return $hesabixItem;
+    }
+//===========================================================================================================
+    public static function getAttributesValues($variationName) {
+        $pairs = explode(",", $variationName);
+
+        $values = array();
+        foreach ($pairs as $pair) {
+            list($title, $value) = explode(":", $pair);
+            $values[] = trim($value);
+        }
+        return $values;
     }
 //===========================================================================================================
     public static function getPriceInHesabixDefaultCurrency($price)

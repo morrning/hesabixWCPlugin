@@ -2,13 +2,14 @@
 
 /*
  * @class      Ssbhesabix_Validation
- * @version    2.0.93
+ * @version    2.1.1
  * @since      1.1.5
  * @package    ssbhesabix
  * @subpackage ssbhesabix/includes
  * @author     Saeed Sattar Beglou <saeed.sb@gmail.com>
  * @author     HamidReza Gharahzadeh <hamidprime@gmail.com>
  * @author     Sepehr Najafi <sepehrn249@gmail.com>
+ * @author     Babak Alizadeh <alizadeh.babak@gmail.com>
  */
 
 class Ssbhesabix_Validation

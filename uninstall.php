@@ -4,7 +4,6 @@
  * @author     Saeed Sattar Beglou <saeed.sb@gmail.com>
  * @author     HamidReza Gharahzadeh <hamidprime@gmail.com>
  * @author     Sepehr Najafi <sepehrn249@gmail.com>
- * @author     Babak Alizadeh <alizadeh.babak@gmail.com>
  * @since      1.0.0
  *
  * @package    ssbhesabix
@@ -15,14 +14,14 @@ if (!defined( 'WP_UNINSTALL_PLUGIN')) {
 	exit;
 }
 
-include_once(plugin_dir_path(__DIR__) . 'admin/services/HesabixLogService.php');
+include_once(plugin_dir_path(__DIR__) . 'admin/services/hesabixLogService.php');
 require 'includes/class-ssbhesabix-api.php';
 
 // delete tags in hesabix
 $hesabixApi = new Ssbhesabix_Api();
 $result = $hesabixApi->fixClearTags();
 if (!$result->Success) {
-    HesabixLogService::log(array("ssbhesabix - Cannot clear tags. Error Message: " . (string)$result->ErrorMessage . ". Error Code: " . (string)$result->ErrorCode));
+    hesabixLogService::log(array("ssbhesabix - Cannot clear tags. Error Message: " . (string)$result->ErrorMessage . ". Error Code: " . (string)$result->ErrorCode));
 }
 
 global $wpdb;

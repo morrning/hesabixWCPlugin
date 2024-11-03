@@ -77,6 +77,10 @@ msgstr ""
 msgid "Extra Settings"
 msgstr "تنظیمات پیشرفته"
 
+#: admin/partials/ssbhesabix-admin-display.php:338
+msgid "Sync Last Change ID"
+msgstr "بروزرسانی ID آخرین تغییر"
+
 #: admin/partials/ssbhesabix-admin-display.php:28
 msgid "Hesabix Options"
 msgstr "تنظیمات افزونه حسابیکس"
@@ -186,7 +190,7 @@ msgid ""
 "store will also save them automatically in your Hesabix account. Besides that, "
 "just after a client pays a bill, the receipt document will be stored in "
 "Hesabix as well. Of course, you have to register your account in Hesabix "
-"first. To do so, visit Hesabix at the link here hesabix.ir and sign up "
+"first. To do so, visit Hesabix at the link here www.hesabix.com and sign up "
 "for free. After you signed up and entered your account, choose your business, "
 "then in the settings menu/API, you can find the API keys for the business and "
 "import them to the plugin’s settings. Now your module is ready to use."
@@ -196,7 +200,7 @@ msgstr ""
 "در حسابیکس نیز بصورت خودکار ثبت و ذخیره می شوند. همچنین با پرداخت مشتری، سند "
 "دریافت وجه از مشتری نیز در حسابیکس ثبت می شود. بدیهی است برای استفاده از این "
 "افزونه باید ابتدا یک حساب کاربری در حسابیکس داشته باشید. برای این کار می توانید "
-"به وب سایت حسابیکس به آدرس hesabix.ir سر بزنید و به رایگان ثبت نام کنید. "
+"به وب سایت حسابیکس به آدرس www.hesabix.com سر بزنید و به رایگان ثبت نام کنید. "
 "پس از ثبت نام در حسابیکس و ورود به حساب خود، و سپس ورود به یک کسب و کار، در "
 "قسمت تنظیمات / API می توانید کلید API مربوط به کسب و کار خود را دریافت و در "
 "قسمت تنظیمات این ماژول وارد نمایید. پس از آن ماژول شما آماده استفاده است."
@@ -232,6 +236,10 @@ msgstr "به‌روزرسانی موجودی بعد از تغییر در حسا�
 #: admin/partials/ssbhesabix-admin-setting.php:240
 msgid "Show Hesabix ID in Products Page"
 msgstr "نمایش کد حسابیکس در صفحه همه محصولات"
+
+#: admin/partials/ssbhesabix-admin-setting.php:240
+msgid "Show Hesabix Code in Woocommerce Excel Export"
+msgstr "نمایش کد حسابیکس در خروجی اکسل ووکامرس"
 
 #: admin/partials/ssbhesabix-admin-setting.php:679
 msgid "Default Payment Gateway By Using this Option, all Invoices Will Have this Payment Gateway as Their Payment Gateway"
@@ -292,6 +300,9 @@ msgstr "جستجوی فایل لاگ براساس تاریخ"
 msgid "Save changes"
 msgstr "ذخیره  تغییرات"
 
+msgid "Save"
+msgstr "ذخیره"
+
 #: admin/partials/ssbhesabix-admin-setting.php:99
 msgid "Customers Settings"
 msgstr "تنظیمات مشتری"
@@ -340,6 +351,13 @@ msgstr "به صورت خودکار دسته بندی مشتریان را در ح
 msgid "Customer's detail auto save and update"
 msgstr "ذخیره خودکار مشتریان"
 
+#: admin/partials/ssbhesabix-admin-setting.php:111
+msgid "Check customer's phone with national code in user edit page"
+msgstr "بررسی تطابق شماره صورتحساب کاربر با کدملی"
+
+#: admin/partials/ssbhesabix-admin-setting.php:111
+msgid Check customer's phone with national code in user edit page and don't allow to save in hesabix"
+msgstr "بررسی تطابق شماره صورتحساب کاربر با کدملی توسط سامانه استعلام در صفحه ویرایش کاربر"
 
 #: admin/partials/ssbhesabix-admin-setting.php:111
 msgid "Save and update Customer's detail automatically in hesabix"
@@ -778,8 +796,8 @@ msgid "Settings were saved successfully."
 msgstr "تنظیمات به‌روزرسانی شد."
 
 #. Plugin URI of the plugin/theme
-msgid "https://hesabix.ir/"
-msgstr "‏https://hesabix.ir/"
+msgid "https://www.hesabix.com/"
+msgstr "‏https://www.hesabix.com/"
 
 #. Description of the plugin/theme
 msgid "Connect Hesabix Online Accounting to WooCommerce."
@@ -816,6 +834,9 @@ msgstr "به روزرسانی محصولات در حسابیکس بر اساس �
 msgid "Update completed successfully."
 msgstr "به روزرسانی با موفقیت انجام شد."
 
+msgid "Update completed successfully."
+msgstr "به روزرسانی با موفقیت انجام شد."
+
 msgid "Update failed. Please check the log file."
 msgstr "به روزرسانی ناموفق بود. لطفاً لاگ را بررسی کنید."
 
@@ -846,6 +867,9 @@ msgstr "ثبت محصول در حسابیکس"
 msgid "Do not submit product in Hesabix automatically by saving product in woocommerce"
 msgstr "با ذخیره محصول در ووکامرس، محصول را بصورت اتوماتیک در حسابیکس ثبت نکن"
 
+msgid "Remove The Titles for Attributes When Saving Product To Hesabix"
+msgstr "عنوان متغیر های یک محصول را با ذخیره/بروزرسانی در نام محصول حذف کن"
+
 msgid "Submit Price in Hesabix"
 msgstr "ثبت قیمت در حسابیکس"
 
@@ -854,6 +878,9 @@ msgstr "با ویرایش محصول در ووکامرس، قیمت محصول �
 
 msgid "Barcode in Hesabix"
 msgstr "بارکد در حسابیکس"
+
+msgid "National Code in Hesabix"
+msgstr "کد ملی در حسابیکس"
 
 msgid "Do not update product barcode in Hesabix by saving product in woocommerce"
 msgstr "با ذخیره محصول در ووکامرس، بارکد محصول را در حسابیکس بروز نکن"
@@ -882,8 +909,8 @@ msgstr "ثبت در وجوه در راه"
 msgid "Submit Invoice Receipt Cash in Transit"
 msgstr "ثبت رسید دریافت فاکتور در وجوه در راه"
 
-msgid "Invoice Transaction Fee Percentage"
-msgstr "درصد کارمزد تراکنش"
+msgid "Default Invoice Transaction Fee Percentage"
+msgstr "درصد کارمزد تراکنش به صورت پیش فرض"
 
 msgid "Plugin Tutorial Video"
 msgstr "ویدیوی خودآموز افزونه"
@@ -900,6 +927,9 @@ msgstr "امکان دریافت اطلاعات انبارها نیست."
 msgid "Update product's quantity based on"
 msgstr "بروزرسانی موجودی کالا بر اساس"
 
+msgid "Do not update purchase and sales titles in hesabix"
+msgstr "توضیحات (عنوان های) خرید و فروش را در حسابیکس بروز نکن"
+
 msgid "Warehouse system is not active in Hesabix."
 msgstr "سیستم انبارداری در حسابیکس فعال نیست."
 
@@ -915,6 +945,13 @@ msgid ""
 msgstr ""
 "این فیلد کد شخص در حسابیکس است، اگر می‌خواهید این کاربر را به شخصی "
 "در حسابیکس ارتباط دهید، کد شخص را وارد نمایید."
+
+msgid ""
+"To check the phone with national code, "
+"you need to enter both billing phone correctly."
+msgstr ""
+"این فیلد کد ملی شخص در حسابیکس است، اگر می‌خواهید شماره تماس با کد ملی چک شود "
+"باید شماره تماس صورتحساب را به درستی وارد نمایید."
 
 msgid "Error: Select maximum 10 orders. Due to some limitations in Hesabix API, sending too many requests in one minute is not possible."
 msgstr "خطا: حداکثر ۱۰ سفارش را انتخاب کنید. بدلیل محدودیت رابط برنامه نویسی حسابیکس، ارسال درخواست های زیاد در یک دقیقه امکان پذیر نیست."
