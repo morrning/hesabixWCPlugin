@@ -384,7 +384,7 @@ class Ssbhesabix_Admin_Display
                     <a class="btn btn-sm btn-success" href="https://hesabix.ir" target="_blank">ورود به
                         حسابیکس</a>
                     <a class="btn btn-sm btn-warning"
-                       href="https://www.hesabix.ir/help/topics/%D8%A7%D9%81%D8%B2%D9%88%D9%86%D9%87/%D9%88%D9%88%DA%A9%D8%A7%D9%85%D8%B1%D8%B3"
+                       href="https://hesabix.ir/help/topics/%D8%A7%D9%81%D8%B2%D9%88%D9%86%D9%87/%D9%88%D9%88%DA%A9%D8%A7%D9%85%D8%B1%D8%B3"
                        target="_blank">راهنمای افزونه</a>
                 </div>
             </div>

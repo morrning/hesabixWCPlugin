@@ -1,13 +1,13 @@
 <?php
 
 /**
- * @link              https://www.Hesabix.ir/
+ * @link              https://hesabix.ir/
  * @since             1.0.0
  * @package           ssbHesabix
  *
  * @wordpress-plugin
  * Plugin Name:       hesabix Accounting
- * Plugin URI:        https://www.hesabix.ir/
+ * Plugin URI:        https://hesabix.ir/
  * Description:       Connect Hesabix Online Accounting to WooCommerce.
  * Version:           2.1.1
  * Author:            Babak Alizadeh

@@ -492,7 +492,7 @@ class Ssbhesabix_Api
     //================================================================================================
     public function saveStatistics()
     {
-        $plugin_version = constant('SSBHESABFA_VERSION');
+        $plugin_version = constant('SSBHESABIX_VERSION');
 
         $endpoint = "https://hesabix.ir/statistics/save";
         $body = array(
